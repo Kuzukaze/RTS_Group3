@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114714951318971630}
   - component: {fileID: 114084835892117414}
   - component: {fileID: 54873763641520136}
+  - component: {fileID: 114866907213139270}
   m_Layer: 0
   m_Name: Engineer
   m_TagString: Untagged
@@ -65,7 +66,7 @@ GameObject:
   - component: {fileID: 114122800946705688}
   - component: {fileID: 114743193810537526}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,6 +323,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a347302a3f667814886e85abec019e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114866907213139270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214876201661376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ae9a20bdfe9684fb25437333fe2cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 114694466747438088}
 --- !u!136 &136811523021172400
 CapsuleCollider:
   m_ObjectHideFlags: 1

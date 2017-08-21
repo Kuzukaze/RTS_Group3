@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114220302242823170}
   - component: {fileID: 114099458160290374}
   m_Layer: 5
-  m_Name: UnitCanvas
+  m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 54631318587615174}
   - component: {fileID: 195586343330519406}
   - component: {fileID: 114881738189931048}
+  - component: {fileID: 114643284826911122}
   m_Layer: 0
   m_Name: Zergling
   m_TagString: Untagged
@@ -145,7 +146,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 20947b203d48727419711d2f9b5ab6d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -283,6 +284,18 @@ MonoBehaviour:
   startHealth: 100
   healthBar: {fileID: 114926543232235250}
   team: Alliance
+--- !u!114 &114643284826911122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890255751256726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ae9a20bdfe9684fb25437333fe2cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myUnit: {fileID: 114396234172906984}
 --- !u!114 &114881738189931048
 MonoBehaviour:
   m_ObjectHideFlags: 1
