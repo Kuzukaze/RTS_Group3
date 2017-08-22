@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public delegate void ActionDelegate (Vector3 position);
 
@@ -93,6 +94,59 @@ public class UIManager : MonoBehaviour {
     //---------------------------------------------------
     //---------------------------------------------------
     //USE AT YOUR OWN RISK (not intended to be called from outside):
+
+    void Update ()
+    {
+        if (currentActions != null && !EventSystem.current.IsPointerOverGameObject())
+        {
+            if (Input.GetMouseButtonDown(1) || currentActions[0].GetActionType() == ActionType.construction)
+            {
+                Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit interactionInfo;
+                if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+                {
+                    ProcessRaycastHit(interactionInfo);
+                }
+            }
+        }
+    }
+
+    void ProcessRaycastHit(RaycastHit hit)
+    {
+        if (currentActions[0].GetActionType() == ActionType.construction)
+        {
+            BaseAction current = currentActions[0];
+            if (!current.IsBusy())
+            {
+                current.DrawPreActionMarker(hit.point);
+                if (Input.GetMouseButtonDown(1))
+                {
+                    Debug.Log("Gor mouse down!");
+                    //current.SetBusy(true);
+                    //ExecuteCurrentAction(hit.point);
+                    current.ExecuteAction(hit.point);
+                    current.SetBusy(true);
+                    return;
+                }
+                return;
+            }
+            return;
+            
+        }
+
+        if (hit.collider.gameObject.GetComponent<Unit>() != null)
+        {
+            ExecuteCurrentAction(hit.collider.gameObject.GetComponent<Unit>());
+            return;
+        }
+
+        if (hit.collider.gameObject.GetComponent<ClickableGround>() != null)
+        {
+            ExecuteCurrentAction(hit.point);
+            return;
+        }
+    }
+
 
     void Start ()
     {

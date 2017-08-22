@@ -4,24 +4,12 @@ using UnityEngine;
 
 public class ClickableGround : MonoBehaviour {
 
-    private UIManager uiManager;
+    [SerializeField] private bool allowBuilding = true;
 
-    void Start()
+    public bool BuildingAllowed()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        return allowBuilding;
     }
-
-    void OnMouseOver ()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit interactionInfo;
-            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
-            {
-                uiManager.ExecuteCurrentAction(interactionInfo.point);
-            }
-        }
-    }
+        
 
 }

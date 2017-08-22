@@ -1,46 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SmartBuilder : BaseAction
 {
-    [SerializeField]GameObject factoryPrefab;
-    private GameObject factory = null;
+    [SerializeField] GameObject factoryPrefab;
+    [SerializeField] Image ghostImage;
+    [SerializeField] Sprite availableBuildSprite;
+    [SerializeField] Sprite notAvailableBuildSprite;
 
-    private Selectable selectable;
+    [SerializeField] GameObject ghostPrefab;
+    private GameObject currentGhost;
 
     private float radius = 2f;
+
+    private GameObject factory = null;
+    private Selectable selectable;
 
     void Start()
     {
         selectable = GetComponent<Selectable>();
     }
 
-    /* Перенял на себя ExecuteAction.
-     
-      Ставим домик на землю по указанию курсора мыши, проверяя, не заденет ли он дома вокруг.
-    public void PlaceHouse()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, 100f) && hit.collider.CompareTag("Ground"))
-        {
-            if (isNoBuildingsNearby(hit.point))
-            {
-                factory = (GameObject)GameObject.Instantiate(factoryPrefab, hit.point, factoryPrefab.transform.rotation);
-            }
-        }
-    }
-    */
-
     public override void ExecuteAction(Vector3 pos)
     {
+        Debug.Log("execute action");
+        currentGhost = null;
         if (isNoBuildingsNearby(pos))
         {
-            factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            //factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
         }
+        Destroy(currentGhost);
+        this.SetBusy(false);
     }
+
+    bool HasMouseMoved()
+    {
+        return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
+    }
+
+    public override void DrawPreActionMarker(Vector3 position)
+    { /*
+        if (HasMouseMoved())
+        {
+            Vector3 mousePos = (Input.mousePosition - ghostImage.GetComponent<RectTransform>().localPosition);
+            ghostImage.GetComponent<RectTransform>().localPosition = new Vector3(mousePos.x + 15, mousePos.y - 15, mousePos.z);
+    
+            if (isNoBuildingsNearby(position))
+            {
+                ghostImage.sprite = availableBuildSprite;
+            }
+            else
+            {
+                ghostImage.sprite = notAvailableBuildSprite;
+            }
+        } */
+        if (currentGhost == null)
+        {
+            currentGhost = Instantiate(ghostPrefab, position, Quaternion.Euler(0,0,0));
+        }
+        currentGhost.transform.position = position;
+    }
+        
 
     bool isNoBuildingsNearby(Vector3 hitPoint)
     {
@@ -56,7 +79,6 @@ public class SmartBuilder : BaseAction
                 Debug.Log("Здание!");
             }
         }
-
         return isEmpty;
     }
 
