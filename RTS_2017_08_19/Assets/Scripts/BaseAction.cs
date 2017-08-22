@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActionType {instant, terrainClick, unitClick};
+public enum ActionType {instant, terrainClick, unitClick, construction};
 
 public class BaseAction : MonoBehaviour {
 
