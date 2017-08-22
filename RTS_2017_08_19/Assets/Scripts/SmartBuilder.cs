@@ -10,6 +10,9 @@ public class SmartBuilder : BaseAction
     [SerializeField] Sprite availableBuildSprite;
     [SerializeField] Sprite notAvailableBuildSprite;
 
+    [SerializeField] GameObject ghostPrefab;
+    private GameObject currentGhost;
+
     private float radius = 2f;
 
     private GameObject factory = null;
@@ -22,10 +25,15 @@ public class SmartBuilder : BaseAction
 
     public override void ExecuteAction(Vector3 pos)
     {
+        Debug.Log("execute action");
+        currentGhost = null;
         if (isNoBuildingsNearby(pos))
         {
-            factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            //factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
         }
+        Destroy(currentGhost);
+        this.SetBusy(false);
     }
 
     bool HasMouseMoved()
@@ -33,13 +41,13 @@ public class SmartBuilder : BaseAction
         return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
     }
 
-    public void DrawGhostBuilding(Vector3 position)
-    {
+    public override void DrawPreActionMarker(Vector3 position)
+    { /*
         if (HasMouseMoved())
         {
             Vector3 mousePos = (Input.mousePosition - ghostImage.GetComponent<RectTransform>().localPosition);
             ghostImage.GetComponent<RectTransform>().localPosition = new Vector3(mousePos.x + 15, mousePos.y - 15, mousePos.z);
-
+    
             if (isNoBuildingsNearby(position))
             {
                 ghostImage.sprite = availableBuildSprite;
@@ -48,8 +56,14 @@ public class SmartBuilder : BaseAction
             {
                 ghostImage.sprite = notAvailableBuildSprite;
             }
+        } */
+        if (currentGhost == null)
+        {
+            currentGhost = Instantiate(ghostPrefab, position, Quaternion.Euler(0,0,0));
         }
+        currentGhost.transform.position = position;
     }
+        
 
     bool isNoBuildingsNearby(Vector3 hitPoint)
     {

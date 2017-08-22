@@ -83,6 +83,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     public void Select()
     {
         selected = true;
+        Debug.Log(currentActions[0].IsBusy());
+        currentActions[0].SetBusy(false);
         backgroundImage.color = selectedColor;
         actionManager.SetNewSelection(this);
     }

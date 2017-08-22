@@ -113,6 +113,27 @@ public class UIManager : MonoBehaviour {
 
     void ProcessRaycastHit(RaycastHit hit)
     {
+        if (currentActions[0].GetActionType() == ActionType.construction)
+        {
+            BaseAction current = currentActions[0];
+            if (!current.IsBusy())
+            {
+                current.DrawPreActionMarker(hit.point);
+                if (Input.GetMouseButtonDown(1))
+                {
+                    Debug.Log("Gor mouse down!");
+                    //current.SetBusy(true);
+                    //ExecuteCurrentAction(hit.point);
+                    current.ExecuteAction(hit.point);
+                    current.SetBusy(true);
+                    return;
+                }
+                return;
+            }
+            return;
+            
+        }
+
         if (hit.collider.gameObject.GetComponent<Unit>() != null)
         {
             ExecuteCurrentAction(hit.collider.gameObject.GetComponent<Unit>());

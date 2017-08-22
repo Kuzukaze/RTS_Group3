@@ -169,10 +169,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
-  actionType: 1
+  actionType: 3
   id: 1
   factoryPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
+  ghostImage: {fileID: 0}
+  availableBuildSprite: {fileID: 0}
+  notAvailableBuildSprite: {fileID: 0}
 --- !u!114 &114122800946705688
 MonoBehaviour:
   m_ObjectHideFlags: 1
