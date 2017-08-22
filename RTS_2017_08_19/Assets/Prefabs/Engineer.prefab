@@ -176,6 +176,8 @@ MonoBehaviour:
   ghostImage: {fileID: 0}
   availableBuildSprite: {fileID: 0}
   notAvailableBuildSprite: {fileID: 0}
+  ghostPrefab: {fileID: 1415299616336502, guid: e73e00efaa405414eb7a2b850a711233,
+    type: 2}
 --- !u!114 &114122800946705688
 MonoBehaviour:
   m_ObjectHideFlags: 1
