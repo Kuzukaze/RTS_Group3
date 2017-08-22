@@ -49,7 +49,8 @@ public class Unit : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            gameObject.transform.position = new Vector3(-47, 2, -47); //костыль для OnTriggerExit эффектов
+            Invoke("Die", 0.03f);
         }
 
 
@@ -58,7 +59,7 @@ public class Unit : MonoBehaviour
 
     void Die()
     {
-        Destroy(this.gameObject);
+      Destroy(gameObject);
     }
 
     public string GetTeam()
