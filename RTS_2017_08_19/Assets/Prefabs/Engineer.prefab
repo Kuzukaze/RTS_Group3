@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 114084835892117414}
   - component: {fileID: 54873763641520136}
   - component: {fileID: 114866907213139270}
+  - component: {fileID: 114104392541799810}
   m_Layer: 0
   m_Name: Engineer
   m_TagString: Untagged
@@ -96,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 1.5, z: -2.2}
+  m_LocalPosition: {x: -2.2, y: 1.5, z: -2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224590833257337424}
@@ -170,9 +171,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
   actionType: 3
-  id: 1
+  id: 10
+  locked: 0
+  actionToUnlock: 11
   factoryPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
+  ghostImage: {fileID: 0}
+  availableBuildSprite: {fileID: 0}
+  notAvailableBuildSprite: {fileID: 0}
+  ghostPrefab: {fileID: 1415299616336502, guid: e73e00efaa405414eb7a2b850a711233,
+    type: 2}
+--- !u!114 &114104392541799810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214876201661376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
+  actionType: 3
+  id: 11
+  locked: 1
+  actionToUnlock: 11
+  factoryPrefab: {fileID: 126928, guid: 3d36e950cc1dd4d4f97386f02d27e311, type: 2}
   ghostImage: {fileID: 0}
   availableBuildSprite: {fileID: 0}
   notAvailableBuildSprite: {fileID: 0}
@@ -300,6 +325,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8b65b9f76e5540041869ee6fac45e429, type: 3}
   actionType: 1
   id: 0
+  locked: 0
+  actionToUnlock: 0
 --- !u!114 &114720034087140216
 MonoBehaviour:
   m_ObjectHideFlags: 1

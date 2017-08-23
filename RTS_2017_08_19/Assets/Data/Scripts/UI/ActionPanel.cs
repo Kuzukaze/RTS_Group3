@@ -21,18 +21,28 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     [SerializeField]
     private Color unselectedColor;
 
+    [SerializeField]
+    private Color lockedColor;
+
     private bool occupied = false;
     private bool selected = false;
+    private bool checkColorInLateUpdate;
 
 	// Use this for initialization
 	void Start () {
         backgroundImage = GetComponent<Image>();
         displayedImage = GetComponentsInChildren<Image>()[1];
         displayedImage.sprite = emptyIcon;
-
         actionManager = GetComponentInParent<ActionPanelManager>();
+
+        UnlockManager unlockManager = FindObjectOfType<UnlockManager>();
+        unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
 	}
-	
+
+    public void UnlockDetected (int unlockedID)
+    {
+        checkColorInLateUpdate = true;
+    }
 
     public bool IsFree()
     {
@@ -52,6 +62,9 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
             currentActions.Clear();
         currentActions = new List<BaseAction>();
         currentActions.Add(action);
+        if (currentActions[0].IsLocked())
+            backgroundImage.color = lockedColor;
+        checkColorInLateUpdate = true;
     }
 
     public void AddActionToList (BaseAction action)
@@ -78,13 +91,14 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         displayedImage.sprite = emptyIcon;
         if (currentActions != null)
             currentActions.Clear();
+        checkColorInLateUpdate = true;
     }
 
     public void Select()
     {
         selected = true;
-        Debug.Log(currentActions[0].IsBusy());
-        currentActions[0].SetBusy(false);
+        Debug.Log(currentActions[0].IsShowingGhost());
+        currentActions[0].SetShowingGhost(false);
         backgroundImage.color = selectedColor;
         actionManager.SetNewSelection(this);
     }
@@ -92,19 +106,52 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     public void Unselect()
     {
         selected = false;
-        backgroundImage.color = unselectedColor;
+        CheckIfLocked();
+    }
+
+    public void CheckIfLocked ()
+    {
+        if (currentActions != null)
+        {
+            if (currentActions.Count > 0)
+            {
+                Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
+                if (currentActions[0].IsLocked())
+                    backgroundImage.color = lockedColor;
+                else
+                    backgroundImage.color = unselectedColor;
+            }
+        }
+        else
+        { 
+            backgroundImage.color = unselectedColor;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (checkColorInLateUpdate)
+        {
+            CheckIfLocked();
+            if (selected)
+                backgroundImage.color = selectedColor;
+            checkColorInLateUpdate = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (selected)
+        if (!currentActions[0].IsLocked())
         {
-            actionManager.UnselectAll();
-        }
-        else
-        {
-            if (occupied) //if the slot is not empty
-                SelectOrExecute();
+            if (selected)
+            {
+                actionManager.UnselectAll();
+            }
+            else
+            {
+                if (occupied) //if the slot is not empty
+                    SelectOrExecute();
+            }
         }
     }
 
@@ -123,5 +170,5 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
             Select();
         }
     }
-
+        
 }

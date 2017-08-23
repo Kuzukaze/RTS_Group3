@@ -9,15 +9,18 @@ public class MoverGround : BaseAction
 {
     private NavMeshAgent unitNavMesh;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         unitNavMesh = GetComponent<NavMeshAgent>();
     }
 
     public override void ExecuteAction(Vector3 pos)
     {
-            unitNavMesh.destination = pos;
-        }
+        unitNavMesh.destination = pos;
+    }
+
+
     }
 
 

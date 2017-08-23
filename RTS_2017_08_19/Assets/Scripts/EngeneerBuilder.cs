@@ -11,8 +11,9 @@ public class EngeneerBuilder : BaseAction
 
     private float radius = 0.2f;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         selectable = GetComponent<Selectable>();
     }
 
@@ -21,6 +22,7 @@ public class EngeneerBuilder : BaseAction
         if (isNoBuildingsNearby(pos))
         {
             engineer = (GameObject)GameObject.Instantiate(engineerPrefab, pos, engineerPrefab.transform.rotation);
+            UnlockAction(actionToUnlock);
         }
     }
 
