@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour {
         if (currentActions[0].GetActionType() == ActionType.construction)
         {
             BaseAction current = currentActions[0];
-            if (!current.IsBusy())
+            if (!current.IsShowingGhost())
             {
                 current.DrawPreActionMarker(hit.point);
                 if (Input.GetMouseButtonDown(1))
@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour {
                     //current.SetBusy(true);
                     //ExecuteCurrentAction(hit.point);
                     current.ExecuteAction(hit.point);
-                    current.SetBusy(true);
+                    current.SetShowingGhost(true); //this will be removed
                     return;
                 }
                 return;

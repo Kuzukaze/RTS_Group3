@@ -13,7 +13,10 @@ public class BaseAction : MonoBehaviour {
     [SerializeField] protected Sprite icon;
     [SerializeField] protected ActionType actionType;
     [SerializeField] protected int id;
-    protected bool busy = false;
+    [SerializeField] protected bool locked = false;
+
+    protected bool isShowingGhost = false;
+    private UnlockManager unlockManager;
 
     public ActionType GetActionType ()
     {
@@ -55,19 +58,44 @@ public class BaseAction : MonoBehaviour {
         Debug.Log("DrawPreActionMarker (Vector3 pos)");
     }
 
-    public void SetBusy()
+    public void SetShowingGhost()
     {
-        busy = !busy;
+        isShowingGhost = !isShowingGhost;
     }
 
-    public void SetBusy(bool val)
+    public void SetShowingGhost(bool val)
     {
-        busy = val;
+        isShowingGhost = val;
     }
 
-    public bool IsBusy()
+    public bool IsShowingGhost()
     {
-        return busy;
+        return isShowingGhost;
+    }
+
+    public bool IsLocked ()
+    {
+        return locked;
+    }
+
+ 
+
+    public virtual void Start()
+    {
+        unlockManager = FindObjectOfType<UnlockManager>();
+        locked = unlockManager.CheckIfLocked(id);
+        unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
+    }
+
+    public void UnlockDetected (int unlockedID)
+    {
+        if (unlockedID == id)
+            locked = false;
+    }
+
+    public void UnlockAction (int actionID)
+    {
+        unlockManager.UnlockAction(actionID);
     }
 
     //---------EVENT SUBSCRIPTION EXAMPLE:--------------------

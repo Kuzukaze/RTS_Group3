@@ -11,6 +11,8 @@ public class SmartBuilder : BaseAction
     [SerializeField] Sprite notAvailableBuildSprite;
 
     [SerializeField] GameObject ghostPrefab;
+    [SerializeField] private int actionToUnlock;
+
     private GameObject currentGhost;
 
     private float radius = 2f;
@@ -18,22 +20,23 @@ public class SmartBuilder : BaseAction
     private GameObject factory = null;
     private Selectable selectable;
 
-    void Start()
-    {
+    public override void Start()
+    {   
+        base.Start();
         selectable = GetComponent<Selectable>();
     }
 
     public override void ExecuteAction(Vector3 pos)
     {
         Debug.Log("execute action");
-        currentGhost = null;
         if (isNoBuildingsNearby(pos))
         {
             //factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
             Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            UnlockAction(actionToUnlock);
         }
         Destroy(currentGhost);
-        this.SetBusy(false);
+        this.SetShowingGhost(false);
     }
 
     bool HasMouseMoved()

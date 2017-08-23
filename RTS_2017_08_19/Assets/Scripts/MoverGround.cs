@@ -9,8 +9,9 @@ public class MoverGround : BaseAction
 {
     private NavMeshAgent unitNavMesh;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         unitNavMesh = GetComponent<NavMeshAgent>();
     }
 
