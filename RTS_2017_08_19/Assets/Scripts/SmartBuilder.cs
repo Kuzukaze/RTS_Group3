@@ -59,11 +59,13 @@ public class SmartBuilder : BaseAction
                 ghostImage.sprite = notAvailableBuildSprite;
             }
         } */
+
         if (currentGhost == null)
         {
             currentGhost = Instantiate(ghostPrefab, position, Quaternion.Euler(0,0,0));
         }
         currentGhost.transform.position = position;
+        currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
     }
         
 
