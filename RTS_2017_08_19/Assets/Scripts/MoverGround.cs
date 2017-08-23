@@ -16,8 +16,10 @@ public class MoverGround : BaseAction
 
     public override void ExecuteAction(Vector3 pos)
     {
-            unitNavMesh.destination = pos;
-        }
+        unitNavMesh.destination = pos;
+    }
+
+
     }
 
 

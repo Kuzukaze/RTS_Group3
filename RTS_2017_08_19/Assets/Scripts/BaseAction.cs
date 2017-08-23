@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void ActionCompletionHandler();
+
 public enum ActionType {instant, terrainClick, unitClick, construction};
 
 public class BaseAction : MonoBehaviour {
+
+    public event ActionCompletionHandler ActionComplete;
 
     [SerializeField] protected Sprite icon;
     [SerializeField] protected ActionType actionType;
@@ -26,19 +30,9 @@ public class BaseAction : MonoBehaviour {
         return id;
     }
 
-    public void SetBusy()
-    {
-        busy = !busy;
-    }
-        
-    public void SetBusy(bool val)
-    {
-        busy = val;
-    }
-
-    public bool IsBusy()
-    {
-        return busy;
+    protected void SignalCompletion()
+    { //calll this method when the action is complete
+        this.ActionComplete();
     }
 
     public virtual void ExecuteAction () 
@@ -61,4 +55,33 @@ public class BaseAction : MonoBehaviour {
         Debug.Log("DrawPreActionMarker (Vector3 pos)");
     }
 
+    public void SetBusy()
+    {
+        busy = !busy;
+    }
+
+    public void SetBusy(bool val)
+    {
+        busy = val;
+    }
+
+    public bool IsBusy()
+    {
+        return busy;
+    }
+
+    //---------EVENT SUBSCRIPTION EXAMPLE:--------------------
+    /*
+    private BaseAction someBaseAction;
+    
+    public void Subscribe()
+    {
+        someBaseAction.ActionComplete += new ActionCompletionHandler(CompletionDetected);
+    }
+
+    public void CompletionDetected()
+    {
+        Debug.Log("Check event {0}");
+    }
+    */
 }
