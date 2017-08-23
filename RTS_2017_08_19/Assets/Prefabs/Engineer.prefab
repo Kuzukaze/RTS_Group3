@@ -171,9 +171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
   actionType: 3
-  id: 10
+  id: 20
   locked: 0
-  actionToUnlock: 11
+  actionToUnlock: 21
   factoryPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
   ghostImage: {fileID: 0}
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
   actionType: 3
-  id: 11
+  id: 21
   locked: 1
-  actionToUnlock: 11
+  actionToUnlock: 21
   factoryPrefab: {fileID: 126928, guid: 3d36e950cc1dd4d4f97386f02d27e311, type: 2}
   ghostImage: {fileID: 0}
   availableBuildSprite: {fileID: 0}

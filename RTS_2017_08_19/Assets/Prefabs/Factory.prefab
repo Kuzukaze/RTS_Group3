@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 114002253554653968}
   - component: {fileID: 114315476703929504}
   - component: {fileID: 195076369349323014}
+  - component: {fileID: 114821666543678874}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Untagged
@@ -692,7 +693,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 94a6c20776230384f8b8648e607ea0f4, type: 3}
   actionType: 1
-  id: 2
+  id: 10
+  locked: 0
+  actionToUnlock: 11
   engineerPrefab: {fileID: 1214876201661376, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
     type: 2}
 --- !u!114 &114065179878151250
@@ -725,6 +728,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectableUnit: {fileID: 114065179878151250}
   engeneerUnit: {fileID: 114002253554653968}
+--- !u!114 &114821666543678874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011868398520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93c773b5ac9189488a6ea720facfd60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
+  actionType: 1
+  id: 11
+  locked: 1
+  actionToUnlock: 11
+  engineerPrefab: {fileID: 1214876201661376, guid: 717a2bf0e0312824cbe65848aba96fac,
+    type: 2}
 --- !u!195 &195076369349323014
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -109,6 +109,10 @@ public class UIManager : MonoBehaviour {
                 }
             }
         }
+        else if (!EventSystem.current.IsPointerOverGameObject())
+        {
+
+        }
     }
 
     void ProcessRaycastHit(RaycastHit hit)
