@@ -14,6 +14,7 @@ public class BaseAction : MonoBehaviour {
     [SerializeField] protected ActionType actionType;
     [SerializeField] protected int id;
     [SerializeField] protected bool locked = false;
+    [SerializeField] protected int actionToUnlock;
 
     protected bool isShowingGhost = false;
     private UnlockManager unlockManager;

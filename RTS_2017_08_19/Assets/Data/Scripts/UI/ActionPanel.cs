@@ -26,6 +26,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
 
     private bool occupied = false;
     private bool selected = false;
+    private bool checkColorInLateUpdate;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +41,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
 
     public void UnlockDetected (int unlockedID)
     {
-        CheckIfLocked();
+        checkColorInLateUpdate = true;
     }
 
     public bool IsFree()
@@ -63,6 +64,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         currentActions.Add(action);
         if (currentActions[0].IsLocked())
             backgroundImage.color = lockedColor;
+        checkColorInLateUpdate = true;
     }
 
     public void AddActionToList (BaseAction action)
@@ -89,6 +91,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         displayedImage.sprite = emptyIcon;
         if (currentActions != null)
             currentActions.Clear();
+        checkColorInLateUpdate = true;
     }
 
     public void Select()
@@ -110,15 +113,29 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     {
         if (currentActions != null)
         {
-            if(currentActions.Count > 0)
-            if (currentActions[0].IsLocked())
-                backgroundImage.color = lockedColor;
-            else
-                backgroundImage.color = unselectedColor;
+            if (currentActions.Count > 0)
+            {
+                Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
+                if (currentActions[0].IsLocked())
+                    backgroundImage.color = lockedColor;
+                else
+                    backgroundImage.color = unselectedColor;
+            }
         }
         else
         { 
             backgroundImage.color = unselectedColor;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (checkColorInLateUpdate)
+        {
+            CheckIfLocked();
+            if (selected)
+                backgroundImage.color = selectedColor;
+            checkColorInLateUpdate = false;
         }
     }
 

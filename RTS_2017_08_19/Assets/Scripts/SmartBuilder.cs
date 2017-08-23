@@ -11,7 +11,6 @@ public class SmartBuilder : BaseAction
     [SerializeField] Sprite notAvailableBuildSprite;
 
     [SerializeField] GameObject ghostPrefab;
-    [SerializeField] private int actionToUnlock;
 
     private GameObject currentGhost;
 
