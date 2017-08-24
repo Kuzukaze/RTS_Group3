@@ -41,7 +41,7 @@ public class AIHoming : MonoBehaviour
         if (unit != null && myTeam != unit.GetTeam())
         {
             myUnitNavMesh.destination = unit.transform.position;
-            if ((transform.position - unit.transform.position).sqrMagnitude <= 2)  // Передеделать в стейт машину, придумать как интегрировать в Selectable Юниты.
+            if ((transform.position - unit.transform.position).sqrMagnitude <= 10)  // Передеделать в стейт машину, придумать как интегрировать в Selectable Юниты.
             {
                 unit.TakeDamage(5);
             }

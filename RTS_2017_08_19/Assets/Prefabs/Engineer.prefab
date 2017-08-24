@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 114866907213139270}
   - component: {fileID: 114104392541799810}
   - component: {fileID: 65665669630207022}
-  - component: {fileID: 65784908783068666}
   m_Layer: 0
   m_Name: Engineer
   m_TagString: Untagged
@@ -402,7 +401,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 1.5, z: -2.2}
+  m_LocalPosition: {x: -35.78, y: 4.5, z: -51.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224590833257337424}
@@ -1135,22 +1134,10 @@ BoxCollider:
   m_GameObject: {fileID: 1214876201661376}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.4865711, y: 0.6828151, z: 2.9335186}
   m_Center: {x: 0.043454528, y: -0.15859246, z: 0.09815705}
---- !u!65 &65784908783068666
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1214876201661376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114084835892117414
 MonoBehaviour:
   m_ObjectHideFlags: 1
