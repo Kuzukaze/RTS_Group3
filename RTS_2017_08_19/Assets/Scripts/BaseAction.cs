@@ -87,6 +87,7 @@ public class BaseAction : MonoBehaviour {
         locked = unlockManager.CheckIfLocked(id);
         unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
     }
+     
 
     public void UnlockDetected (int unlockedID)
     {
