@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7473cdab9f454ef41b53e234d47107c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedActions: 0a000000
+  unlockedActions: 0a0000001400000003000000
 --- !u!114 &372188489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1214876201661376, guid: 717a2bf0e0312824cbe65848aba96fac, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 717a2bf0e0312824cbe65848aba96fac, type: 2}
@@ -1873,7 +1873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1214876201661376, guid: 8be2ee536afcbfe48ad69ceb194d8cd9, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8be2ee536afcbfe48ad69ceb194d8cd9, type: 2}
@@ -2731,7 +2731,7 @@ Terrain:
   m_TerrainData: {fileID: 15600000, guid: d994e68000da9df45b9554a051f61516, type: 2}
   m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
+  m_TreeCrossFadeLength: 200
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
@@ -3152,7 +3152,7 @@ MonoBehaviour:
   scrollSpeed: 20
   minY: 10
   maxY: 80
-  panLimit: {x: 50, y: 50}
+  panLimit: {x: 150, y: 50}
 --- !u!1 &1460665055
 GameObject:
   m_ObjectHideFlags: 0
