@@ -12,7 +12,7 @@ public class ActionPanelManager : MonoBehaviour {
 	void Start () {
         actionPanels = GetComponentsInChildren<ActionPanel>();
         uiManager = GetComponentInParent<UIManager>();
-        uiManager.SetCurrentActionAsNull();
+        uiManager.SetCurrentActions(null);
 	}
 	
     public void AddAction (BaseAction action)
@@ -57,7 +57,7 @@ public class ActionPanelManager : MonoBehaviour {
         foreach (ActionPanel current in actionPanels)
         {
             current.Unselect();
-            uiManager.SetCurrentActionAsNull();
+            uiManager.SetCurrentActions(null);
         }
     }
 
@@ -69,7 +69,7 @@ public class ActionPanelManager : MonoBehaviour {
             current.Unselect();
             //current.RemoveAction();
             current.ClearAction();
-            uiManager.SetCurrentActionAsNull(); 
+            uiManager.SetCurrentActions(null); 
         }
     }
 

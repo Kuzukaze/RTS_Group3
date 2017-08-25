@@ -35,7 +35,7 @@ public class SmartBuilder : BaseAction
             UnlockAction(actionToUnlock);
         }
         Destroy(currentGhost);
-        this.SetShowingGhost(false);
+        //this.SetShowingGhost(false);
         CompleteAction();
     }
 

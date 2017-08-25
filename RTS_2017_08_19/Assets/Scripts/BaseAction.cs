@@ -37,7 +37,6 @@ public class BaseAction : MonoBehaviour {
     [SerializeField] protected bool locked = false;
     [SerializeField] protected int actionToUnlock;
 
-    protected bool isShowingGhost = false;
     private UnlockManager unlockManager;
 
     private bool actionInProgress = false;
@@ -90,21 +89,6 @@ public class BaseAction : MonoBehaviour {
     {
         actionInProgress = true;
         //Debug.Log("DrawPreActionMarker (Vector3 pos)");
-    }
-
-    public void SetShowingGhost()
-    {
-        isShowingGhost = !isShowingGhost;
-    }
-
-    public void SetShowingGhost(bool val)
-    {
-        isShowingGhost = val;
-    }
-
-    public bool IsShowingGhost()
-    {
-        return isShowingGhost;
     }
 
     public bool IsLocked ()

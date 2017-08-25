@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -129,6 +130,7 @@ public class SelectionManager : MonoBehaviour
         uiManager.SetInfoPic(selectableObject.Icon);
         uiManager.SetInfoText(selectableObject.Description);
         BaseAction[] actions = selectableObject.GetComponents<BaseAction>();
+        Debug.Log("UISelect is about to call AddActions");
         uiManager.AddActions(actions);
     }
 

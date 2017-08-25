@@ -97,8 +97,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     public void Select()
     {
         selected = true;
-        Debug.Log(currentActions[0].IsShowingGhost());
-        currentActions[0].SetShowingGhost(false);
+        //Debug.Log(currentActions[0].IsShowingGhost());
+        //currentActions[0].SetShowingGhost(false);
         backgroundImage.color = selectedColor;
         actionManager.SetNewSelection(this);
     }
@@ -115,7 +115,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         {
             if (currentActions.Count > 0)
             {
-                Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
+                //Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
                 if (currentActions[0].IsLocked())
                     backgroundImage.color = lockedColor;
                 else
