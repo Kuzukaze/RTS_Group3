@@ -18,7 +18,7 @@ public class Attack : BaseAction
     }
 
 
-    public override void ExecuteAction(Unit tagertUnit)
+    public override void OnActionStarted(Unit tagertUnit)
     {
         if (shortCounter <= 0)
         {
@@ -37,6 +37,7 @@ public class Attack : BaseAction
             }
 
         }
+        CompleteAction();
     }
 }
 
