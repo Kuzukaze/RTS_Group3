@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour {
 
     ActionPanelManager actionPanelManager;
 
+    [SerializeField] float radiusPerUnit = 2.0f;
+
     [SerializeField] private Image infoPic;
 
     [SerializeField] private Sprite emptyInfoPicSprite;
@@ -82,11 +84,13 @@ public class UIManager : MonoBehaviour {
     {
         if (currentActions != null)
         { 
+            int amountOfActions = currentActions.Count;
             if (currentActions[0].GetActionType() == ActionType.terrainClick)
             {
                 foreach (BaseAction action in currentActions)
                 {
-                    action.ExecuteAction(position);
+                    //action.ExecuteAction(position);
+                    action.ExecuteAction(GetPointInCircle(position,amountOfActions));
                 }
             }
         }
@@ -155,9 +159,11 @@ public class UIManager : MonoBehaviour {
             {
                 if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
                 {
+                    int actionAmount = currentMoveActions.Count;
                     foreach (BaseAction action in currentMoveActions)
                     {
-                        action.ExecuteAction(interactionInfo.point);
+                        //action.ExecuteAction(interactionInfo.point);
+                        action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
                     }
                 }
                 else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
@@ -249,6 +255,27 @@ public class UIManager : MonoBehaviour {
         else if (currentType == ActionType.construction)
             currentState = GHOST_SHOWN;
     }
-       
+
+    public Vector3 GetPointInCircle(Vector3 center, int numberOfUnits)
+    {
+        if (numberOfUnits == 1)
+            return center;
+        
+        float areaPerUnit = radiusPerUnit * radiusPerUnit * 3.14f;
+        float totalAreaNeeded = numberOfUnits * areaPerUnit;
+        float circleRadius = Mathf.Sqrt(totalAreaNeeded / 3.14f);
+      
+        float x, z;
+        do
+        {
+            x = Random.Range(center.x - circleRadius, center.x + circleRadius);
+            z = Random.Range(center.z - circleRadius, center.z + circleRadius);
+        }
+        while ((x-center.x)*(x-center.x) + (z-center.z)*(z-center.z) >= circleRadius*circleRadius);
+        //Debug.Log(string.Format("{0} units need a circle with radius {1}. Giving coordinates {2}.", numberOfUnits, circleRadius, new Vector3(x, center.y, z)));
+        return new Vector3(x, center.y, z);
+    }
 
 }
+
+

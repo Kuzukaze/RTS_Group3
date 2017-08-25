@@ -151,7 +151,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         {
             if (currentActions.Count > 0)
             {
-                Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
+               // Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
                 if (currentActions[0].IsLocked())
                     backgroundImage.color = lockedColor;
                 else
@@ -160,7 +160,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         }
         else
         { 
-            Debug.Log("No action detected");
+            //Debug.Log("No action detected");
             backgroundImage.color = unselectedColor;
         }
     }
