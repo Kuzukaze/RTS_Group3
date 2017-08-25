@@ -36,6 +36,7 @@ public class ActionPanelManager : MonoBehaviour {
                 currentPanel.SetAction (action); 
                 return;
             }
+            currentPanel.ScheduleColorCheck();
             i++;
         }
     }
@@ -67,7 +68,6 @@ public class ActionPanelManager : MonoBehaviour {
         foreach (ActionPanel current in actionPanels)
         {
             current.Unselect();
-            //current.RemoveAction();
             current.ClearAction();
             uiManager.SetCurrentActions(null); 
         }
@@ -75,12 +75,11 @@ public class ActionPanelManager : MonoBehaviour {
 
     public List<BaseAction> GetDefaultMoveActions()
     {
-        Debug.Log("GetDefaultMoveActions started");
         for (int i=0; i< actionPanels.Length; i++)
         {
             if (actionPanels[i].GetCurrentActions() != null)
             {
-                Debug.Log(string.Format("Action panel {0} is default move action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction()));
+                //Debug.Log(string.Format("Action panel {0} is default move action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction()));
                 if (actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction())
                     return actionPanels[i].GetCurrentActions();
             }
@@ -90,12 +89,11 @@ public class ActionPanelManager : MonoBehaviour {
 
     public List<BaseAction> GetDefaultAttackActions()
     {
-        Debug.Log("GetDefaultAttackActions started");
         for (int i=0; i< actionPanels.Length; i++)
         {
             if (actionPanels[i].GetCurrentActions() != null)
             {
-                Debug.Log(string.Format("Action panel {0} is default attack action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultAttackAction()));
+                //Debug.Log(string.Format("Action panel {0} is default attack action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultAttackAction()));
                 if (actionPanels[i].GetCurrentActions()[0].IsDefaultAttackAction())
                     return actionPanels[i].GetCurrentActions();
             }

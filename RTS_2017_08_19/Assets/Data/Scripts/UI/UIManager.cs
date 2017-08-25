@@ -149,14 +149,12 @@ public class UIManager : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Got mouse butt");
             Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit interactionInfo;
             if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
             {
                 if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
                 {
-                    Debug.Log("Got clickable ground");
                     foreach (BaseAction action in currentMoveActions)
                     {
                         action.ExecuteAction(interactionInfo.point);
@@ -164,7 +162,6 @@ public class UIManager : MonoBehaviour {
                 }
                 else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
                 {
-                    Debug.Log("Got unit");
                     foreach (BaseAction action in currentAttackActions)
                     {
                         action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());

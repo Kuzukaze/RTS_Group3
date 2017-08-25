@@ -90,7 +90,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         occupied = false;
         displayedImage.sprite = emptyIcon;
         if (currentActions != null)
-            currentActions.Clear();
+            //currentActions.Clear();
+            currentActions = null;
         checkColorInLateUpdate = true;
     }
 
@@ -109,48 +110,21 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         CheckIfLocked();
     }
 
-    public void CheckIfLocked ()
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (currentActions != null)
         {
-            if (currentActions.Count > 0)
+            if (!currentActions[0].IsLocked())
             {
-                //Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
-                if (currentActions[0].IsLocked())
-                    backgroundImage.color = lockedColor;
+                if (selected)
+                {
+                    actionManager.UnselectAll();
+                }
                 else
-                    backgroundImage.color = unselectedColor;
-            }
-        }
-        else
-        { 
-            backgroundImage.color = unselectedColor;
-        }
-    }
-
-    void LateUpdate()
-    {
-        if (checkColorInLateUpdate)
-        {
-            CheckIfLocked();
-            if (selected)
-                backgroundImage.color = selectedColor;
-            checkColorInLateUpdate = false;
-        }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (!currentActions[0].IsLocked())
-        {
-            if (selected)
-            {
-                actionManager.UnselectAll();
-            }
-            else
-            {
-                if (occupied) //if the slot is not empty
+                {
+                    if (occupied) //if the slot is not empty
                     SelectOrExecute();
+                }
             }
         }
     }
@@ -171,4 +145,39 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         }
     }
         
+    public void CheckIfLocked ()
+    {
+        if (currentActions != null)
+        {
+            if (currentActions.Count > 0)
+            {
+                Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
+                if (currentActions[0].IsLocked())
+                    backgroundImage.color = lockedColor;
+                else
+                    backgroundImage.color = unselectedColor;
+            }
+        }
+        else
+        { 
+            Debug.Log("No action detected");
+            backgroundImage.color = unselectedColor;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (checkColorInLateUpdate)
+        {
+            CheckIfLocked();
+            if (selected)
+                backgroundImage.color = selectedColor;
+            checkColorInLateUpdate = false;
+        }
+    }
+
+    public void ScheduleColorCheck()
+    {
+        checkColorInLateUpdate = true;
+    }
 }

@@ -1659,7 +1659,7 @@ MonoBehaviour:
   actionType: 2
   id: 3
   locked: 0
-  actionToUnlock: 0
+  actionToUnlock: 3
   defaultMoveAction: 0
   defaultAttackAction: 1
   firePoint: {fileID: 4548969919137088}
