@@ -12,7 +12,7 @@ public class ActionPanelManager : MonoBehaviour {
 	void Start () {
         actionPanels = GetComponentsInChildren<ActionPanel>();
         uiManager = GetComponentInParent<UIManager>();
-        uiManager.SetCurrentActionAsNull();
+        uiManager.SetCurrentActions(null);
 	}
 	
     public void AddAction (BaseAction action)
@@ -36,6 +36,7 @@ public class ActionPanelManager : MonoBehaviour {
                 currentPanel.SetAction (action); 
                 return;
             }
+            currentPanel.ScheduleColorCheck();
             i++;
         }
     }
@@ -57,7 +58,7 @@ public class ActionPanelManager : MonoBehaviour {
         foreach (ActionPanel current in actionPanels)
         {
             current.Unselect();
-            uiManager.SetCurrentActionAsNull();
+            uiManager.SetCurrentActions(null);
         }
     }
 
@@ -67,10 +68,37 @@ public class ActionPanelManager : MonoBehaviour {
         foreach (ActionPanel current in actionPanels)
         {
             current.Unselect();
-            //current.RemoveAction();
             current.ClearAction();
-            uiManager.SetCurrentActionAsNull(); 
+            uiManager.SetCurrentActions(null); 
         }
+    }
+
+    public List<BaseAction> GetDefaultMoveActions()
+    {
+        for (int i=0; i< actionPanels.Length; i++)
+        {
+            if (actionPanels[i].GetCurrentActions() != null)
+            {
+                //Debug.Log(string.Format("Action panel {0} is default move action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction()));
+                if (actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction())
+                    return actionPanels[i].GetCurrentActions();
+            }
+        }
+        return null;
+    }
+
+    public List<BaseAction> GetDefaultAttackActions()
+    {
+        for (int i=0; i< actionPanels.Length; i++)
+        {
+            if (actionPanels[i].GetCurrentActions() != null)
+            {
+                //Debug.Log(string.Format("Action panel {0} is default attack action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultAttackAction()));
+                if (actionPanels[i].GetCurrentActions()[0].IsDefaultAttackAction())
+                    return actionPanels[i].GetCurrentActions();
+            }
+        }
+        return null;
     }
 
 }
