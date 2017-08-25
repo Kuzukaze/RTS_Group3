@@ -41,6 +41,9 @@ public class BaseAction : MonoBehaviour {
 
     private bool actionInProgress = false;
 
+    [SerializeField] private bool defaultMoveAction = false;
+    [SerializeField] private bool defaultAttackAction = false;
+
     public ActionType GetActionType ()
     {
         return actionType;
@@ -147,6 +150,16 @@ public class BaseAction : MonoBehaviour {
     public void UnlockAction (int actionID)
     {
         unlockManager.UnlockAction(actionID);
+    }
+
+    public bool IsDefaultMoveAction()
+    {
+        return defaultMoveAction;
+    }
+
+    public bool IsDefaultAttackAction()
+    {
+        return defaultAttackAction;
     }
 
     //---------EVENT SUBSCRIPTION EXAMPLE:--------------------

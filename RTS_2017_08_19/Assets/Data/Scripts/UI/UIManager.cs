@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour {
     private UIStates lastState = NO_OBJECT_SELECTED;
 
     List<BaseAction> currentActions;
+    List<BaseAction> currentMoveActions;
+    private bool defaultActionsUpToDate = false;
+    List<BaseAction> currentAttackActions;
 
     ActionPanelManager actionPanelManager;
 
@@ -38,8 +41,9 @@ public class UIManager : MonoBehaviour {
         {
             actionPanelManager.AddAction(action);
         }
-        Debug.Log("AddActions is switching current state to NO_ACTIONS_SELECTED");
+        //Debug.Log("AddActions is switching current state to NO_ACTIONS_SELECTED");
         currentState = NO_ACTION_SELECTED;
+        defaultActionsUpToDate = false;
     }
 
     public void SetInfoPic (Sprite pic)
@@ -131,12 +135,43 @@ public class UIManager : MonoBehaviour {
 
     void NoObjectState()
     {
-
+        defaultActionsUpToDate = false;
     }
 
     void NoActionState()
     {
+        if (!defaultActionsUpToDate)
+        {
+            currentMoveActions = actionPanelManager.GetDefaultMoveActions();
+            currentAttackActions = actionPanelManager.GetDefaultAttackActions();
+            defaultActionsUpToDate = true;
+        }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Got mouse butt");
+            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit interactionInfo;
+            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+            {
+                if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
+                {
+                    Debug.Log("Got clickable ground");
+                    foreach (BaseAction action in currentMoveActions)
+                    {
+                        action.ExecuteAction(interactionInfo.point);
+                    }
+                }
+                else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
+                {
+                    Debug.Log("Got unit");
+                    foreach (BaseAction action in currentAttackActions)
+                    {
+                        action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
+                    }
+                }
+            }
+        }
     }
 
     void PointActionState()
@@ -205,15 +240,17 @@ public class UIManager : MonoBehaviour {
 
     public void SetCurrentActions (List<BaseAction> actions)
     {
-        currentActions = actions;
-        if (currentActions != null)
+        if (actions == null)
         {
-            ActionType currentType = currentActions[0].GetActionType();
-            if (currentType == ActionType.terrainClick || currentType == ActionType.unitClick)
-                currentState = POINT_ACTION_SELECTED;
-            else if (currentType == ActionType.construction)
-                currentState = GHOST_SHOWN;
+            currentState = NO_ACTION_SELECTED;
+            return;
         }
+        currentActions = actions;
+        ActionType currentType = currentActions[0].GetActionType();
+        if (currentType == ActionType.terrainClick || currentType == ActionType.unitClick)
+            currentState = POINT_ACTION_SELECTED;
+        else if (currentType == ActionType.construction)
+            currentState = GHOST_SHOWN;
     }
        
 

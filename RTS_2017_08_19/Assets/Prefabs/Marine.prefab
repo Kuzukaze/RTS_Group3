@@ -528,7 +528,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.11, y: 3.88, z: -52.4}
+  m_LocalPosition: {x: -27.709091, y: 3.84, z: -56.584854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4950291883477714}
@@ -1660,6 +1660,8 @@ MonoBehaviour:
   id: 3
   locked: 0
   actionToUnlock: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 1
   firePoint: {fileID: 4548969919137088}
   range: 120
   reloadTime: 1
@@ -1788,6 +1790,8 @@ MonoBehaviour:
   id: 0
   locked: 0
   actionToUnlock: 0
+  defaultMoveAction: 1
+  defaultAttackAction: 0
 --- !u!114 &114720034087140216
 MonoBehaviour:
   m_ObjectHideFlags: 1
