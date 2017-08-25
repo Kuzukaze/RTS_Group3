@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 54873763641520136}
   - component: {fileID: 114075125851696322}
   - component: {fileID: 65840363559796570}
-  - component: {fileID: 65969978653097850}
   m_Layer: 0
   m_Name: Marine
   m_TagString: Untagged
@@ -529,7 +528,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.43, y: 1.5, z: -7}
+  m_LocalPosition: {x: -27.11, y: 3.88, z: -52.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4950291883477714}
@@ -1624,22 +1623,10 @@ BoxCollider:
   m_GameObject: {fileID: 1214876201661376}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.9201283, y: 1.5474839, z: 4.4774904}
   m_Center: {x: -0.052411556, y: -0.22625804, z: 0.3403697}
---- !u!65 &65969978653097850
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1214876201661376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95826680341715892
 Animator:
   serializedVersion: 3
