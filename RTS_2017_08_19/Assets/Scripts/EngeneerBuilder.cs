@@ -17,13 +17,14 @@ public class EngeneerBuilder : BaseAction
         selectable = GetComponent<Selectable>();
     }
 
-    public override void ExecuteAction(Vector3 pos)
+    public override void OnActionStarted(Vector3 pos)
     {
         if (isNoBuildingsNearby(pos))
         {
             engineer = (GameObject)GameObject.Instantiate(engineerPrefab, pos, engineerPrefab.transform.rotation);
             UnlockAction(actionToUnlock);
         }
+        CompleteAction();
     }
 
     bool isNoBuildingsNearby(Vector3 hitPoint)
