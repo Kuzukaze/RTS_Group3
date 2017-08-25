@@ -25,7 +25,7 @@ public class SmartBuilder : BaseAction
         selectable = GetComponent<Selectable>();
     }
 
-    public override void ExecuteAction(Vector3 pos)
+    public override void OnActionStarted(Vector3 pos)
     {
         Debug.Log("execute action");
         if (isNoBuildingsNearby(pos))
@@ -36,6 +36,7 @@ public class SmartBuilder : BaseAction
         }
         Destroy(currentGhost);
         this.SetShowingGhost(false);
+        CompleteAction();
     }
 
     bool HasMouseMoved()
