@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1492813875984348
 GameObject:
   m_ObjectHideFlags: 1
@@ -401,7 +401,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.358307, y: 7.02, z: -51.78441}
+  m_LocalPosition: {x: -35.78, y: 4.5, z: -51.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224590833257337424}
@@ -1156,12 +1156,11 @@ MonoBehaviour:
   actionToUnlock: 21
   defaultMoveAction: 0
   defaultAttackAction: 0
-  factoryPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
+  buildingPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
-  ghostImage: {fileID: 0}
-  availableBuildSprite: {fileID: 0}
-  notAvailableBuildSprite: {fileID: 0}
-  ghostPrefab: {fileID: 1415299616336502, guid: e73e00efaa405414eb7a2b850a711233,
+  ghostbuildingOK: {fileID: 1000011868398520, guid: 55c502c820de74a4dad56ca88708d1de,
+    type: 2}
+  ghostbuildingFail: {fileID: 1000011868398520, guid: bab4ede97959f994eb7a7a81fdbfed32,
     type: 2}
 --- !u!114 &114104392541799810
 MonoBehaviour:
@@ -1181,12 +1180,11 @@ MonoBehaviour:
   actionToUnlock: 21
   defaultMoveAction: 0
   defaultAttackAction: 0
-  factoryPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
+  buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
-  ghostImage: {fileID: 0}
-  availableBuildSprite: {fileID: 0}
-  notAvailableBuildSprite: {fileID: 0}
-  ghostPrefab: {fileID: 1415299616336502, guid: e73e00efaa405414eb7a2b850a711233,
+  ghostbuildingOK: {fileID: 1258808368866120, guid: a7b6bf715c341ca43a4a53788edfd541,
+    type: 2}
+  ghostbuildingFail: {fileID: 1258808368866120, guid: e07db781c1ce55e49bc56d34f03e863b,
     type: 2}
 --- !u!114 &114122800946705688
 MonoBehaviour:
