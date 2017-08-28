@@ -37,13 +37,15 @@ public class BaseAction : MonoBehaviour {
     [SerializeField] protected bool locked = false;
     [SerializeField] protected int actionToUnlock;
 
-    protected bool isShowingGhost = false;
     private UnlockManager unlockManager;
 
     protected Vector3 targetPosition;
     protected Unit targetUnit;
 
     private bool actionInProgress = false;
+
+    [SerializeField] private bool defaultMoveAction = false;
+    [SerializeField] private bool defaultAttackAction = false;
 
     public ActionType GetActionType ()
     {
@@ -104,21 +106,6 @@ public class BaseAction : MonoBehaviour {
     {
         actionInProgress = true;
         //Debug.Log("DrawPreActionMarker (Vector3 pos)");
-    }
-
-    public void SetShowingGhost()
-    {
-        isShowingGhost = !isShowingGhost;
-    }
-
-    public void SetShowingGhost(bool val)
-    {
-        isShowingGhost = val;
-    }
-
-    public bool IsShowingGhost()
-    {
-        return isShowingGhost;
     }
 
     public bool IsLocked ()
@@ -202,6 +189,16 @@ public class BaseAction : MonoBehaviour {
     public void UnlockAction (int actionID)
     {
         unlockManager.UnlockAction(actionID);
+    }
+
+    public bool IsDefaultMoveAction()
+    {
+        return defaultMoveAction;
+    }
+
+    public bool IsDefaultAttackAction()
+    {
+        return defaultAttackAction;
     }
 
     //---------EVENT SUBSCRIPTION EXAMPLE:--------------------

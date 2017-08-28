@@ -6,29 +6,46 @@ using UnityEngine.EventSystems;
 
 public delegate void ActionDelegate (Vector3 position);
 
+public enum UIStates {NoObjectSelected, NoActionSelected, PointActionSelected, GhostShown};
+
 public class UIManager : MonoBehaviour {
 
+    const UIStates NO_OBJECT_SELECTED = UIStates.NoObjectSelected;
+    const UIStates NO_ACTION_SELECTED = UIStates.NoActionSelected;
+    const UIStates POINT_ACTION_SELECTED = UIStates.PointActionSelected;
+    const UIStates GHOST_SHOWN = UIStates.GhostShown;
+
+    private UIStates currentState = NO_OBJECT_SELECTED;
+    private UIStates lastState = NO_OBJECT_SELECTED;
+
     List<BaseAction> currentActions;
+    List<BaseAction> currentMoveActions;
+    private bool defaultActionsUpToDate = false;
+    List<BaseAction> currentAttackActions;
 
     ActionPanelManager actionPanelManager;
+
+    [SerializeField] float radiusPerUnit = 2.0f;
 
     [SerializeField] private Image infoPic;
 
     [SerializeField] private Sprite emptyInfoPicSprite;
 
     [SerializeField] private Text infoText;
-
-
     //---------------------------------------------------
     //---------------------------------------------------
     //-------CALL THESE FROM GAME/PLAYER MANAGER---------
 
     public void AddActions (BaseAction[] actions) 
     {
+        //Debug.Log(string.Format("AddAction is called from {0}", author));
         foreach (BaseAction action in actions)
         {
             actionPanelManager.AddAction(action);
         }
+        //Debug.Log("AddActions is switching current state to NO_ACTIONS_SELECTED");
+        currentState = NO_ACTION_SELECTED;
+        defaultActionsUpToDate = false;
     }
 
     public void SetInfoPic (Sprite pic)
@@ -46,6 +63,7 @@ public class UIManager : MonoBehaviour {
         actionPanelManager.ClearActions();
         infoPic.sprite = emptyInfoPicSprite;
         infoText.text = "";
+        currentState = NO_OBJECT_SELECTED;
     }
 
     public void ExecuteCurrentAction ()
@@ -66,11 +84,13 @@ public class UIManager : MonoBehaviour {
     {
         if (currentActions != null)
         { 
+            int amountOfActions = currentActions.Count;
             if (currentActions[0].GetActionType() == ActionType.terrainClick)
             {
                 foreach (BaseAction action in currentActions)
                 {
-                    action.ExecuteAction(position);
+                    //action.ExecuteAction(position);
+                    action.ExecuteAction(GetPointInCircle(position,amountOfActions));
                 }
             }
         }
@@ -96,48 +116,85 @@ public class UIManager : MonoBehaviour {
     //USE AT YOUR OWN RISK (not intended to be called from outside):
 
     void Update ()
+    { 
+        if (lastState != currentState)
+            Debug.Log(string.Format("Switched from state {0} to state {1}", lastState, currentState));
+
+        switch (currentState)
+        {
+            case NO_OBJECT_SELECTED:
+                break;
+            case POINT_ACTION_SELECTED:
+                PointActionState();
+                break;
+            case NO_ACTION_SELECTED:
+                NoActionState();
+                break;
+            case GHOST_SHOWN:
+                GhostShownState();
+                break;
+        }
+        lastState = currentState;
+    }
+
+    void NoObjectState()
+    {
+        defaultActionsUpToDate = false;
+    }
+
+    void NoActionState()
+    {
+        if (!defaultActionsUpToDate)
+        {
+            currentMoveActions = actionPanelManager.GetDefaultMoveActions();
+            currentAttackActions = actionPanelManager.GetDefaultAttackActions();
+            defaultActionsUpToDate = true;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit interactionInfo;
+            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+            {
+                if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
+                {
+                    int actionAmount = currentMoveActions.Count;
+                    foreach (BaseAction action in currentMoveActions)
+                    {
+                        //action.ExecuteAction(interactionInfo.point);
+                        action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
+                    }
+                }
+                else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
+                {
+                    foreach (BaseAction action in currentAttackActions)
+                    {
+                        action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
+                    }
+                }
+            }
+        }
+    }
+
+    void PointActionState()
     {
         if (currentActions != null && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (Input.GetMouseButtonDown(1) || currentActions[0].GetActionType() == ActionType.construction)
+            if (Input.GetMouseButtonDown(1))
             {
                 Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit interactionInfo;
                 if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
                 {
-                    ProcessRaycastHit(interactionInfo);
+                    ProcessPointRaycastHit(interactionInfo);
                 }
             }
-        }
-        else if (!EventSystem.current.IsPointerOverGameObject())
-        {
-
         }
     }
 
-    void ProcessRaycastHit(RaycastHit hit)
+    void ProcessPointRaycastHit(RaycastHit hit)
     {
-        if (currentActions[0].GetActionType() == ActionType.construction)
-        {
-            BaseAction current = currentActions[0];
-            if (!current.IsShowingGhost())
-            {
-                current.DrawPreActionMarker(hit.point);
-                if (Input.GetMouseButtonDown(1))
-                {
-                    Debug.Log("Gor mouse down!");
-                    //current.SetBusy(true);
-                    //ExecuteCurrentAction(hit.point);
-                    current.ExecuteAction(hit.point);
-                    current.SetShowingGhost(true); //this will be removed
-                    return;
-                }
-                return;
-            }
-            return;
-            
-        }
-
         if (hit.collider.gameObject.GetComponent<Unit>() != null)
         {
             ExecuteCurrentAction(hit.collider.gameObject.GetComponent<Unit>());
@@ -151,31 +208,74 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    void GhostShownState()
+    {
+        if (currentActions != null && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit interactionInfo;
+            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+            {
+                currentActions[0].DrawPreActionMarker(interactionInfo.point);
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                currentActions[0].ExecuteAction(interactionInfo.point);
+                UnselectAction();
+            }
+        }
+    }
+
 
     void Start ()
     {
         actionPanelManager = GetComponentInChildren<ActionPanelManager>();
     }
-
-    public void AddAction (BaseAction action)
-    {
-        actionPanelManager.AddAction (action);
-    }
-
+        
     public void UnselectAction ()
     {
         actionPanelManager.UnselectAll();
+        Debug.Log("UnselectAction is switching current state to NO_ACTIONS_SELECTED");
+        currentState = NO_ACTION_SELECTED;
     }
-
-    public void SetCurrentActionAsNull()
-    {
-        SetCurrentActions(null);
-    }
+        
 
     public void SetCurrentActions (List<BaseAction> actions)
     {
+        if (actions == null)
+        {
+            currentState = NO_ACTION_SELECTED;
+            return;
+        }
         currentActions = actions;
+        ActionType currentType = currentActions[0].GetActionType();
+        if (currentType == ActionType.terrainClick || currentType == ActionType.unitClick)
+            currentState = POINT_ACTION_SELECTED;
+        else if (currentType == ActionType.construction)
+            currentState = GHOST_SHOWN;
     }
-       
+
+    public Vector3 GetPointInCircle(Vector3 center, int numberOfUnits)
+    {
+        if (numberOfUnits == 1)
+            return center;
+        
+        float areaPerUnit = radiusPerUnit * radiusPerUnit * 3.14f;
+        float totalAreaNeeded = numberOfUnits * areaPerUnit;
+        float circleRadius = Mathf.Sqrt(totalAreaNeeded / 3.14f);
+      
+        float x, z;
+        do
+        {
+            x = Random.Range(center.x - circleRadius, center.x + circleRadius);
+            z = Random.Range(center.z - circleRadius, center.z + circleRadius);
+        }
+        while ((x-center.x)*(x-center.x) + (z-center.z)*(z-center.z) >= circleRadius*circleRadius);
+        //Debug.Log(string.Format("{0} units need a circle with radius {1}. Giving coordinates {2}.", numberOfUnits, circleRadius, new Vector3(x, center.y, z)));
+        return new Vector3(x, center.y, z);
+    }
 
 }
+
+

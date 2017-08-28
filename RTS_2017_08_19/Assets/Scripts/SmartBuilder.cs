@@ -5,70 +5,49 @@ using UnityEngine.UI;
 
 public class SmartBuilder : BaseAction
 {
-    [SerializeField] GameObject factoryPrefab;
-    [SerializeField] Image ghostImage;
-    [SerializeField] Sprite availableBuildSprite;
-    [SerializeField] Sprite notAvailableBuildSprite;
-
-    [SerializeField] GameObject ghostPrefab;
+    [SerializeField] GameObject buildingPrefab;
+    [SerializeField] GameObject ghostbuildingOK;
+    [SerializeField] GameObject ghostbuildingFail;
 
     private GameObject currentGhost;
-
+    private Selectable selectable;
     private float radius = 2f;
 
-    private GameObject factory = null;
-    private Selectable selectable;
-
     public override void Start()
-    {   
+    {
         base.Start();
         selectable = GetComponent<Selectable>();
     }
 
     public override void OnActionStarted(Vector3 pos)
     {
-        Debug.Log("execute action");
+        Debug.Log("Execute action");
         if (isNoBuildingsNearby(pos))
         {
-            //factory = (GameObject)GameObject.Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
-            Instantiate(factoryPrefab, pos, factoryPrefab.transform.rotation);
+            Instantiate(buildingPrefab, pos, buildingPrefab.transform.rotation);
             UnlockAction(actionToUnlock);
         }
         Destroy(currentGhost);
-        this.SetShowingGhost(false);
+        //this.SetShowingGhost(false);
         CompleteAction();
     }
 
-    bool HasMouseMoved()
-    {
-        return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
-    }
-
     public override void DrawPreActionMarker(Vector3 position)
-    { /*
-        if (HasMouseMoved())
+    {
+        if(currentGhost == null)
         {
-            Vector3 mousePos = (Input.mousePosition - ghostImage.GetComponent<RectTransform>().localPosition);
-            ghostImage.GetComponent<RectTransform>().localPosition = new Vector3(mousePos.x + 15, mousePos.y - 15, mousePos.z);
-    
             if (isNoBuildingsNearby(position))
             {
-                ghostImage.sprite = availableBuildSprite;
+                currentGhost = Instantiate(ghostbuildingOK, position, Quaternion.Euler(0, 0, 0));
             }
             else
             {
-                ghostImage.sprite = notAvailableBuildSprite;
+                currentGhost = Instantiate(ghostbuildingFail, position, Quaternion.Euler(0, 0, 0));
             }
-        } */
-
-        if (currentGhost == null)
-        {
-            currentGhost = Instantiate(ghostPrefab, position, Quaternion.Euler(0,0,0));
+            currentGhost.transform.position = position;
+            currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
         }
-        currentGhost.transform.position = position;
-        currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
     }
-        
 
     bool isNoBuildingsNearby(Vector3 hitPoint)
     {

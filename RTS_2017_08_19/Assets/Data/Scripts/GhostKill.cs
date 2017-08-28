@@ -14,8 +14,12 @@ public class GhostKill : MonoBehaviour {
     void LateUpdate()
     {
         if (!isNeeded)
+        {
             Destroy(this.gameObject);
+        }
         else
+        {
             isNeeded = false;
+        }
     }
 }
