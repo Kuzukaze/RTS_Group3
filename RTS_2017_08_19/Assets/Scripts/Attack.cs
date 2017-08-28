@@ -17,27 +17,33 @@ public class Attack : BaseAction
         shortCounter -= Time.deltaTime;
     }
 
-
-    public override void OnActionStarted(Unit tagertUnit)
+    public override void OnActionStarted(Unit target)
     {
-        if (shortCounter <= 0)
-        {
-            shortCounter = reloadTime;
+        Debug.Log("started");
+    }
 
-            if (range > (firePoint.transform.position - tagertUnit.transform.position).sqrMagnitude)
+    public override void OnActionInProgress(Unit target)
+    {
+        Debug.Log("in prog");
+
+      //  if (shortCounter <= 0)
+     //   {
+//shortCounter = reloadTime;
+
+           if (range > (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
             {
                 RaycastHit hit;
-                Physics.Raycast(firePoint.transform.position, tagertUnit.transform.position, out hit);
-                Debug.DrawLine(firePoint.transform.position, tagertUnit.transform.position, Color.green, 2);
-                tagertUnit.TakeDamage(damageDone);
-            }
-            else
-            {
-                GetComponent<NavMeshAgent>().destination = tagertUnit.transform.position;  //стейтмашин.
-            }
-
+                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit);
+                Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
+            targetUnit.TakeDamage(damageDone);
+           }
+        else
+        {
+            CompleteAction();
+            Debug.Log("in comp");
         }
-        CompleteAction();
+
+       // }
     }
 }
 
