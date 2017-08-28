@@ -66,7 +66,7 @@ public class BaseAction : MonoBehaviour {
     { //calll this method when the action is complete
         if (ActionCompleteEvent != null)
             ActionCompleteEvent();
-        Debug.Log("actionInProgress = false");
+        //Debug.Log("actionInProgress = false");
         actionInProgress = false;
         OnActionComplete();
         if (targetPosition != null)
@@ -96,7 +96,7 @@ public class BaseAction : MonoBehaviour {
 
     public void ExecuteAction (Unit target)  
     {
-        Debug.Log("ExecuteAction (Unit target)");
+        //Debug.Log(string.Format("ExecuteAction (Unit target) was started from {0}", whoThis));
         actionInProgress = true;
         targetUnit = target;
         OnActionStarted(target);
@@ -160,7 +160,7 @@ public class BaseAction : MonoBehaviour {
     {
         if (actionInProgress)
         {
-            Debug.Log("In progress true");
+            //Debug.Log("In progress true");
             switch (actionType)
             {
                 case ActionType.instant:
