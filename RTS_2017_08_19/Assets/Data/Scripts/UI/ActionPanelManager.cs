@@ -101,4 +101,18 @@ public class ActionPanelManager : MonoBehaviour {
         return null;
     }
 
+    public void FindAndRemoveActions (BaseAction[] actionsToRemove)
+    {
+        foreach (BaseAction currentActionToRemove in actionsToRemove)
+        {
+            foreach (ActionPanel currentPanel in actionPanels)
+            {
+                if (currentPanel.GetActionID() == currentActionToRemove.GetID())
+                {
+                    currentPanel.RemoveActionFromList(currentActionToRemove);
+                }
+            }
+        }
+    }
+
 }

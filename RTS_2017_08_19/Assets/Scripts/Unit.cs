@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour
 
     private NavMeshAgent playerNavMesh;
     private float health;
+    //private bool dieInLateUpdate = false;
 
 
     // private bool IsMouseDown { get; set; }
@@ -59,8 +60,16 @@ public class Unit : MonoBehaviour
 
     void Die()
     {
-      Destroy(gameObject);
+        FindObjectOfType<EventHub>().SignalUnitDeath(this);
+        Destroy(gameObject);
+        //dieInLateUpdate = true;
     }
+    /*
+    void LateUpdate()
+    {
+        if (dieInLateUpdate)
+            Destroy(gameObject);
+    }*/
 
     public string GetTeam()
     {

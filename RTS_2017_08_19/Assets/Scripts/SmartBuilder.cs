@@ -12,6 +12,7 @@ public class SmartBuilder : BaseAction
     private GameObject currentGhost;
     private Selectable selectable;
     private float radius = 2f;
+    private bool wasOccupied = false;
 
     public override void Start()
     {
@@ -34,18 +35,24 @@ public class SmartBuilder : BaseAction
 
     public override void DrawPreActionMarker(Vector3 position)
     {
-        if(currentGhost == null)
+        if(currentGhost == null || wasOccupied != isNoBuildingsNearby(position))
         {
-            if (isNoBuildingsNearby(position))
-            {
-                currentGhost = Instantiate(ghostbuildingOK, position, Quaternion.Euler(0, 0, 0));
-            }
-            else
-            {
-                currentGhost = Instantiate(ghostbuildingFail, position, Quaternion.Euler(0, 0, 0));
-            }
-            currentGhost.transform.position = position;
-            currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
+            SpawnGhost(position);
+            wasOccupied = isNoBuildingsNearby(position);
+        }
+        currentGhost.transform.position = position;
+        currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
+    }
+
+    void SpawnGhost(Vector3 position)
+    {
+        if (isNoBuildingsNearby(position))
+        {
+            currentGhost = Instantiate(ghostbuildingOK, position, Quaternion.Euler(0, 0, 0));
+        }
+        else
+        {
+            currentGhost = Instantiate(ghostbuildingFail, position, Quaternion.Euler(0, 0, 0));
         }
     }
 
