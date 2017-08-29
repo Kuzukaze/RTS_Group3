@@ -12,38 +12,34 @@ public class Attack : BaseAction
     [SerializeField] private LayerMask layerMask;
 
     private float shortCounter = 0;
-
-    private void Start()
+    
+    public override void Start()
     {
+        base.Start();
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }
 
-    private void Update()
+
+    public override void OnActionInProgress(Unit target)
     {
+        //Debug.Log("in prog");
         shortCounter -= Time.deltaTime;
-    }
-
-
-    public override void OnActionStarted(Unit tagertUnit)
-    {
         if (shortCounter <= 0)
         {
             shortCounter = reloadTime;
-
-            if (range > (firePoint.transform.position - tagertUnit.transform.position).sqrMagnitude)
+            if (range > (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
             {
                 RaycastHit hit;
-                Physics.Raycast(firePoint.transform.position, tagertUnit.transform.position, out hit, layerMask);
-                Debug.DrawLine(firePoint.transform.position, tagertUnit.transform.position, Color.green, 2);
-                tagertUnit.TakeDamage(damageDone);
+                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
+                Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
+                targetUnit.TakeDamage(damageDone);
             }
             else
             {
-                GetComponent<NavMeshAgent>().destination = tagertUnit.transform.position;  //стейтмашин.
+                CompleteAction();
+                //Debug.Log("in comp");
             }
-
         }
-        CompleteAction();
     }
 }
 

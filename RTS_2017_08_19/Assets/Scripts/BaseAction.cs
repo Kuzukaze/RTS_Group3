@@ -39,6 +39,9 @@ public class BaseAction : MonoBehaviour {
 
     private UnlockManager unlockManager;
 
+    protected Vector3 targetPosition;
+    protected Unit targetUnit;
+
     private bool actionInProgress = false;
 
     [SerializeField] private bool defaultMoveAction = false;
@@ -63,8 +66,17 @@ public class BaseAction : MonoBehaviour {
     { //calll this method when the action is complete
         if (ActionCompleteEvent != null)
             ActionCompleteEvent();
+        //Debug.Log("actionInProgress = false");
         actionInProgress = false;
         OnActionComplete();
+        if (targetPosition != null)
+        {
+            targetPosition = Vector3.zero;
+        }
+        if (targetUnit != null)
+        {
+            targetUnit = null;
+        }
     }
 
     public void ExecuteAction () 
@@ -78,13 +90,15 @@ public class BaseAction : MonoBehaviour {
     {
         actionInProgress = true;
         //Debug.Log("ExecuteAction (Vector3 pos)");
+        targetPosition = pos;
         OnActionStarted(pos);
     }
 
     public void ExecuteAction (Unit target)  
     {
-        //Debug.Log("ExecuteAction (Unit target)");
+        //Debug.Log(string.Format("ExecuteAction (Unit target) was started from {0}", whoThis));
         actionInProgress = true;
+        targetUnit = target;
         OnActionStarted(target);
     }
 
@@ -119,6 +133,16 @@ public class BaseAction : MonoBehaviour {
 
     }
 
+    public virtual void OnActionInProgress(Vector3 pos)
+    {
+
+    }
+
+    public virtual void OnActionInProgress(Unit target)
+    {
+
+    }
+
     public virtual void OnActionComplete()
     {
 
@@ -136,7 +160,22 @@ public class BaseAction : MonoBehaviour {
     {
         if (actionInProgress)
         {
-            OnActionInProgress();
+            //Debug.Log("In progress true");
+            switch (actionType)
+            {
+                case ActionType.instant:
+                    OnActionInProgress();
+                    break;
+                case ActionType.terrainClick:
+                    OnActionInProgress(targetPosition);
+                    break;
+                case ActionType.construction:
+                    OnActionInProgress(targetPosition);
+                    break;
+                case ActionType.unitClick:
+                    OnActionInProgress(targetUnit);
+                    break;
+            }
         }
     }
      

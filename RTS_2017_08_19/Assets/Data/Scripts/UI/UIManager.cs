@@ -233,13 +233,23 @@ public class UIManager : MonoBehaviour {
     void Start ()
     {
         actionPanelManager = GetComponentInChildren<ActionPanelManager>();
+
+        FindObjectOfType<EventHub>().UnitDeathEvent += new UnitDeathHandler(UnitDeathDetected);
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
+    }
+
+    void UnitDeathDetected (Unit killedUnit)
+    {
+        if (killedUnit.gameObject.GetComponent<Selectable>().IsSelected)
+        {
+            BaseAction[] unitActions = killedUnit.GetComponents<BaseAction>();
+            actionPanelManager.FindAndRemoveActions(unitActions);
+        } 
     }
         
     public void UnselectAction ()
     {
         actionPanelManager.UnselectAll();
-        Debug.Log("UnselectAction is switching current state to NO_ACTIONS_SELECTED");
         currentState = NO_ACTION_SELECTED;
     }
         

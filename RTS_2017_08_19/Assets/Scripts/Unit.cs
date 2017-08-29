@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
 
     private NavMeshAgent playerNavMesh;
     private float health;
+    //private bool dieInLateUpdate = false;
     private PlayerController playerController;
 
     private bool isInit = false;
@@ -86,39 +87,16 @@ public class Unit : MonoBehaviour
 
     void Die()
     {
+        FindObjectOfType<EventHub>().SignalUnitDeath(this);
         Destroy(gameObject);
+        //dieInLateUpdate = true;
     }
-
 
     public void slowDown(float speedDown)
     {
         playerNavMesh.speed -= speedDown;
     }
 
-    /*void Move()
-    {
-        if (IsMouseDown && selectableUnit.IsSelected && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-        {
-            IsMouseDown = false;
-            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit interactionInfo;
-            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
-            {
-                movement.ExecuteAction(interactionInfo.point);
-            }
-        }
-        
-}*/
-
-    /*
-    public void Skill()
-    {
-        if (Input.GetKeyDown(KeyCode.B) && selectableUnit.IsSelected)
-        {
-            buildUnit.PlaceHouse();
-        }
-    }
-    */
 
     void DrawNavLines()
     {
@@ -152,6 +130,37 @@ public class Unit : MonoBehaviour
             line.SetPosition(i, navPath.corners[i]);
         }
 
-    }
 
+    void DrawNavLines()
+    {
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent == null || navAgent.path == null)
+        {
+            return;
+        }
+
+        LineRenderer line = this.GetComponent<LineRenderer>();
+        if (line == null)
+        {
+            line = this.gameObject.AddComponent<LineRenderer>();
+            line.material = new Material(Shader.Find("Sprites/Default"))
+            {
+                color = this.color
+            };
+
+            line.startWidth = lineWidth;
+            line.endWidth = lineWidth;
+            line.widthMultiplier = lineWidth;
+
+            line.startColor = color;
+            line.endColor = color;
+        }
+
+        NavMeshPath navPath = navAgent.path;
+        line.positionCount = navPath.corners.Length;
+        for (int i = 0; i < navPath.corners.Length; i++)
+        {
+            line.SetPosition(i, navPath.corners[i]);
+        }
+    }
 }

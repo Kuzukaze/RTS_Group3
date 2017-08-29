@@ -79,7 +79,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
 
     public int GetActionID()
     {
-        if (currentActions != null)
+        if (currentActions != null && currentActions.Count != 0)
             return currentActions[0].GetID();
         else
             return -1;
@@ -179,5 +179,16 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
     public void ScheduleColorCheck()
     {
         checkColorInLateUpdate = true;
+    }
+
+    public void RemoveActionFromList (BaseAction actionToRemove)
+    {
+        for (int i = currentActions.Count - 1; i>=0; i--)
+        {
+            if (currentActions[i] == actionToRemove)
+            {
+                currentActions.RemoveAt(i);
+            }
+        }
     }
 }
