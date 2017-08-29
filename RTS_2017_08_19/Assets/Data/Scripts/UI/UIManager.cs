@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Sprite emptyInfoPicSprite;
 
     [SerializeField] private Text infoText;
+    [SerializeField] private LayerMask layerMask;
+
     //---------------------------------------------------
     //---------------------------------------------------
     //-------CALL THESE FROM GAME/PLAYER MANAGER---------
@@ -155,7 +157,7 @@ public class UIManager : MonoBehaviour {
         {
             Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit interactionInfo;
-            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
             {
                 if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
                 {
@@ -185,7 +187,7 @@ public class UIManager : MonoBehaviour {
             {
                 Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit interactionInfo;
-                if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+                if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
                 {
                     ProcessPointRaycastHit(interactionInfo);
                 }
@@ -214,7 +216,7 @@ public class UIManager : MonoBehaviour {
         {
             Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit interactionInfo;
-            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
+            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
             {
                 currentActions[0].DrawPreActionMarker(interactionInfo.point);
             }
@@ -232,6 +234,7 @@ public class UIManager : MonoBehaviour {
     {
         actionPanelManager = GetComponentInChildren<ActionPanelManager>();
         FindObjectOfType<EventHub>().UnitDeathEvent += new UnitDeathHandler(UnitDeathDetected);
+        layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }
 
     void UnitDeathDetected (Unit killedUnit)

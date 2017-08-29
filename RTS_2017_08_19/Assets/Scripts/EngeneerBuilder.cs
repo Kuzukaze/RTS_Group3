@@ -22,6 +22,8 @@ public class EngeneerBuilder : BaseAction
         if (isNoBuildingsNearby(pos))
         {
             engineer = (GameObject)GameObject.Instantiate(engineerPrefab, pos, engineerPrefab.transform.rotation);
+            PlayerController player = this.gameObject.GetComponent<Unit>().Player;
+            engineer.GetComponent<Unit>().Init(player);
             UnlockAction(actionToUnlock);
         }
         CompleteAction();

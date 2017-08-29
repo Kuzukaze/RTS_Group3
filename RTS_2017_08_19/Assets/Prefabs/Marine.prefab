@@ -203,6 +203,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1480573241486460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4631679527697610}
+  - component: {fileID: 33356412536912828}
+  - component: {fileID: 23180917143639686}
+  - component: {fileID: 114110634556694938}
+  m_Layer: 8
+  m_Name: MiniMapSign
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1503991351929034
 GameObject:
   m_ObjectHideFlags: 1
@@ -528,12 +546,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214876201661376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.709091, y: 3.84, z: -56.584854}
+  m_LocalPosition: {x: -27.11, y: 3.88, z: -52.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4950291883477714}
   - {fileID: 224590833257337424}
   - {fileID: 4839256660792048}
+  - {fileID: 4631679527697610}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -695,6 +714,19 @@ Transform:
   m_Father: {fileID: 4979985133152138}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4631679527697610
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480573241486460}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 4214981104402412}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4653818996020244
 Transform:
   m_ObjectHideFlags: 1
@@ -803,6 +835,38 @@ MeshRenderer:
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!23 &23180917143639686
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480573241486460}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2b7d2bb2c43193c45aa12ce8221af263, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_SelectedEditorRenderState: 3
@@ -1488,6 +1552,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443999234868676}
   m_Mesh: {fileID: 4300012, guid: fbaea34ec44f2294e83639abdcbb6bfe, type: 3}
+--- !u!33 &33356412536912828
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480573241486460}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33359852815473870
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1666,6 +1737,22 @@ MonoBehaviour:
   range: 120
   reloadTime: 1
   damageDone: 50
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &114110634556694938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480573241486460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a261045bdc45040a4577e45e37f831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signTexture: {fileID: 2800000, guid: 4b15a3a9270fe844ab39cfae18cd74cc, type: 3}
+  size: 5
 --- !u!114 &114122800946705688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1746,7 +1833,8 @@ MonoBehaviour:
   buildUnit: {fileID: 0}
   startHealth: 100
   healthBar: {fileID: 114182944185495988}
-  team: Horde
+  lineWidth: 0.8
+  color: {r: 0, g: 1, b: 1, a: 0.7058824}
 --- !u!114 &114707434507201926
 MonoBehaviour:
   m_ObjectHideFlags: 1
