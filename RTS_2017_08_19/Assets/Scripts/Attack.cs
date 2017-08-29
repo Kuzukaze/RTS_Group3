@@ -13,16 +13,16 @@ public class Attack : BaseAction
 
     private float shortCounter = 0;
 
-<<<<<<< HEAD
-    public override void OnActionInProgress(Unit target)
-=======
-    private void Start()
+    
+
+    public override void Start()
     {
+        base.Start();
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }
 
-    private void Update()
->>>>>>> master
+
+    public override void OnActionInProgress(Unit target)
     {
         //Debug.Log("in prog");
         shortCounter -= Time.deltaTime;
@@ -32,15 +32,10 @@ public class Attack : BaseAction
             if (range > (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
             {
                 RaycastHit hit;
-<<<<<<< HEAD
-                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit);
+                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
                 Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
-            targetUnit.TakeDamage(damageDone);
-=======
-                Physics.Raycast(firePoint.transform.position, tagertUnit.transform.position, out hit, layerMask);
-                Debug.DrawLine(firePoint.transform.position, tagertUnit.transform.position, Color.green, 2);
-                tagertUnit.TakeDamage(damageDone);
->>>>>>> master
+                targetUnit.TakeDamage(damageDone);
+
             }
             else
             {

@@ -14,11 +14,8 @@ public class Unit : MonoBehaviour
 
     private NavMeshAgent playerNavMesh;
     private float health;
-<<<<<<< HEAD
     //private bool dieInLateUpdate = false;
-=======
     private PlayerController playerController;
->>>>>>> master
 
     private bool isInit = false;
 
@@ -90,13 +87,9 @@ public class Unit : MonoBehaviour
 
     void Die()
     {
-<<<<<<< HEAD
         FindObjectOfType<EventHub>().SignalUnitDeath(this);
         Destroy(gameObject);
         //dieInLateUpdate = true;
-=======
-        Destroy(gameObject);
->>>>>>> master
     }
     /*
     void LateUpdate()
@@ -111,30 +104,6 @@ public class Unit : MonoBehaviour
         playerNavMesh.speed -= speedDown;
     }
 
-    /*void Move()
-    {
-        if (IsMouseDown && selectableUnit.IsSelected && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-        {
-            IsMouseDown = false;
-            Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit interactionInfo;
-            if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity))
-            {
-                movement.ExecuteAction(interactionInfo.point);
-            }
-        }
-        
-}*/
-
-    /*
-    public void Skill()
-    {
-        if (Input.GetKeyDown(KeyCode.B) && selectableUnit.IsSelected)
-        {
-            buildUnit.PlaceHouse();
-        }
-    }
-    */
 
     void DrawNavLines()
     {

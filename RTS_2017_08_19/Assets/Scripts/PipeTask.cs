@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PipeTask : MonoBehaviour
 {
-    private BaseAction taskAction;
+    public BaseAction taskAction;
     private ActionType taskType;
-    private Vector3 position;
+    public Vector3 position;
     private Unit tagertUnit;
     private bool isHeadPipe;
 
