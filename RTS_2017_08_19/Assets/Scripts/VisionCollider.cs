@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class VisionCollider : Vision
 {
-    private List<Unit> visibleUnitsList;
+    [SerializeField] private List<Unit> visibleUnitsList;
     private Unit myUnit;
 
     private void Start()

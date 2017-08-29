@@ -9,7 +9,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private List<Selectable> selectableObjectsList;
     [SerializeField] private List<Selectable> selectedObjectsList;  
     [SerializeField] private UIManager uiManager;
-    
+    [SerializeField] private LayerMask layerMask;
+
     private SelectionType currentSelectionType;
     private bool isSelecting = false;
     private Vector3 mousePosition;
@@ -20,6 +21,7 @@ public class SelectionManager : MonoBehaviour
     {
         selectableObjectsList = GameManager.Instance.SelectableObjects;
         selectedObjectsList = new List<Selectable>();
+        layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }
 
     public void OnMouseButtonDown(Vector3 mousePosition)
@@ -31,7 +33,7 @@ public class SelectionManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit rhInfo;
         firstSelected = null;
-        if (Physics.Raycast(ray, out rhInfo))
+        if (Physics.Raycast(ray, out rhInfo, Mathf.Infinity, layerMask))
         {
             Selectable selectedObject = rhInfo.transform.GetComponent<Selectable>();
             if (selectedObject)         //if click on Selectable - clear lists & add first
@@ -85,7 +87,7 @@ public class SelectionManager : MonoBehaviour
                 }
                 else
                 {
-                    if (isSelectionEmpty)
+                    if (isSelectionEmpty && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                     {
                         isSelectionEmpty = false;
                         if (currentSelectionType < selectableObject.Type)

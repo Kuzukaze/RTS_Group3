@@ -11,35 +11,65 @@ public class Unit : MonoBehaviour
     [SerializeField] private SmartBuilder buildUnit;
     [SerializeField] private float startHealth;
     [SerializeField] private Image healthBar;
-    [SerializeField] private string team;
 
     private NavMeshAgent playerNavMesh;
     private float health;
+    private PlayerController playerController;
 
+    private bool isInit = false;
+
+    public TeamInfo Team
+    {
+        get
+        {
+            return playerController.Team;
+        }
+    }
+    public PlayerController Player
+    {
+        get
+        {
+            return playerController;
+        }
+    }
+
+    [SerializeField] float lineWidth = 2f;
+    [SerializeField] Color color = new Color(0f, 0f, 0.8f, 0.75f);
 
     // private bool IsMouseDown { get; set; }
 
     private void Start()
     {
-        playerNavMesh = GetComponent<NavMeshAgent>();
-        health = startHealth;
+        //Init();
     }
 
+    public void Init(PlayerController player)
+    {
+        if (!isInit)
+        {
+            playerNavMesh = GetComponent<NavMeshAgent>();
+            health = startHealth;
+            playerController = player;
+            this.gameObject.GetComponentInChildren<MiniMapSign>().SetColor(playerController.Team.Color);
 
+            isInit = true;
+        }
+    }
 
     void FixedUpdate()
     {
-      // Ушло в ClickableGround
+        // Ушло в ClickableGround
 
-      //  Move();
-      //  Skill();
+        //  Move();
+        //  Skill();
 
-  
+
     }
 
     private void Update()
     {
         //IsMouseDown = Input.GetMouseButtonDown(1);
+        DrawNavLines();
     }
 
     public void TakeDamage(float damageTake)
@@ -49,23 +79,16 @@ public class Unit : MonoBehaviour
 
         if (health <= 0)
         {
-            gameObject.transform.position = new Vector3(-47, 2, -47); //костыль для OnTriggerExit эффектов
+            gameObject.transform.position = new Vector3(-47, 2, -47); //TODO: костыль для OnTriggerExit эффектов
             Invoke("Die", 0.03f);
         }
-
-
-
     }
 
     void Die()
     {
-      Destroy(gameObject);
+        Destroy(gameObject);
     }
 
-    public string GetTeam()
-    {
-        return team;
-    }
 
     public void slowDown(float speedDown)
     {
@@ -97,5 +120,38 @@ public class Unit : MonoBehaviour
     }
     */
 
+    void DrawNavLines()
+    {
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent == null || navAgent.path == null)
+        {
+            return;
+        }
+
+        LineRenderer line = this.GetComponent<LineRenderer>();
+        if (line == null)
+        {
+            line = this.gameObject.AddComponent<LineRenderer>();
+            line.material = new Material(Shader.Find("Sprites/Default"))
+            {
+                color = this.color
+            };
+
+            line.startWidth = lineWidth;
+            line.endWidth = lineWidth;
+            line.widthMultiplier = lineWidth;
+
+            line.startColor = color;
+            line.endColor = color;
+        }
+
+        NavMeshPath navPath = navAgent.path;
+        line.positionCount = navPath.corners.Length;
+        for (int i = 0; i < navPath.corners.Length; i++)
+        {
+            line.SetPosition(i, navPath.corners[i]);
+        }
+
+    }
 
 }
