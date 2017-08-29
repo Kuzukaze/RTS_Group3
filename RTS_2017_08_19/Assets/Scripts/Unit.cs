@@ -91,13 +91,6 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
         //dieInLateUpdate = true;
     }
-    /*
-    void LateUpdate()
-    {
-        if (dieInLateUpdate)
-            Destroy(gameObject);
-    }*/
-
 
     public void slowDown(float speedDown)
     {
@@ -137,6 +130,37 @@ public class Unit : MonoBehaviour
             line.SetPosition(i, navPath.corners[i]);
         }
 
-    }
 
+    void DrawNavLines()
+    {
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent == null || navAgent.path == null)
+        {
+            return;
+        }
+
+        LineRenderer line = this.GetComponent<LineRenderer>();
+        if (line == null)
+        {
+            line = this.gameObject.AddComponent<LineRenderer>();
+            line.material = new Material(Shader.Find("Sprites/Default"))
+            {
+                color = this.color
+            };
+
+            line.startWidth = lineWidth;
+            line.endWidth = lineWidth;
+            line.widthMultiplier = lineWidth;
+
+            line.startColor = color;
+            line.endColor = color;
+        }
+
+        NavMeshPath navPath = navAgent.path;
+        line.positionCount = navPath.corners.Length;
+        for (int i = 0; i < navPath.corners.Length; i++)
+        {
+            line.SetPosition(i, navPath.corners[i]);
+        }
+    }
 }

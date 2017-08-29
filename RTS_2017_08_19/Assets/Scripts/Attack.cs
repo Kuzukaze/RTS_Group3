@@ -12,9 +12,7 @@ public class Attack : BaseAction
     [SerializeField] private LayerMask layerMask;
 
     private float shortCounter = 0;
-
     
-
     public override void Start()
     {
         base.Start();
@@ -35,7 +33,6 @@ public class Attack : BaseAction
                 Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
                 Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
                 targetUnit.TakeDamage(damageDone);
-
             }
             else
             {

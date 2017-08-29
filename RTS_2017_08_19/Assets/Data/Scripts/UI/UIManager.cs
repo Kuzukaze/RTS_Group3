@@ -233,6 +233,7 @@ public class UIManager : MonoBehaviour {
     void Start ()
     {
         actionPanelManager = GetComponentInChildren<ActionPanelManager>();
+
         FindObjectOfType<EventHub>().UnitDeathEvent += new UnitDeathHandler(UnitDeathDetected);
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }
