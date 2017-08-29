@@ -9,8 +9,14 @@ public class Attack : BaseAction
     [SerializeField]float range;
     [SerializeField]float reloadTime;
     [SerializeField]float damageDone;
+    [SerializeField] private LayerMask layerMask;
 
     private float shortCounter = 0;
+
+    private void Start()
+    {
+        layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
+    }
 
     private void Update()
     {
@@ -27,7 +33,7 @@ public class Attack : BaseAction
             if (range > (firePoint.transform.position - tagertUnit.transform.position).sqrMagnitude)
             {
                 RaycastHit hit;
-                Physics.Raycast(firePoint.transform.position, tagertUnit.transform.position, out hit);
+                Physics.Raycast(firePoint.transform.position, tagertUnit.transform.position, out hit, layerMask);
                 Debug.DrawLine(firePoint.transform.position, tagertUnit.transform.position, Color.green, 2);
                 tagertUnit.TakeDamage(damageDone);
             }

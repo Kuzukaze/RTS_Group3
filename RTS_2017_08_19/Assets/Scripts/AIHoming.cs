@@ -7,7 +7,7 @@ public class AIHoming : MonoBehaviour
 {
     [SerializeField]private Vision vision;
 
-    private string myTeam;
+    private TeamInfo myTeam;
     private Unit myUnit;
     private NavMeshAgent myUnitNavMesh;
 
@@ -15,7 +15,7 @@ public class AIHoming : MonoBehaviour
     {
         myUnit = GetComponent<Unit>();
         myUnitNavMesh = GetComponent<NavMeshAgent>();
-        myTeam = myUnit.GetTeam();
+        myTeam = myUnit.Team;
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class AIHoming : MonoBehaviour
                 unit = unitList[i];
             }
         }
-        if (unit != null && myTeam != unit.GetTeam())
+        if (unit != null && myTeam != unit.Team)
         {
             myUnitNavMesh.destination = unit.transform.position;
             if ((transform.position - unit.transform.position).sqrMagnitude <= 5)  // Передеделать в стейт машину, придумать как интегрировать в Selectable Юниты.
