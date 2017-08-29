@@ -64,15 +64,19 @@ public class BaseAction : MonoBehaviour {
 
     protected void CompleteAction()
     { //calll this method when the action is complete
-        if (ActionCompleteEvent != null)
-            ActionCompleteEvent();
         //Debug.Log("actionInProgress = false");
         actionInProgress = false;
         OnActionComplete();
-        if (targetPosition != null)
+
+        if (ActionCompleteEvent != null)
         {
-            targetPosition = Vector3.zero;
+            ActionCompleteEvent();
         }
+
+        //if (targetPosition != null)
+        //{
+        //    targetPosition = Vector3.zero;
+        //}
         if (targetUnit != null)
         {
             targetUnit = null;
@@ -91,6 +95,7 @@ public class BaseAction : MonoBehaviour {
         actionInProgress = true;
         //Debug.Log("ExecuteAction (Vector3 pos)");
         targetPosition = pos;
+        Debug.Log(string.Format("targetPosition was set to {0}",targetPosition));
         OnActionStarted(pos);
     }
 

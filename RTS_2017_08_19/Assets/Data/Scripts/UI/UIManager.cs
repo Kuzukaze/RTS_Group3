@@ -91,8 +91,12 @@ public class UIManager : MonoBehaviour {
             {
                 foreach (BaseAction action in currentActions)
                 {
-                    //action.ExecuteAction(position);
-                    action.ExecuteAction(GetPointInCircle(position,amountOfActions));
+                    //PipeTask newTask = new PipeTask(action, position);
+                    //action.gameObject.GetComponent<TaskManager>().AddTask(newTask);
+                    action.gameObject.GetComponent<TaskManager>().AddTask(action, position);
+
+                    // action.ExecuteAction(position);
+                    // action.ExecuteAction(GetPointInCircle(position,amountOfActions));
                 }
             }
         }
@@ -233,7 +237,6 @@ public class UIManager : MonoBehaviour {
     void Start ()
     {
         actionPanelManager = GetComponentInChildren<ActionPanelManager>();
-
         FindObjectOfType<EventHub>().UnitDeathEvent += new UnitDeathHandler(UnitDeathDetected);
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
     }

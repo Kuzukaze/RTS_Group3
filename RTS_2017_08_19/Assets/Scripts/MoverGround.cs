@@ -15,14 +15,24 @@ public class MoverGround : BaseAction
         unitNavMesh = GetComponent<NavMeshAgent>();
     }
 
-    public override void OnActionStarted(Vector3 pos)
+    public override void OnActionInProgress(Vector3 pos)
     {
         unitNavMesh.destination = pos;
-        CompleteAction();
+        if (!unitNavMesh.pathPending)
+        {
+            if (unitNavMesh.remainingDistance <= unitNavMesh.stoppingDistance)
+            {
+                if (!unitNavMesh.hasPath || unitNavMesh.velocity.sqrMagnitude == 0f)
+                {
+                    Debug.Log("MoveComp");
+                    CompleteAction();
+                }
+            }
+        }
     }
 
 
-    }
+}
 
 
 /* Ушло в ClikableGround

@@ -28,26 +28,50 @@ public class TaskManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            tasksInPipe.Dequeue();
-            ExecuteTask();
+            RemoveHeadTask();
         }
 
     }
 
-    public void AddTask(PipeTask newTask)
+    public void AddTask(BaseAction taskAction, Vector3 position)
     {
+        PipeTask newTask = new PipeTask(taskAction, position);
+        newTask.SetTaskManager(this);
         tasksInPipe.Enqueue(newTask);
-        ExecuteTask();
+        if(tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
     }
 
-    public void ExecuteTask()
+    public void RemoveHeadTask()
     {
         if (tasksInPipe.Count > 0)
         {
-            localTask = tasksInPipe.Peek();
+            tasksInPipe.Dequeue();
+            if(tasksInPipe.Count > 0)
+            {
+                ExecuteTask("RemoveHeadTask");
+            }
+            
         }
-        localTask.taskAction.ExecuteAction(localTask.position);
+
     }
+
+    public void ExecuteTask(string whoThis)
+    {
+        Debug.Log(string.Format("ExecuteTask was called by {0}", whoThis));
+        if (tasksInPipe.Count > 0)
+        {
+            Debug.Log("Exexuting an action");
+            localTask = tasksInPipe.Peek();
+            localTask.IndicateHead();
+            localTask.taskAction.ExecuteAction(localTask.position);
+        }
+
+    }
+
+
 
 }
     
