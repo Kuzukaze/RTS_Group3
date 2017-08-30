@@ -1262,8 +1262,8 @@ MonoBehaviour:
   isSelected: 0
   selectionPrefab: {fileID: 1271126924687084, guid: d733f82eb1c5c3a43a687fefadc33ef1,
     type: 2}
-  selectedIconSprite: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
-  selectedDescription: Why it look's like a house
+  selectedIconSprite: {fileID: 21300000, guid: 43626d0e29e4187429ae4b023fe7759d, type: 3}
+  selectedDescription: A factory, that creates engineers and marines.
   selectionType: 1
 --- !u!114 &114315476703929504
 MonoBehaviour:

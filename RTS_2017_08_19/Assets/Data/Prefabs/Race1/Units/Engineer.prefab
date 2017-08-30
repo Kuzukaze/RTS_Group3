@@ -1222,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
+  icon: {fileID: 21300000, guid: 43626d0e29e4187429ae4b023fe7759d, type: 3}
   actionType: 3
   id: 20
   locked: 0
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 28a5b5e245e321247a79b51b7db9806f, type: 3}
+  icon: {fileID: 21300000, guid: 8cb85d30b57f0e34cb9a060aff0feb71, type: 3}
   actionType: 3
   id: 21
   locked: 1
@@ -1255,9 +1255,9 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
-  ghostbuildingOK: {fileID: 1258808368866120, guid: a7b6bf715c341ca43a4a53788edfd541,
+  ghostbuildingOK: {fileID: 1258808368866120, guid: 5f0d6ef7709718845a8849447c59266c,
     type: 2}
-  ghostbuildingFail: {fileID: 1258808368866120, guid: e07db781c1ce55e49bc56d34f03e863b,
+  ghostbuildingFail: {fileID: 1258808368866120, guid: 51646f3a9494dbb429ad100b1d943a14,
     type: 2}
 --- !u!114 &114122800946705688
 MonoBehaviour:
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   selectionPrefab: {fileID: 1063775259222016, guid: 3cd5b2b70295988469d2320caf83176f,
     type: 2}
   selectedIconSprite: {fileID: 21300000, guid: 94a6c20776230384f8b8648e607ea0f4, type: 3}
-  selectedDescription: some engineering suff
+  selectedDescription: Some engineering stuff
   selectionType: 2
 --- !u!114 &114743193810537526
 MonoBehaviour:
