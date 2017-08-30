@@ -45,32 +45,32 @@ public class AttackTurret : Attack {
     }
 
     public bool LookAtTarget (GameObject lookTarget) 
-    {
+    {/*
         Quaternion targetRotation = Quaternion.LookRotation (lookTarget.transform.position - barrel.position); 
-        return TurnToDirection (targetRotation);
+        return TurnToDirection (targetRotation); */ // fast rotation
+        float rotSpeed = 360f; 
+
+        // distance between target and the actual rotating object
+        Vector3 D = lookTarget.transform.position - barrel.transform.position;  
+
+
+        // calculate the Quaternion for the rotation
+        Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotSpeed * Time.deltaTime);
+
+        //Apply the rotation 
+        //platform.transform.rotation = rot; 
+
+        // put 0 on the axys you do not want for the rotation object to rotate
+        //barrel.transform.eulerAngles = new Vector3(0, 0,platform.transform.eulerAngles.z);
+        platform.transform.eulerAngles = new Vector3(0, rot.eulerAngles.y,0); 
+        barrel.transform.eulerAngles = new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, 0);
+        return LooksAtTarget(lookTarget);
     }
 
-    public bool TurnToDirection (Quaternion targetRotation)
+    public bool LooksAtTarget (GameObject lookTarget)
     {
+        Quaternion targetRotation = Quaternion.LookRotation (lookTarget.transform.position - barrel.position); 
         Quaternion currentRotation = barrel.transform.rotation;
-        Quaternion deltaRotation = Quaternion.Inverse(targetRotation) * currentRotation;
-        //Debug.Log (deltaRotation.eulerAngles.z);
-
-        if (Between(deltaRotation.eulerAngles.z, 1, 180))
-            RotateTurret(Rotations.Left);
-        else if (Between(deltaRotation.eulerAngles.z, 180, 359))
-            RotateTurret(Rotations.Right);
-        
-        if (Between(deltaRotation.eulerAngles.x, 2, 180))
-            RotateTurret(Rotations.Up);
-        else if (Between(deltaRotation.eulerAngles.x, 180, 358))
-            RotateTurret(Rotations.Down);
-        //Debug.Log(deltaRotation.eulerAngles.x);
-        /*if (Input.GetKey("c"))
-            RotateTurret(Rotations.Down);
-        else if (Input.GetKey("v"))
-            RotateTurret(Rotations.Up);*/
-
         float rotatingError = Mathf.Abs (targetRotation.eulerAngles.y - currentRotation.eulerAngles.y);
         if (rotatingError < 5)
             return true;
@@ -78,13 +78,6 @@ public class AttackTurret : Attack {
             return false;
     }
 
-    bool Between (float val, float min, float max)
-    {
-        if (val >= min && val <= max)
-            return true;
-        else
-            return false;
-    }
 
     enum Rotations {Left, Right, Up, Down}
 
