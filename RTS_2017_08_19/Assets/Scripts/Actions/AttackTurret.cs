@@ -65,7 +65,7 @@ public class AttackTurret : Attack {
             RotateTurret(Rotations.Up);
         else if (Between(deltaRotation.eulerAngles.x, 180, 358))
             RotateTurret(Rotations.Down);
-        Debug.Log(deltaRotation.eulerAngles.x);
+        //Debug.Log(deltaRotation.eulerAngles.x);
         /*if (Input.GetKey("c"))
             RotateTurret(Rotations.Down);
         else if (Input.GetKey("v"))
