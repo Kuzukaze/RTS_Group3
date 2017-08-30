@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿/* Current actions IDs:
+    0 : Mover Ground
+    3 : Attack
+    4 : Attack Turret
+    10: Engineer Builder (Engineer)
+    11: Engineer Builder (Marine)
+    20 : Smart Builder (Factory)
+    21 : Smart Builder (Hangar)
+    22 : Smart Builder (Turret)
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -243,6 +243,8 @@ public class UIManager : MonoBehaviour {
 
     void UnitDeathDetected (Unit killedUnit)
     {
+        if (killedUnit.gameObject.GetComponent<Selectable>() == null)
+            return;
         if (killedUnit.gameObject.GetComponent<Selectable>().IsSelected)
         {
             BaseAction[] unitActions = killedUnit.GetComponents<BaseAction>();

@@ -16,15 +16,20 @@ public class TempStart : MonoBehaviour
         neutral = new PlayerController();
         neutral.Init(new TeamInfo(TeamInfo.Teams.Neutral, TeamInfo.Races.Neutral, Color.white), 1);
 
-        GameObject.Find("BaseCore").GetComponent<Unit>().Init(player1);
+        //GameObject.Find("BaseCore").GetComponent<Unit>().Init(player1);
         GameObject.Find("Zergling").GetComponent<Unit>().Init(neutral);
-
+        /*
         Unit unit = GameObject.Find("Engineer").GetComponent<Unit>();
         if (unit)
         {
             unit.Init(player1);
         }
         unit = GameObject.Find("Marine").GetComponent<Unit>();
+        if (unit)
+        {
+            unit.Init(player1);
+        } */
+        Unit unit = GameObject.Find("Turret").GetComponent<Unit>();
         if (unit)
         {
             unit.Init(player1);
