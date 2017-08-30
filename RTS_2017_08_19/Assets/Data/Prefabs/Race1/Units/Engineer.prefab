@@ -1254,9 +1254,9 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
-  ghostbuildingOK: {fileID: 1258808368866120, guid: a7b6bf715c341ca43a4a53788edfd541,
+  ghostbuildingOK: {fileID: 1258808368866120, guid: 5f0d6ef7709718845a8849447c59266c,
     type: 2}
-  ghostbuildingFail: {fileID: 1258808368866120, guid: e07db781c1ce55e49bc56d34f03e863b,
+  ghostbuildingFail: {fileID: 1258808368866120, guid: 51646f3a9494dbb429ad100b1d943a14,
     type: 2}
 --- !u!114 &114122800946705688
 MonoBehaviour:
