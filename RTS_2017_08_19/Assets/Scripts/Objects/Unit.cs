@@ -34,8 +34,8 @@ public class Unit : MonoBehaviour
         }
     }
 
-    [SerializeField] float lineWidth = 2f;
-    [SerializeField] Color color = new Color(0f, 0f, 0.8f, 0.75f);
+    [SerializeField] float lineWidth = 0.8f;
+    [SerializeField] Color color = new Color(0f, 1f, 1f, 0.75f);
 
     // private bool IsMouseDown { get; set; }
 
