@@ -66,10 +66,12 @@ public class BaseAction : MonoBehaviour {
     { //calll this method when the action is complete
         //Debug.Log("actionInProgress = false");
         actionInProgress = false;
+
         OnActionComplete();
 
         if (ActionCompleteEvent != null)
         {
+            Debug.Log("Action compete event");
             ActionCompleteEvent();
         }
 

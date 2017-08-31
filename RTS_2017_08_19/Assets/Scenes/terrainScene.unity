@@ -2303,6 +2303,27 @@ LineRenderer:
     textureMode: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &692451589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692451576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e6af4091b5c641a317040889074dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: efb13e016355aaf46b8427320b5c8a94, type: 3}
+  actionType: 1
+  id: 33
+  locked: 0
+  actionToUnlock: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  firePoint: {fileID: 1254674497}
+  flash: {fileID: 114949748977703166, guid: eb9da762d2d25fd4a81da9de93b028e6, type: 2}
+  flashSpeed: 10
 --- !u!1 &702471433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,12 +2431,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
-      propertyPath: m_LocalScale.z
+    - target: {fileID: 1233382623004642, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2904,7 +2921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &895221471
 Transform:
   m_ObjectHideFlags: 0
@@ -3619,6 +3636,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1226382451}
+--- !u!4 &1254674497 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4548969919137088, guid: 717a2bf0e0312824cbe65848aba96fac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1222125605}
 --- !u!1 &1301051279
 GameObject:
   m_ObjectHideFlags: 0
