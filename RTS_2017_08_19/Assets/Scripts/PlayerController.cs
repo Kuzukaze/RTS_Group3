@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+[System.Serializable]
+public class PlayerController 
 {
-    private TeamInfo team;
-    private int startPosition;
+    [SerializeField] private string playerName = "...";
+    [SerializeField] private TeamInfo team;
+    [SerializeField] private int startPosition;
     private bool isInit = false;
 
     public TeamInfo Team
@@ -22,24 +24,21 @@ public class PlayerController : MonoBehaviour
             return startPosition;
         }
     }
-
-
-    // Use this for initialization
-    void Start()
+    public string Name
     {
-        
+        get
+        {
+            return playerName;
+        }
     }
+    
 
-    public void Init(TeamInfo team, int startPosition)
+    public void Init(TeamInfo team, int startPosition, string name)
     {
         this.team = team;
         this.startPosition = startPosition;
+        this.playerName = name;
         isInit = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 }

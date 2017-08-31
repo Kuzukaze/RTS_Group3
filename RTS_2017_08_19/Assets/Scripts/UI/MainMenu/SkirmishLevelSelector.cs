@@ -16,6 +16,8 @@ public class SkirmishLevelSelector : MonoBehaviour
     private List<ResourceData.LevelInfo> levelList;
     private int selectedLevel = -1;
 
+    private MainMenuCanvasHandler mainMenuHandler;
+
     // Use this for initialization
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class SkirmishLevelSelector : MonoBehaviour
 
     void Start()
     {
+        mainMenuHandler = this.transform.parent.GetComponent<MainMenuCanvasHandler>();
+
         buttonAccept.onClick.AddListener(OnButtonAccept);
         buttonCancel.onClick.AddListener(OnButtonCancel);
     }
@@ -70,6 +74,20 @@ public class SkirmishLevelSelector : MonoBehaviour
         selectedLevel = number;
     }
 
+    public ResourceData.LevelInfo GetSelectedLevel()
+    {
+        if(selectedLevel >= 0)
+        {
+            return levelList[selectedLevel];
+        }
+        else
+        {
+            Debug.LogError("NoLevel selected in SkirmishLevelSelector");
+            return null;
+        }
+    }
+
+
     private void OnButtonAccept()
     {
         //todo: here must be nice panel with additional skirmish config:
@@ -77,12 +95,14 @@ public class SkirmishLevelSelector : MonoBehaviour
         //      -difficulty
         //      -victory condition & etc
 
-        GameManager.Instance.LoadSkirmishLevel(levelList[selectedLevel]);
+        //GameManager.Instance.LoadSkirmishLevel(levelList[selectedLevel]);
+
+        mainMenuHandler.ShowMapConfiguration();
     }
 
     private void OnButtonCancel()
     {
-        this.gameObject.SetActive(!this.gameObject.activeSelf);
+        mainMenuHandler.HideSkirmish();
     }
 
 }

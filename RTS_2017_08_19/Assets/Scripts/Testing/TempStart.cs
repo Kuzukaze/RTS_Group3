@@ -26,13 +26,13 @@ public class TempStart : MonoBehaviour
     void Start()
     {
         player1 = new PlayerController();
-        player1.Init(new TeamInfo(TeamInfo.Teams.Team1, player1Race, player1Color), player1SpawnPoint);
+        player1.Init(new TeamInfo(TeamInfo.Teams.Team1, player1Race, player1Color), player1SpawnPoint, "Player 1");
 
         player2 = new PlayerController();
-        player2.Init(new TeamInfo(TeamInfo.Teams.Team2, player2Race, player2Color), player2SpawnPoint);
+        player2.Init(new TeamInfo(TeamInfo.Teams.Team2, player2Race, player2Color), player2SpawnPoint, "Player 2");
 
         neutral = new PlayerController();
-        neutral.Init(new TeamInfo(TeamInfo.Teams.Neutral, TeamInfo.Races.Neutral, neutralColor), 0);
+        neutral.Init(new TeamInfo(TeamInfo.Teams.Neutral, TeamInfo.Races.Neutral, neutralColor), 0, "Neutral");
 
         foreach(Unit unit in ObjectsToInitTeam1)
         {

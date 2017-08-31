@@ -1434,8 +1434,8 @@ MonoBehaviour:
   buildUnit: {fileID: 114084835892117414}
   startHealth: 100
   healthBar: {fileID: 114182944185495988}
-  lineWidth: 2
-  color: {r: 0, g: 0, b: 0.8, a: 0.75}
+  lineWidth: 1
+  color: {r: 0, g: 1, b: 1, a: 0.7058824}
 --- !u!114 &114707434507201926
 MonoBehaviour:
   m_ObjectHideFlags: 1
