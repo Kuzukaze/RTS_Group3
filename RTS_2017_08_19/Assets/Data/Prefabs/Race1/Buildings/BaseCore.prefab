@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 114277903877099196}
   - component: {fileID: 114549462999331706}
   - component: {fileID: 54828077427095886}
+  - component: {fileID: 114950978798703672}
   m_Layer: 0
   m_Name: BaseCore
   m_TagString: Untagged
@@ -731,7 +732,7 @@ MonoBehaviour:
     m_Bits: 4294967295
 --- !u!114 &114950978798703672
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1233382623004642}

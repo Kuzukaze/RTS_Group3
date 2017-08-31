@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114515185624454334}
   - component: {fileID: 114922952292136284}
   - component: {fileID: 54799954880364558}
+  - component: {fileID: 114878417584261426}
   m_Layer: 0
   m_Name: Hangar
   m_TagString: Untagged
@@ -622,6 +623,17 @@ MonoBehaviour:
   defaultAttackAction: 0
   engineerPrefab: {fileID: 1097190085785232, guid: e358edda337f23a4b994e85519310963,
     type: 2}
+--- !u!114 &114878417584261426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258808368866120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb2bdb824d512a459bc5d76d41e6ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114922952292136284
 MonoBehaviour:
   m_ObjectHideFlags: 1
