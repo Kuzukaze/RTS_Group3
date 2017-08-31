@@ -7,9 +7,10 @@ public class PipeTask
     public BaseAction taskAction;
     private ActionType taskType;
     public Vector3 position;
-    private Unit tagertUnit;
+    public Unit tagertUnit;
     private bool isHeadTask = false;
     private TaskManager myTaskManager;
+    private bool canCallRemove = true;
 
     public PipeTask(BaseAction taskAction)
     {
@@ -31,16 +32,24 @@ public class PipeTask
         this.tagertUnit = tagertUnit;
     }
 
+
     public void Subscribe()
     {
         taskAction.ActionCompleteEvent += new ActionCompletionHandler(CompletionDetected);
+        Debug.Log("EVENT JUST SUB");
     }
+
 
     public void CompletionDetected()
     {
         if (isHeadTask)
         {
-            myTaskManager.RemoveHeadTask();
+            if (canCallRemove)
+            {
+                canCallRemove = false;
+                Debug.Log("CompletionDetected");
+                myTaskManager.RemoveHeadTask();
+            }
         }
 
     }
@@ -56,4 +65,5 @@ public class PipeTask
         Debug.Log("A task now listens to the BaseAction event");
         Subscribe();
     }
+
 }

@@ -27,9 +27,12 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveSelectableObject(Selectable selected)
     {
-        if(selected)
+        if(selected != null)
         {
-            selectableObjectsList.Remove(selected);
+            if (selectableObjectsList != null)
+            {
+                selectableObjectsList.Remove(selected);
+            }
         }
     }
     public void RemoveSelectableObjectByID(int id)
