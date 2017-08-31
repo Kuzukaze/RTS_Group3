@@ -20,19 +20,20 @@ public class Unit : MonoBehaviour
     private bool isInit = false;
 
     public TeamInfo Team
-    {
-        get
-        {
+     {
+         get
+         {
             return playerController.Team;
-        }
-    }
-    public PlayerController Player
-    {
-        get
-        {
-            return playerController;
-        }
-    }
+         }
+     }
+     public PlayerController Player
+     {
+         get
+         {
+             return playerController;
+         }
+     }
+    
 
     [SerializeField] float lineWidth = 0.8f;
     [SerializeField] Color color = new Color(0f, 1f, 1f, 0.75f);

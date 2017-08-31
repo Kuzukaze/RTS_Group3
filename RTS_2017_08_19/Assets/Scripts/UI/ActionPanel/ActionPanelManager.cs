@@ -51,6 +51,11 @@ public class ActionPanelManager : MonoBehaviour {
             }
         }
         uiManager.SetCurrentActions(requester.GetCurrentActions());
+        if (requester.GetCurrentActions()[0].GetActionType() == ActionType.instant)
+        {
+            requester.Unselect();
+            uiManager.ExecuteCurrentAction();
+        }
     }
 
     public void UnselectAll()

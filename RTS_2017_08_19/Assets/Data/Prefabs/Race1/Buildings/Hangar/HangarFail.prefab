@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4864651141824526}
-  - component: {fileID: 114744215511732274}
+  - component: {fileID: 114092646053807886}
   m_Layer: 0
   m_Name: HangarFail
   m_TagString: Untagged
@@ -112,8 +112,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574809845866670}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 1.69, z: 1.2744988}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 1.2744988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4124543001308248}
@@ -121,15 +121,15 @@ Transform:
   - {fileID: 4926214405844700}
   m_Father: {fileID: 4864651141824526}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4864651141824526
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258808368866120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.86685, y: 0.6607132, z: -42.41885}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 123.57152, y: 5.5, z: 24.994356}
   m_LocalScale: {x: 0.66692865, y: 0.6669289, z: 0.6669289}
   m_Children:
   - {fileID: 4824797876870816}
@@ -175,7 +175,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4316d5a172f794c449760b7d48055fba, type: 2}
+  - {fileID: 2100000, guid: c266af4a9339bf043b1a801540122946, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -207,7 +207,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4316d5a172f794c449760b7d48055fba, type: 2}
+  - {fileID: 2100000, guid: c266af4a9339bf043b1a801540122946, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,7 +239,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4316d5a172f794c449760b7d48055fba, type: 2}
+  - {fileID: 2100000, guid: c266af4a9339bf043b1a801540122946, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -279,7 +279,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305460833687656}
   m_Mesh: {fileID: 4300000, guid: 0bf62a0f068396647b0a558c0a85f6e1, type: 3}
---- !u!114 &114744215511732274
+--- !u!114 &114092646053807886
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
