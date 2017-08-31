@@ -28,17 +28,54 @@ public class TaskManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            RemoveHeadTask();
+            localTask.CompletionDetected();
         }
 
     }
 
+    public void AddTask(BaseAction taskAction)
+    {
+        if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            tasksInPipe.Clear();
+        }
+
+        PipeTask newTask = new PipeTask(taskAction);
+        newTask.SetTaskManager(this);
+        tasksInPipe.Enqueue(newTask);
+        if (tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
+    }
+
     public void AddTask(BaseAction taskAction, Vector3 position)
     {
+        if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            tasksInPipe.Clear();
+        }
+
         PipeTask newTask = new PipeTask(taskAction, position);
         newTask.SetTaskManager(this);
         tasksInPipe.Enqueue(newTask);
         if(tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
+    }
+
+    public void AddTask(BaseAction taskAction, Unit tagert)
+    {
+        if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            tasksInPipe.Clear();
+        }
+
+        PipeTask newTask = new PipeTask(taskAction, tagert);
+        newTask.SetTaskManager(this);
+        tasksInPipe.Enqueue(newTask);
+        if (tasksInPipe.Count == 1)
         {
             ExecuteTask("AddTask");
         }
@@ -53,20 +90,21 @@ public class TaskManager : MonoBehaviour
             {
                 ExecuteTask("RemoveHeadTask");
             }
-            
         }
-
     }
+
 
     public void ExecuteTask(string whoThis)
     {
-        Debug.Log(string.Format("ExecuteTask was called by {0}", whoThis));
+   //     Debug.Log(string.Format("ExecuteTask was called by {0}", whoThis));
         if (tasksInPipe.Count > 0)
         {
-            Debug.Log("Exexuting an action");
+        //    Debug.Log("Exexuting an action");
             localTask = tasksInPipe.Peek();
             localTask.IndicateHead();
+            localTask.taskAction.ExecuteAction();
             localTask.taskAction.ExecuteAction(localTask.position);
+            localTask.taskAction.ExecuteAction(localTask.tagertUnit);
         }
 
     }

@@ -33,6 +33,7 @@ public class Attack : BaseAction
                 Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
                 Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
                 targetUnit.TakeDamage(damageDone);
+                Debug.Log("Attack");
             }
             else
             {

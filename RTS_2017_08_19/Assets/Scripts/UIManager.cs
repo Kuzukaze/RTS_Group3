@@ -76,7 +76,8 @@ public class UIManager : MonoBehaviour {
             {
                 foreach (BaseAction action in currentActions) //execute the action for each unit
                 {
-                    action.ExecuteAction(); 
+                    action.gameObject.GetComponent<TaskManager>().AddTask(action);
+                   //action.ExecuteAction(); 
                 }
             }
         }
@@ -91,12 +92,10 @@ public class UIManager : MonoBehaviour {
             {
                 foreach (BaseAction action in currentActions)
                 {
-                    //PipeTask newTask = new PipeTask(action, position);
-                    //action.gameObject.GetComponent<TaskManager>().AddTask(newTask);
-                   // action.gameObject.GetComponent<TaskManager>().AddTask(action, position);
+                   action.gameObject.GetComponent<TaskManager>().AddTask(action, (GetPointInCircle(position, amountOfActions)));
 
                     // action.ExecuteAction(position);
-                     action.ExecuteAction(GetPointInCircle(position,amountOfActions));
+                   //action.ExecuteAction(GetPointInCircle(position,amountOfActions));
                 }
             }
         }
@@ -110,7 +109,8 @@ public class UIManager : MonoBehaviour {
             {
                 foreach (BaseAction action in currentActions)
                 {
-                    action.ExecuteAction(target);
+                    action.gameObject.GetComponent<TaskManager>().AddTask(action, target);
+                      // action.ExecuteAction(target);
                 }
             }
         }
@@ -168,15 +168,17 @@ public class UIManager : MonoBehaviour {
                     int actionAmount = currentMoveActions.Count;
                     foreach (BaseAction action in currentMoveActions)
                     {
+                        action.gameObject.GetComponent<TaskManager>().AddTask(action, (GetPointInCircle(interactionInfo.point, actionAmount)));
                         //action.ExecuteAction(interactionInfo.point);
-                        action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
+                       // action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
                     }
                 }
                 else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
                 {
                     foreach (BaseAction action in currentAttackActions)
                     {
-                        action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
+                        action.gameObject.GetComponent<TaskManager>().AddTask(action, interactionInfo.collider.gameObject.GetComponent<Unit>());
+                      //  action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
                     }
                 }
             }
@@ -203,6 +205,7 @@ public class UIManager : MonoBehaviour {
     {
         if (hit.collider.gameObject.GetComponent<Unit>() != null)
         {
+
             ExecuteCurrentAction(hit.collider.gameObject.GetComponent<Unit>());
             return;
         }
@@ -227,7 +230,8 @@ public class UIManager : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(1))
             {
-                currentActions[0].ExecuteAction(interactionInfo.point);
+                currentActions[0].gameObject.GetComponent<TaskManager>().AddTask(currentActions[0], interactionInfo.point);
+             //   currentActions[0].ExecuteAction(interactionInfo.point);
                 UnselectAction();
             }
         }

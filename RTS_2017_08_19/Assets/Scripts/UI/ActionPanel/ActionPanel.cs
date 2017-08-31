@@ -131,18 +131,18 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
 
     public void SelectOrExecute ()
     {
-        if (currentActions[0].GetActionType() == ActionType.instant)
+       /* if (currentActions[0].GetActionType() == ActionType.instant)
         { //if an instant action, execute immediatly
             foreach (BaseAction action in currentActions)
             {
-                action.ExecuteAction();
+                //action.ExecuteAction();
             }
             actionManager.UnselectAll();
         }
         else
-        { //if not an instant action, prepare to select a target
+        { //if not an instant action, prepare to select a target */
             Select();
-        }
+        //}
     }
         
     public void CheckIfLocked ()
