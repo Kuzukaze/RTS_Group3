@@ -19,7 +19,7 @@ public class HitObject : MonoBehaviour
 
 	void OnCollisionEnter (Collision col) 
     {
-        Debug.Log(col.gameObject);
+        //Debug.Log(col.gameObject);
 		Setoff (col);
 	}
 

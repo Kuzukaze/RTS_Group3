@@ -1952,7 +1952,7 @@ MonoBehaviour:
   selectionPrefab: {fileID: 1063775259222016, guid: 3cd5b2b70295988469d2320caf83176f,
     type: 2}
   selectedIconSprite: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
-  selectedDescription: Ultimate marine warrior.
+  selectedDescription: A heavy military vehicle.
   selectionType: 2
 --- !u!114 &114752479412115554
 MonoBehaviour:

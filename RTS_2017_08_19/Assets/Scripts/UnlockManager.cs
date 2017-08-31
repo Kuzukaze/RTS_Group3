@@ -4,9 +4,11 @@
     4 : Attack Turret
     10: Engineer Builder (Engineer)
     11: Engineer Builder (Marine)
-    20 : Smart Builder (Factory)
-    21 : Smart Builder (Hangar)
-    22 : Smart Builder (Turret)
+    12: Engineer Builder (Apc)
+    13: Engineer Builder (Tank)
+    20: Smart Builder (Factory)
+    21: Smart Builder (Hangar)
+    22: Smart Builder (Turret)
 */
 
 using System.Collections;

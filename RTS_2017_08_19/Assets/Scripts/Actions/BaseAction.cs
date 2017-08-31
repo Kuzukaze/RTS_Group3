@@ -193,6 +193,7 @@ public class BaseAction : MonoBehaviour {
 
     public void UnlockAction (int actionID)
     {
+        Debug.Log(string.Format("BaseAction: trying to unlock action {0}", actionID));
         unlockManager.UnlockAction(actionID);
     }
 

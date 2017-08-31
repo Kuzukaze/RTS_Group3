@@ -12,15 +12,9 @@ public class AttackTurret : Attack {
     [SerializeField] ParticleSystem[] muzzleFlashes;
     private int currentFirePoint = 0;
 
-    public override void OnActionStarted(Unit target)
-    {
-        //Debug.Log("OnActionStarted");
-    }
-
     public override void OnActionInProgress(Unit target)
     {
         shortCounter -= Time.deltaTime;
-        //Debug.Log(string.Format("Range = {0}, check if greater than {1}", range,  Vector3.Distance(firePoint1.transform.position, target.transform.position)));
         if (target == null)
         {
             CompleteAction();
@@ -31,7 +25,11 @@ public class AttackTurret : Attack {
             if (LookAtTarget(target.gameObject) && shortCounter <= 0)
             {
                 shortCounter = reloadTime;
-                Instantiate(projectile, firePoints[currentFirePoint].position, firePoints[currentFirePoint].rotation);
+                GameObject instantiated = Instantiate(projectile, firePoints[currentFirePoint].position, firePoints[currentFirePoint].rotation);
+                foreach (Collider current in this.GetComponents<Collider>())
+                {
+                    Physics.IgnoreCollision(instantiated.GetComponent<Collider>(), current);
+                }
                 muzzleFlashes[currentFirePoint].Play(); //muzzleFlashes.Length MUST be equal to firePoints.Length
                 currentFirePoint++;
                 currentFirePoint = currentFirePoint % firePoints.Length;
@@ -44,24 +42,18 @@ public class AttackTurret : Attack {
         }
     }
 
+    public override void OnActionComplete()
+    {
+        platform.transform.rotation = platform.parent.transform.rotation;
+        barrel.transform.rotation = platform.parent.transform.rotation;
+    }
+
     public bool LookAtTarget (GameObject lookTarget) 
-    {/*
-        Quaternion targetRotation = Quaternion.LookRotation (lookTarget.transform.position - barrel.position); 
-        return TurnToDirection (targetRotation); */ // fast rotation
+    {
         float rotSpeed = 360f; 
-
-        // distance between target and the actual rotating object
         Vector3 D = lookTarget.transform.position - barrel.transform.position;  
-
-
-        // calculate the Quaternion for the rotation
         Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotSpeed * Time.deltaTime);
 
-        //Apply the rotation 
-        //platform.transform.rotation = rot; 
-
-        // put 0 on the axys you do not want for the rotation object to rotate
-        //barrel.transform.eulerAngles = new Vector3(0, 0,platform.transform.eulerAngles.z);
         platform.transform.eulerAngles = new Vector3(0, rot.eulerAngles.y,0); 
         barrel.transform.eulerAngles = new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, 0);
         return LooksAtTarget(lookTarget);
