@@ -682,7 +682,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 222600259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: -64.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1581941416}
@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7473cdab9f454ef41b53e234d47107c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedActions: 0a0000001400000003000000
+  unlockedActions: 0a00000014000000030000000400000000000000160000000c000000
 --- !u!114 &372188489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,6 +1254,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2eb2833d01d0ab479d33372193cadce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &387325645
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 126.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 9.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 49.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105678042888992, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e43c16d8f129dc043866d8f44f7f630d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &423169137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4808880311242728, guid: baab28c455057b94188ceeb377cdec85, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: baab28c455057b94188ceeb377cdec85, type: 2}
@@ -1694,6 +1736,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 525110580}
+--- !u!114 &547050390 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,
+    type: 2}
+  m_PrefabInternal: {fileID: 387325645}
+  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!1 &607920098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,7 +4972,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2076711127
 MonoBehaviour:
@@ -4937,6 +4985,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3e8f0944d0f724e9a2af6beff1299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1Race: 1
+  player1Color: {r: 0, g: 0, b: 1, a: 1}
+  player1SpawnPoint: 1
+  player2Race: 0
+  player2Color: {r: 1, g: 0, b: 0, a: 1}
+  player2SpawnPoint: 2
+  neutralColor: {r: 1, g: 1, b: 1, a: 1}
+  ObjectsToInitTeam1:
+  - {fileID: 547050390}
+  ObjectsToInitTeam2: []
+  ObjectsToInitNeutral: []
 --- !u!1001 &2079499252
 Prefab:
   m_ObjectHideFlags: 0

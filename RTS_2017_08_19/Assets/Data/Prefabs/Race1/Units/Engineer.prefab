@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 114990521930541120}
   - component: {fileID: 120363297587790618}
   - component: {fileID: 114096453244179330}
+  - component: {fileID: 114974228501921126}
   m_Layer: 0
   m_Name: Engineer
   m_TagString: Untagged
@@ -1508,6 +1509,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a347302a3f667814886e85abec019e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114974228501921126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214876201661376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 377e6e70339361c4d8e13898ab7dbe6e, type: 3}
+  actionType: 3
+  id: 22
+  locked: 0
+  actionToUnlock: 22
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  buildingPrefab: {fileID: 1854057543516794, guid: 104d95476e1f1e34181a234f00df8490,
+    type: 2}
+  ghostbuildingOK: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
+    type: 2}
+  ghostbuildingFail: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
+    type: 2}
 --- !u!114 &114990521930541120
 MonoBehaviour:
   m_ObjectHideFlags: 1

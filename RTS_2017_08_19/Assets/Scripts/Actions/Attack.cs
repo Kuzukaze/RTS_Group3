@@ -5,18 +5,19 @@ using UnityEngine.AI;
 
 public class Attack : BaseAction
 {
-    [SerializeField]Transform firePoint;
-    [SerializeField]float range;
-    [SerializeField]float reloadTime;
-    [SerializeField]float damageDone;
+    [SerializeField] Transform firePoint;
+    [SerializeField] protected float range;
+    [SerializeField] protected float reloadTime;
+    [SerializeField] protected float damageDone;
     [SerializeField] private LayerMask layerMask;
 
-    private float shortCounter = 0;
+    protected float shortCounter = 0;
     
     public override void Start()
     {
         base.Start();
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
+        Debug.Log("Attack started");
     }
 
 

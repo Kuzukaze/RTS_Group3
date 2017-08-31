@@ -184,7 +184,7 @@ public class BaseAction : MonoBehaviour {
                     break;
             }
         }
-    }
+    } 
      
 
     public void UnlockDetected (int unlockedID)
@@ -195,6 +195,7 @@ public class BaseAction : MonoBehaviour {
 
     public void UnlockAction (int actionID)
     {
+        Debug.Log(string.Format("BaseAction: trying to unlock action {0}", actionID));
         unlockManager.UnlockAction(actionID);
     }
 

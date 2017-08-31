@@ -25,7 +25,9 @@ public class SmartBuilder : BaseAction
         Debug.Log("Execute action");
         if (isNoBuildingsNearby(pos))
         {
-            Instantiate(buildingPrefab, pos, buildingPrefab.transform.rotation);
+            GameObject instantiated = Instantiate(buildingPrefab, pos, buildingPrefab.transform.rotation);
+            PlayerController player = this.gameObject.GetComponent<Unit>().Player;
+            instantiated.GetComponent<Unit>().Init(player);
             UnlockAction(actionToUnlock);
         }
         Destroy(currentGhost);
