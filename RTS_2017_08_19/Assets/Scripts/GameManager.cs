@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveSelectableObject(Selectable selected)
     {
-        if(selected)
+        if(selected != null && selectableObjectsList != null)
         {
             selectableObjectsList.Remove(selected);
         }
@@ -86,7 +86,14 @@ public class GameManager : MonoBehaviour
    
     void Update()
     {
-
+        //TEST
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            foreach(PlayerController player in playersList)
+            {
+                Debug.Log("Player name: " + player.Name);
+            }
+        }
     }
         
     public void SetStartScene(string startScene)      //(!) DebugFunction ONLY
@@ -104,10 +111,10 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public PlayerController CreatePlayer(TeamInfo teamInfo, int startPosition)
+    public PlayerController CreatePlayer(TeamInfo teamInfo, int startPosition, string name)
     {
         PlayerController pc = new PlayerController();
-        pc.Init(teamInfo, startPosition);
+        pc.Init(teamInfo, startPosition, name);
 
         return pc;
     }
@@ -146,25 +153,48 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadSkirmishLevel(ResourceData.LevelInfo lvl)
+    [SerializeField] private List<ResourceData.LevelInfo> testLvlsList;
+
+    public void LoadSkirmishLevel(ResourceData.LevelInfo lvl, List<PlayerController> playerControllerList)
     {
+        testLvlsList = new List<ResourceData.LevelInfo>();
+        testLvlsList.Add(lvl);
+        testLvlsList.Add(lvl);
+        testLvlsList.Add(lvl);
+        testLvlsList.Add(lvl);
+
         currentLevel = lvl;
+
+        playersList = new List<PlayerController>();
+
+        foreach ( PlayerController pc in playerControllerList)
+        {
+            TeamInfo ti = new TeamInfo(pc.Team.Team, pc.Team.Race, pc.Team.Color);
+
+
+            PlayerController pController = new PlayerController();
+            pController.Init(ti, pc.StartPosition, pc.Name);
+
+            playersList.Add(pController);
+
+        }
+
+        //playersList = new List<PlayerController>(playerControllerList);
         SceneManager.LoadScene(lvl.sceneName);
     }
 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        List<TeamInfo> teamInfo = new List<TeamInfo>();                                                     //TODO: must be gui team params selection
-        teamInfo.Add(new TeamInfo(TeamInfo.Teams.Team1, TeamInfo.Races.Race1, Color.blue));                 //TODO: must be gui team params selection
-        teamInfo.Add(new TeamInfo(TeamInfo.Teams.Team2, TeamInfo.Races.Race1, Color.red));                  //TODO: must be gui team params selection
-
-        playersList = new List<PlayerController>();
-        for (int i = 0; i < currentLevel.playersMax; i++)
+        GameObject managers = GameObject.Find("Managers");
+        if (managers)
         {
-            playersList.Add(CreatePlayer(teamInfo[i], i));
+            levelManager = managers.AddComponent<LevelManager>();
+        }
+        else
+        {
+            levelManager = new LevelManager();
         }
 
-        levelManager = new LevelManager();
         levelManager.Init(currentLevel.spawnPositions, playersList);
     }
 

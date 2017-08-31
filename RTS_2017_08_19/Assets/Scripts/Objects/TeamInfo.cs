@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TeamInfo
 {
-    private Teams team;
-    private Races race;
-    private Color color;
+    [SerializeField] private Teams team;
+    [SerializeField] private Races race;
+    [SerializeField] private Color color;
 
     public Color Color
     {
         get
         {
             return color;
+        }
+    }
+    public Teams Team
+    {
+        get
+        {
+            return team;
+        }
+    }
+    public Races Race
+    {
+        get
+        {
+            return race;
         }
     }
 

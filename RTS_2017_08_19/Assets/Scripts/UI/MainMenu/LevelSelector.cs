@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    private SkirmishLevelSelector skirmishLevelSelevtor;
+    private SkirmishLevelSelector skirmishLevelSelector;
     private int number = -1;
 
     // Use this for initialization
     void Start()
     {
-        this.GetComponent<Button>().onClick.AddListener(() => { skirmishLevelSelevtor.SelectLevel(number); });
+        this.GetComponent<Button>().onClick.AddListener(() => { skirmishLevelSelector.SelectLevel(number); });
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class LevelSelector : MonoBehaviour
 
     public void Init(SkirmishLevelSelector skirmishLevelSelevtor, int number)
     {
-        this.skirmishLevelSelevtor = skirmishLevelSelevtor;
+        this.skirmishLevelSelector = skirmishLevelSelevtor;
         this.number = number;
     }
 }

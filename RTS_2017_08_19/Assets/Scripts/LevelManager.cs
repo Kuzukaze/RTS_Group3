@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
         this.startPositions = startPositions;
         this.players = players;
 
-        foreach(var player in players)
+        foreach(PlayerController player in players)
         {
             Unit mainBuilding = Instantiate<Unit>(ResourceData.Instance.mainBuildingRace1Prefab);
             mainBuilding.Init(player);
