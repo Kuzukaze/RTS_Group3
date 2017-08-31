@@ -365,12 +365,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51526338}
---- !u!114 &82612578 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,
-    type: 2}
-  m_PrefabInternal: {fileID: 711793941}
-  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!1 &142826960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7473cdab9f454ef41b53e234d47107c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedActions: 0a00000014000000030000000400000000000000160000000c000000
+  unlockedActions: 0a00000014000000030000000400000000000000160000000c0000002100000039050000
 --- !u!114 &372188489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,12 +2907,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &906869591 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,
-    type: 2}
-  m_PrefabInternal: {fileID: 711793941}
-  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!1 &932015339
 GameObject:
   m_ObjectHideFlags: 0
@@ -4831,12 +4819,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1214876201661376, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
     type: 2}
   m_PrefabInternal: {fileID: 1780500770}
---- !u!114 &2052750524 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114694466747438088, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1780500770}
-  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!4 &2052750526 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4214981104402412, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
@@ -4931,12 +4913,6 @@ LineRenderer:
     textureMode: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &2052750528 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114694466747438088, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1780500770}
-  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!1 &2076711125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,22 +4956,13 @@ MonoBehaviour:
   player1Race: 1
   player1Color: {r: 0, g: 0, b: 1, a: 1}
   player1SpawnPoint: 1
-<<<<<<< HEAD
-  player2Race: 1
-=======
   player2Race: 0
->>>>>>> master
   player2Color: {r: 1, g: 0, b: 0, a: 1}
   player2SpawnPoint: 2
   neutralColor: {r: 1, g: 1, b: 1, a: 1}
   ObjectsToInitTeam1:
-<<<<<<< HEAD
-  - {fileID: 82612578}
-  - {fileID: 2052750524}
-=======
-  - {fileID: 906869591}
-  - {fileID: 2052750528}
->>>>>>> master
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 692451583}
   ObjectsToInitTeam2: []
   ObjectsToInitNeutral:

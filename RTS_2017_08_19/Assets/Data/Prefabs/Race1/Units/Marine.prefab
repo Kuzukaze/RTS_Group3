@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 114075125851696322}
   - component: {fileID: 65840363559796570}
   - component: {fileID: 114562536557198066}
+  - component: {fileID: 114775259596936636}
   m_Layer: 0
   m_Name: Marine
   m_TagString: Untagged
@@ -1920,6 +1921,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a347302a3f667814886e85abec019e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114775259596936636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214876201661376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e6af4091b5c641a317040889074dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: efb13e016355aaf46b8427320b5c8a94, type: 3}
+  actionType: 0
+  id: 33
+  locked: 0
+  actionToUnlock: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  firePoint: {fileID: 4548969919137088}
+  flash: {fileID: 114949748977703166, guid: eb9da762d2d25fd4a81da9de93b028e6, type: 2}
+  flashSpeed: 10
 --- !u!195 &195628116358811644
 NavMeshAgent:
   m_ObjectHideFlags: 1

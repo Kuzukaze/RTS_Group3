@@ -1544,8 +1544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb2bdb824d512a459bc5d76d41e6ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
 --- !u!120 &120363297587790618
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -1635,7 +1633,6 @@ LineRenderer:
     textureMode: 0
   m_UseWorldSpace: 1
   m_Loop: 0
->>>>>>> master
 --- !u!195 &195628116358811644
 NavMeshAgent:
   m_ObjectHideFlags: 1

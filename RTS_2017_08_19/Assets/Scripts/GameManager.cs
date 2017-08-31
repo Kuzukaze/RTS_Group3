@@ -27,11 +27,7 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveSelectableObject(Selectable selected)
     {
-<<<<<<< HEAD
         if(selected != null && selectableObjectsList != null)
-=======
-        if(selected != null)
->>>>>>> master
         {
             if (selectableObjectsList != null)
             {

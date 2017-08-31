@@ -9,6 +9,8 @@
     20: Smart Builder (Factory)
     21: Smart Builder (Hangar)
     22: Smart Builder (Turret)
+    33: Flash
+    1337: Firework
 */
 
 using System.Collections;
