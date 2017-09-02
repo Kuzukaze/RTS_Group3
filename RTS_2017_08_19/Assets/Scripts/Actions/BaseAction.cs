@@ -145,6 +145,11 @@ public class BaseAction : MonoBehaviour {
 
     }
 
+    public virtual void OnActionInProgressFixed(Vector3 pos)
+    {
+
+    }
+
     public virtual void OnActionInProgress(Unit target)
     {
 
@@ -185,6 +190,14 @@ public class BaseAction : MonoBehaviour {
             }
         }
     } 
+
+    void FixedUpdate ()
+    {
+        if (actionInProgress && actionType == ActionType.terrainClick)
+        {
+            OnActionInProgressFixed(targetPosition);
+        }
+    }
      
 
     public void UnlockDetected (int unlockedID)
