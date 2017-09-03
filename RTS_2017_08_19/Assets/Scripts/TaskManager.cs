@@ -33,13 +33,28 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void AddTask(BaseAction taskAction)
+    public void AddTask(BaseAction taskAction) //добавление инстант таска с очисткой трубы
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            tasksInPipe.Clear();
+            AddTaskNoClear(taskAction);
+        }
+        else
+        {
+            ClearPipe();
+            PipeTask newTask = new PipeTask(taskAction);
+            newTask.SetTaskManager(this);
+            tasksInPipe.Enqueue(newTask);
+            if (tasksInPipe.Count == 1)
+            {
+                ExecuteTask("AddTask");
+            }
         }
 
+    }
+
+    public void AddTaskNoClear(BaseAction taskAction)
+    {
         PipeTask newTask = new PipeTask(taskAction);
         newTask.SetTaskManager(this);
         tasksInPipe.Enqueue(newTask);
@@ -49,36 +64,64 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void AddTask(BaseAction taskAction, Vector3 position)
+    public void AddTask(BaseAction taskAction, Vector3 position) //добавление вектор таска с очисткой трубы
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            tasksInPipe.Clear();
+            AddTaskNoClear(taskAction, position);
         }
-
-        PipeTask newTask = new PipeTask(taskAction, position);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if(tasksInPipe.Count == 1)
+        else
         {
-            ExecuteTask("AddTask");
+            ClearPipe();
+            PipeTask newTask = new PipeTask(taskAction, position);
+            newTask.SetTaskManager(this);
+            tasksInPipe.Enqueue(newTask);
+            if (tasksInPipe.Count == 1)
+            {
+                ExecuteTask("AddTask");
+            }
         }
     }
 
-    public void AddTask(BaseAction taskAction, Unit tagert)
+    public void AddTaskNoClear(BaseAction taskAction, Vector3 position)
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            tasksInPipe.Clear();
-        }
+            PipeTask newTask = new PipeTask(taskAction, position);
+            newTask.SetTaskManager(this);
+            tasksInPipe.Enqueue(newTask);
+            if (tasksInPipe.Count == 1)
+            {
+                ExecuteTask("AddTask");
+            }
+    }
 
-        PipeTask newTask = new PipeTask(taskAction, tagert);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if (tasksInPipe.Count == 1)
+    public void AddTask(BaseAction taskAction, Unit tagert) //добавление юнит таска с очисткой трубы
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            ExecuteTask("AddTask");
+            AddTaskNoClear(taskAction, tagert);
         }
+        else
+        {
+            ClearPipe();
+            PipeTask newTask = new PipeTask(taskAction, tagert);
+            newTask.SetTaskManager(this);
+            tasksInPipe.Enqueue(newTask);
+            if (tasksInPipe.Count == 1)
+            {
+                ExecuteTask("AddTask");
+            }
+        }
+    }
+
+    public void AddTaskNoClear(BaseAction taskAction, Unit tagert)
+    {
+            PipeTask newTask = new PipeTask(taskAction, tagert);
+            newTask.SetTaskManager(this);
+            tasksInPipe.Enqueue(newTask);
+            if (tasksInPipe.Count == 1)
+            {
+                ExecuteTask("AddTask");
+            }
     }
 
     public void RemoveHeadTask()
@@ -90,6 +133,20 @@ public class TaskManager : MonoBehaviour
             {
                 ExecuteTask("RemoveHeadTask");
             }
+        }
+    }
+
+    public void ClearPipe()
+    {
+        if (localTask != null)
+        {
+            localTask.CompletionDetected();
+            tasksInPipe.Clear();
+            Debug.Log("LT not Null");
+        }
+        else
+        {
+            tasksInPipe.Clear();
         }
     }
 

@@ -42,7 +42,7 @@ public class BaseAction : MonoBehaviour {
     protected Vector3 targetPosition;
     protected Unit targetUnit;
 
-    private bool actionInProgress = false;
+    public bool actionInProgress = false;
 
     [SerializeField] private bool defaultMoveAction = false;
     [SerializeField] private bool defaultAttackAction = false;
@@ -154,7 +154,7 @@ public class BaseAction : MonoBehaviour {
     {
 
     }
- 
+
 
     public virtual void Start()
     {
