@@ -40,7 +40,7 @@ public class MoverAir : BaseAction
         {
             rb.AddForce(Vector3.down * acceleration/3.0f);
         } 
-        Debug.Log(Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/targetAltitude*2),1,maxSpeed));
+        //Debug.Log(Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/targetAltitude*2),1,maxSpeed));
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/(targetAltitude*2)),1,maxSpeed)); 
         transform.forward = Vector3.Lerp(transform.forward, rb.velocity, Time.deltaTime/2);
     }

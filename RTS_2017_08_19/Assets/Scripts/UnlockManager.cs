@@ -3,6 +3,7 @@
     1 : Mover Air
     3 : Attack
     4 : Attack Turret
+    5 : Raise Shield
     10: Engineer Builder (Engineer)
     11: Engineer Builder (Marine)
     12: Engineer Builder (Apc)
@@ -13,6 +14,7 @@
     22: Smart Builder (Turret)
     23: Smart Builder (Plane Hangar)
     33: Flash
+    404 : Cancel
     1337: Firework
 */
 

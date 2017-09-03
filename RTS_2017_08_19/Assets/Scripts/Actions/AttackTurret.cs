@@ -17,6 +17,7 @@ public class AttackTurret : Attack {
         shortCounter -= Time.deltaTime;
         if (target == null)
         {
+           // Debug.Log("Target is null");
             CompleteAction();
             return;
         }
@@ -26,7 +27,7 @@ public class AttackTurret : Attack {
             {
                 shortCounter = reloadTime;
                 GameObject instantiated = Instantiate(projectile, firePoints[currentFirePoint].position, firePoints[currentFirePoint].rotation);
-                foreach (Collider current in this.GetComponents<Collider>())
+                foreach (Collider current in this.GetComponentsInChildren<Collider>())
                 {
                     Physics.IgnoreCollision(instantiated.GetComponent<Collider>(), current);
                 }
@@ -37,6 +38,7 @@ public class AttackTurret : Attack {
         }
         else
         {
+            //Debug.Log(string.Format("Distance: {0}, Range: {1}",Vector3.Distance(firePoints[0].transform.position, targetUnit.transform.position),range));
             CompleteAction();
             //Debug.Log("in comp");
         }

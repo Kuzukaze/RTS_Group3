@@ -46,6 +46,9 @@ public class BaseAction : MonoBehaviour {
 
     [SerializeField] private bool defaultMoveAction = false;
     [SerializeField] private bool defaultAttackAction = false;
+    [SerializeField] private bool useTaskPipe = true;
+
+    protected bool protectFromPrematureCompletion = false;
 
     public ActionType GetActionType ()
     {
@@ -62,26 +65,23 @@ public class BaseAction : MonoBehaviour {
         return id;
     }
 
-    protected void CompleteAction()
-    { //calll this method when the action is complete
-        //Debug.Log("actionInProgress = false");
-        actionInProgress = false;
-
-        OnActionComplete();
-
-        if (ActionCompleteEvent != null)
+    public void CompleteAction()
+    { //call this method when the action is complete
+        if (!protectFromPrematureCompletion)
         {
-            Debug.Log("Action compete event");
-            ActionCompleteEvent();
-        }
+            actionInProgress = false;
+            OnActionComplete();
+  
+            if (ActionCompleteEvent != null)
+            {
+                Debug.Log("Action compete event");
+                ActionCompleteEvent();
+            }
 
-        //if (targetPosition != null)
-        //{
-        //    targetPosition = Vector3.zero;
-        //}
-        if (targetUnit != null)
-        {
-            targetUnit = null;
+            if (targetUnit != null)
+            {
+                targetUnit = null;
+            }
         }
     }
 
@@ -103,7 +103,7 @@ public class BaseAction : MonoBehaviour {
 
     public void ExecuteAction (Unit target)  
     {
-        //Debug.Log(string.Format("ExecuteAction (Unit target) was started from {0}", whoThis));
+        Debug.Log(string.Format("Action target is {0}", target));
         actionInProgress = true;
         targetUnit = target;
         OnActionStarted(target);
@@ -220,6 +220,11 @@ public class BaseAction : MonoBehaviour {
     public bool IsDefaultAttackAction()
     {
         return defaultAttackAction;
+    }
+
+    public bool UsesTaskPipe()
+    {
+        return useTaskPipe;
     }
 
     //---------EVENT SUBSCRIPTION EXAMPLE:--------------------

@@ -7,7 +7,7 @@ public class PipeTask
     public BaseAction taskAction;
     private ActionType taskType;
     public Vector3 position;
-    public Unit tagertUnit;
+    public Unit targetUnit;
     private bool isHeadTask = false;
     private TaskManager myTaskManager;
     private bool canCallRemove = true;
@@ -25,11 +25,11 @@ public class PipeTask
         this.position = position;
     }
 
-    public PipeTask(BaseAction taskAction, Unit tagertUnit)
+    public PipeTask(BaseAction taskAction, Unit targetUnit)
     {
         this.taskAction = taskAction;
         taskType = taskAction.GetActionType();
-        this.tagertUnit = tagertUnit;
+        this.targetUnit = targetUnit;
     }
 
 

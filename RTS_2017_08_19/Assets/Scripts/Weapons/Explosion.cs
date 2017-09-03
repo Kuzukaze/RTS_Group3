@@ -29,21 +29,19 @@ public class Explosion : MonoBehaviour
 
 			if (rb != null && rb.tag != "Player" && rb.tag != "Projectile")
 				ExplosionPhysicsEffect (rb);
-            /*
-			Health health = hit.GetComponent<Health> ();
 
-			if (health != null) 
-			{
-                TeamMember targetTeam = hit.gameObject.GetComponent<TeamMember>();
-				Vector3 direction = rb.transform.position - transform.position;
-                Debug.Log(string.Format("team = {0} targetTeam = {1}", team, targetTeam.Team()));
-                if (!(ignorePlayer && rb.tag == "Player") && targetTeam.Team() != team)
-					health.TakeDamage(baseDamage - baseDamage*(direction.magnitude/radius));
-			}*/
+            RaiseShield shield = hit.gameObject.GetComponent<RaiseShield>();
             Unit unit = hit.gameObject.GetComponent<Unit>();
             if (unit != null)
             {
-                unit.TakeDamage(baseDamage - baseDamage * ((Vector3.Distance(rb.transform.position, transform.position)) / radius));
+                if (shield == null)
+                {
+                    unit.TakeDamage(baseDamage - baseDamage * ((Vector3.Distance(rb.transform.position, transform.position)) / radius));
+                }
+                else if (!shield.IsActive())
+                {
+                    unit.TakeDamage(baseDamage - baseDamage * ((Vector3.Distance(rb.transform.position, transform.position)) / radius));
+                }
             }
 		}
 		ParticleSystem particle = Instantiate (ps, explosionPos, Quaternion.Euler(Vector3.forward)); //Vector3.forward

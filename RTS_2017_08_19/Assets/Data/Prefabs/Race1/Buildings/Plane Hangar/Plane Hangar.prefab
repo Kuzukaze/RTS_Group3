@@ -1180,7 +1180,7 @@ MonoBehaviour:
   selectionPrefab: {fileID: 1271126924687084, guid: d733f82eb1c5c3a43a687fefadc33ef1,
     type: 2}
   selectedIconSprite: {fileID: 21300000, guid: 8cb85d30b57f0e34cb9a060aff0feb71, type: 3}
-  selectedDescription: A hanger. Armored vehicles depart from here.
+  selectedDescription: A hanger for aerial vehicles.
   selectionType: 1
 --- !u!114 &114186972134164722
 MonoBehaviour:
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   movement: {fileID: 0}
   selectableUnit: {fileID: 114118422042142018}
   buildUnit: {fileID: 0}
-  startHealth: 700
+  startHealth: 800
   healthBar: {fileID: 114484272141411714}
   lineWidth: 0.8
   color: {r: 0, g: 1, b: 1, a: 0.75}
@@ -1367,6 +1367,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   engineerPrefab: {fileID: 1323487872665470, guid: 7db3ca430e28d094da7b33b0adac0414,
     type: 2}
 --- !u!114 &114950744389441364

@@ -41,13 +41,15 @@ public class TaskManager : MonoBehaviour
         }
         else
         {
-            ClearPipe();
-            PipeTask newTask = new PipeTask(taskAction);
-            newTask.SetTaskManager(this);
-            tasksInPipe.Enqueue(newTask);
-            if (tasksInPipe.Count == 1)
+            if (taskAction.UsesTaskPipe())
             {
-                ExecuteTask("AddTask");
+                ClearPipe();
+                PipeTask newTask = new PipeTask(taskAction);
+                InitTask(newTask);
+            }
+            else
+            {
+                taskAction.ExecuteAction();
             }
         }
 
@@ -56,12 +58,7 @@ public class TaskManager : MonoBehaviour
     public void AddTaskNoClear(BaseAction taskAction)
     {
         PipeTask newTask = new PipeTask(taskAction);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if (tasksInPipe.Count == 1)
-        {
-            ExecuteTask("AddTask");
-        }
+        InitTask(newTask);
     }
 
     public void AddTask(BaseAction taskAction, Vector3 position) //добавление вектор таска с очисткой трубы
@@ -74,54 +71,51 @@ public class TaskManager : MonoBehaviour
         {
             ClearPipe();
             PipeTask newTask = new PipeTask(taskAction, position);
-            newTask.SetTaskManager(this);
-            tasksInPipe.Enqueue(newTask);
-            if (tasksInPipe.Count == 1)
-            {
-                ExecuteTask("AddTask");
-            }
+            InitTask(newTask);
         }
     }
 
     public void AddTaskNoClear(BaseAction taskAction, Vector3 position)
     {
             PipeTask newTask = new PipeTask(taskAction, position);
-            newTask.SetTaskManager(this);
-            tasksInPipe.Enqueue(newTask);
-            if (tasksInPipe.Count == 1)
-            {
-                ExecuteTask("AddTask");
-            }
+            InitTask(newTask);
     }
 
-    public void AddTask(BaseAction taskAction, Unit tagert) //добавление юнит таска с очисткой трубы
+    public void AddTask(BaseAction taskAction, Unit target) //добавление юнит таска с очисткой трубы
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            AddTaskNoClear(taskAction, tagert);
+            AddTaskNoClear(taskAction, target);
         }
         else
         {
-            ClearPipe();
-            PipeTask newTask = new PipeTask(taskAction, tagert);
-            newTask.SetTaskManager(this);
-            tasksInPipe.Enqueue(newTask);
-            if (tasksInPipe.Count == 1)
+            if (taskAction.UsesTaskPipe())
             {
-                ExecuteTask("AddTask");
+                ClearPipe();
+                PipeTask newTask = new PipeTask(taskAction, target);
+                InitTask(newTask);
+            }
+            else
+            {
+                taskAction.ExecuteAction(target);
             }
         }
     }
 
-    public void AddTaskNoClear(BaseAction taskAction, Unit tagert)
+    public void AddTaskNoClear(BaseAction taskAction, Unit target)
     {
-            PipeTask newTask = new PipeTask(taskAction, tagert);
-            newTask.SetTaskManager(this);
-            tasksInPipe.Enqueue(newTask);
-            if (tasksInPipe.Count == 1)
-            {
-                ExecuteTask("AddTask");
-            }
+            PipeTask newTask = new PipeTask(taskAction, target);
+            InitTask(newTask);
+    }
+
+    void InitTask(PipeTask task)
+    {
+        task.SetTaskManager(this);
+        tasksInPipe.Enqueue(task);
+        if (tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
     }
 
     public void RemoveHeadTask()
@@ -161,7 +155,7 @@ public class TaskManager : MonoBehaviour
             localTask.IndicateHead();
             localTask.taskAction.ExecuteAction();
             localTask.taskAction.ExecuteAction(localTask.position);
-            localTask.taskAction.ExecuteAction(localTask.tagertUnit);
+            localTask.taskAction.ExecuteAction(localTask.targetUnit);
         }
 
     }
