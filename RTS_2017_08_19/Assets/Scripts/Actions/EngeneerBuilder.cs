@@ -21,10 +21,24 @@ public class EngeneerBuilder : BaseAction
     {
         if (isNoBuildingsNearby(pos))
         {
-            engineer = (GameObject)GameObject.Instantiate(engineerPrefab, pos, engineerPrefab.transform.rotation);
+            //engineer = (GameObject)GameObject.Instantiate(engineerPrefab, pos, engineerPrefab.transform.rotation);
+            engineer = (GameObject)GameObject.Instantiate(engineerPrefab, transform.position + new Vector3(0,0,-3), Quaternion.LookRotation(Vector3.back));
             PlayerController player = this.gameObject.GetComponent<Unit>().Player;
             engineer.GetComponent<Unit>().Init(player);
             UnlockAction(actionToUnlock);
+            MoverGround mover = engineer.GetComponent<MoverGround>();
+            if (mover != null)
+            {
+                mover.ExecuteAction(pos);
+            }
+            else
+            {
+                MoverAir airMover = engineer.GetComponent<MoverAir>();
+                if (airMover != null)
+                {
+                    airMover.ExecuteAction(pos);
+                }
+            }
         }
         CompleteAction();
     }

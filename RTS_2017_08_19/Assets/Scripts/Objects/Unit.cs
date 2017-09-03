@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private SmartBuilder buildUnit;
     [SerializeField] private float startHealth;
     [SerializeField] private Image healthBar;
+    [SerializeField] private ParticleSystem deathParticleSystem;
 
     private NavMeshAgent playerNavMesh;
     private float health;
@@ -81,7 +82,7 @@ public class Unit : MonoBehaviour
 
         if (health <= 0)
         {
-            gameObject.transform.position = new Vector3(-47, 2, -47); //TODO: костыль для OnTriggerExit эффектов
+            //gameObject.transform.position = new Vector3(-47, 2, -47); //TODO: костыль для OnTriggerExit эффектов
             Invoke("Die", 0.03f);
         }
     }
@@ -89,6 +90,15 @@ public class Unit : MonoBehaviour
     void Die()
     {
         FindObjectOfType<EventHub>().SignalUnitDeath(this);
+        if (deathParticleSystem != null)
+        {
+            Debug.Log(string.Format("Play particle system {0}",deathParticleSystem));
+            ParticleSystem particle = Instantiate(deathParticleSystem, transform.position, Quaternion.LookRotation(Vector3.up, Vector3.back));
+            //particle.transform.Rotate (new Vector3 (-90,0,0));
+            particle.Play();
+            //deathParticleSystem.transform.SetParent(null);
+            //deathParticleSystem.GetComponent<DestroyTimer>().Activate();
+        }
         Destroy(gameObject);
         //dieInLateUpdate = true;
     }

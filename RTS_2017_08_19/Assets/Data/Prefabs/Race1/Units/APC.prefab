@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 120135863245391856}
   - component: {fileID: 114386686823317058}
   - component: {fileID: 114423416486070820}
+  - component: {fileID: 114099186403409804}
   m_Layer: 0
   m_Name: APC
   m_TagString: Untagged
@@ -482,7 +483,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097190085785232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121.632675, y: 5.33, z: 29.329664}
+  m_LocalPosition: {x: 112.20295, y: 6.32, z: 15.915222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224377991252383632}
@@ -1409,6 +1410,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114099186403409804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097190085785232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb25e4f07a5fb04a914a3e7cbc726b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  actionType: 0
+  id: 404
+  locked: 0
+  actionToUnlock: 404
+  actionInProgress: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  useTaskPipe: 0
 --- !u!114 &114285121658594664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1452,16 +1473,18 @@ MonoBehaviour:
   id: 4
   locked: 0
   actionToUnlock: 4
+  actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 1
+  useTaskPipe: 0
   firePoint: {fileID: 4743318868772836}
   range: 200
-  reloadTime: 1
+  reloadTime: 0.3
   damageDone: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 23
-  projectile: {fileID: 1300659700745682, guid: fd41a19e33edbcc4f86bf8697d4c3082, type: 2}
+  projectile: {fileID: 1289018707597300, guid: 48863cd51e0a70f42bf028c15b087a1a, type: 2}
   platform: {fileID: 4029629403575054}
   barrel: {fileID: 4936821171214826}
   firePoints:
@@ -1518,8 +1541,10 @@ MonoBehaviour:
   id: 0
   locked: 0
   actionToUnlock: 0
+  actionInProgress: 0
   defaultMoveAction: 1
   defaultAttackAction: 0
+  useTaskPipe: 1
 --- !u!114 &114984556561368520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1536,6 +1561,8 @@ MonoBehaviour:
   buildUnit: {fileID: 0}
   startHealth: 100
   healthBar: {fileID: 114041551836528212}
+  deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
+    type: 2}
   lineWidth: 2
   color: {r: 0, g: 0, b: 0.8, a: 0.75}
 --- !u!120 &120135863245391856

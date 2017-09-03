@@ -638,6 +638,8 @@ MonoBehaviour:
   buildUnit: {fileID: 0}
   startHealth: 1000
   healthBar: {fileID: 114821167480899616}
+  deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
+    type: 2}
   lineWidth: 2
   color: {r: 0, g: 0, b: 0.8, a: 0.75}
 --- !u!114 &114712936320039604
@@ -686,6 +688,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   engineerPrefab: {fileID: 1214876201661376, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
     type: 2}
 --- !u!114 &114821167480899616

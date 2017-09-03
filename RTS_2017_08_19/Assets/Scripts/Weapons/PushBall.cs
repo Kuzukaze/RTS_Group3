@@ -14,10 +14,6 @@ public class PushBall : HitObject
         rb.velocity = transform.forward * projectileSpeed;
     }
 
-    void FixedUpdate ()
-    {
-        rb.AddForce (Vector3.up * rb.mass * 10);
-    }
 
 	public override void Setoff (Collision col)
 	{

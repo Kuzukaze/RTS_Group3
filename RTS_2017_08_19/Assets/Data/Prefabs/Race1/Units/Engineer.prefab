@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 114096453244179330}
   - component: {fileID: 114974228501921126}
   - component: {fileID: 120150773032946592}
+  - component: {fileID: 114023202746904562}
   m_Layer: 0
   m_Name: Engineer
   m_TagString: Untagged
@@ -1274,6 +1275,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4865711, y: 0.6828151, z: 2.9335186}
   m_Center: {x: 0.043454528, y: -0.15859246, z: 0.09815705}
+--- !u!114 &114023202746904562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214876201661376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8cb85d30b57f0e34cb9a060aff0feb71, type: 3}
+  actionType: 1
+  id: 23
+  locked: 1
+  actionToUnlock: 23
+  actionInProgress: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  useTaskPipe: 1
+  buildingPrefab: {fileID: 1154566122383262, guid: da44fb8376d0950428233662fa73d311,
+    type: 2}
+  buildingConstruction: {fileID: 1596308571342780, guid: e63bbc1d8746e4340a2f4daeaeba6d5f,
+    type: 2}
+  ghostbuildingOK: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
+    type: 2}
+  ghostbuildingFail: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
+    type: 2}
 --- !u!114 &114084835892117414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1293,6 +1322,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   buildingPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
   buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
@@ -1320,6 +1350,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   particle: {fileID: 198474472919844994}
 --- !u!114 &114104392541799810
 MonoBehaviour:
@@ -1336,10 +1367,11 @@ MonoBehaviour:
   actionType: 3
   id: 21
   locked: 1
-  actionToUnlock: 21
+  actionToUnlock: 23
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
   buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
@@ -1489,6 +1521,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 1
   defaultAttackAction: 0
+  useTaskPipe: 1
 --- !u!114 &114720034087140216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1536,6 +1569,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
+  useTaskPipe: 1
   buildingPrefab: {fileID: 1854057543516794, guid: 104d95476e1f1e34181a234f00df8490,
     type: 2}
   buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,

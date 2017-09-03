@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 23216897138910060}
   - component: {fileID: 114268531436766950}
   m_Layer: 0
-  m_Name: Factory Construction
+  m_Name: Plane Hangar Construction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
