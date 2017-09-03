@@ -47,6 +47,7 @@ public class PipeTask
             if (canCallRemove)
             {
                 canCallRemove = false;
+                taskAction.actionInProgress = false;
                 Debug.Log("CompletionDetected");
                 myTaskManager.RemoveHeadTask();
             }
