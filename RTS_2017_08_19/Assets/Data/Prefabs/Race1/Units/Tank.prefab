@@ -1861,7 +1861,8 @@ MonoBehaviour:
   movement: {fileID: 114308767729389288}
   selectableUnit: {fileID: 114568791151744250}
   buildUnit: {fileID: 0}
-  startHealth: 100
+  health: 100
+  maxHealth: 100
   healthBar: {fileID: 114529305713753478}
   lineWidth: 2
   color: {r: 0, g: 0, b: 0.8, a: 0.75}
@@ -1881,6 +1882,7 @@ MonoBehaviour:
   id: 0
   locked: 0
   actionToUnlock: 0
+  actionInProgress: 0
   defaultMoveAction: 1
   defaultAttackAction: 0
 --- !u!114 &114421366174252932
@@ -2015,6 +2017,7 @@ MonoBehaviour:
   id: 4
   locked: 0
   actionToUnlock: 4
+  actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 1
   firePoint: {fileID: 0}
