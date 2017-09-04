@@ -26,28 +26,37 @@ public class Attack : BaseAction
     }
 
 
-    public override void OnActionInProgress(Unit target)
+    public override void OnActionInProgress(Unit targetUnit)
     {
-        //Debug.Log("in prog");
         shortCounter -= Time.deltaTime;
-        if (shortCounter <= 0)
+
+        if (targetUnit == null)
         {
-            shortCounter = reloadTime;
-            if (range >= (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+            CompleteAction();
+        }
+        else
+        {
+            if (shortCounter <= 0)
             {
-                unitNavMesh.velocity = Vector3.zero;
-                unitNavMesh.isStopped = true;
-                unitNavMesh.ResetPath();
-                RaycastHit hit;
-                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
-                Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
-                targetUnit.TakeDamage(damageDone);
-            }
-            else if (range < (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
-            {
-                unitNavMesh.destination = targetUnit.transform.position;
+                shortCounter = reloadTime;
+                if (range >= (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+                {
+                    unitNavMesh.velocity = Vector3.zero;
+                    unitNavMesh.isStopped = true;
+                    unitNavMesh.ResetPath();
+                    RaycastHit hit;
+                    Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
+                    Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
+                    targetUnit.TakeDamage(damageDone);
+                }
+                else if (range < (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+                {
+                    unitNavMesh.destination = targetUnit.transform.position;
+                }
             }
         }
+
+
     }
 
     public void UnitDeathDetected(Unit killedUnit)

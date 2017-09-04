@@ -62,7 +62,7 @@ public class BaseAction : MonoBehaviour {
         return id;
     }
 
-    protected void CompleteAction()
+    public void CompleteAction()
     { //calll this method when the action is complete
         //Debug.Log("actionInProgress = false");
         actionInProgress = false;

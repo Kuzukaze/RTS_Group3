@@ -20,6 +20,8 @@ public class SmartBuilder : BaseAction
     private NavMeshAgent unitNavMesh;
     private bool isBuildingConstracting = false;
     private Vector3 buildingPlace;
+    private GameObject instantiatedConstruction;
+    private Unit unitInstantiatedConstruction;
 
     public override void Start()
     {
@@ -43,9 +45,10 @@ public class SmartBuilder : BaseAction
             unitNavMesh.velocity = Vector3.zero;
             unitNavMesh.isStopped = true;
             unitNavMesh.ResetPath();
-            GameObject instantiated = Instantiate(buildingConstruction, pos, buildingPrefab.transform.rotation);
+            instantiatedConstruction = Instantiate(buildingConstruction, pos, buildingPrefab.transform.rotation);
             PlayerController player = this.gameObject.GetComponent<Unit>().Player;
-            instantiated.GetComponent<Unit>().Init(player);
+            instantiatedConstruction.GetComponent<Unit>().Init(player);
+            unitInstantiatedConstruction = instantiatedConstruction.GetComponent<Unit>();
             isBuildingConstracting = true;
         }
         else if (isNoBuildingsNearby(pos) && range < (unitNavMesh.transform.position - pos).sqrMagnitude && !isBuildingConstracting)
@@ -55,8 +58,8 @@ public class SmartBuilder : BaseAction
 
         if (isBuildingConstracting)
         {
-            timer += Time.deltaTime;
-            if (timer >= 3)
+            unitInstantiatedConstruction.Heal(1);
+            if (unitInstantiatedConstruction.GetHealth() >= unitInstantiatedConstruction.GetMaxHealth())
             {
                 isBuildingConstracting = false;
                 buildingPlace = pos;
@@ -72,7 +75,7 @@ public class SmartBuilder : BaseAction
 
     public override void OnActionComplete()
     {
-        Destroy(buildingConstruction);
+        Destroy(instantiatedConstruction);
         GameObject instantiated = Instantiate(buildingPrefab, buildingPlace, buildingPrefab.transform.rotation);
         PlayerController player = this.gameObject.GetComponent<Unit>().Player;
         instantiated.GetComponent<Unit>().Init(player);

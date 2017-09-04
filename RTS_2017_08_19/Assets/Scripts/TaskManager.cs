@@ -9,10 +9,13 @@ public class TaskManager : MonoBehaviour
     private BaseAction newBaseAction;
     private Unit targetUnit;
     private Vector3 position;
+    private BaseAction[] myActions;
 
     private void Start()
     {
         tasksInPipe = new Queue<PipeTask>();
+        myActions = gameObject.GetComponents<BaseAction>();
+
     }
 
     private void Update()
@@ -138,15 +141,10 @@ public class TaskManager : MonoBehaviour
 
     public void ClearPipe()
     {
-        if (localTask != null)
+        tasksInPipe.Clear();
+        foreach (BaseAction action in myActions)
         {
-            localTask.CompletionDetected();
-            tasksInPipe.Clear();
-            Debug.Log("LT not Null");
-        }
-        else
-        {
-            tasksInPipe.Clear();
+            action.CompleteAction();
         }
     }
 

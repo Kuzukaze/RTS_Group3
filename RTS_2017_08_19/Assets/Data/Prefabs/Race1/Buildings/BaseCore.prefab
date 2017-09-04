@@ -636,7 +636,8 @@ MonoBehaviour:
   movement: {fileID: 0}
   selectableUnit: {fileID: 114277903877099196}
   buildUnit: {fileID: 0}
-  startHealth: 1000
+  health: 500
+  maxHealth: 500
   healthBar: {fileID: 114821167480899616}
   lineWidth: 2
   color: {r: 0, g: 0, b: 0.8, a: 0.75}
