@@ -164,6 +164,43 @@ MonoBehaviour:
   mainBuildingRace1Prefab: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,
     type: 2}
   mainBuildingRace2Prefab: {fileID: 0}
+  unitsInfoList:
+  - Name: BaseCore
+    Race: 0
+    Health: 800
+    Id: 1
+    MatterCost: 5000
+    EnergyCost: 0
+    MatterMaxIncrease: 5000
+    EnergyMaxIncrease: 500
+    Speed: 0
+    Damage: 0
+    FireRate: 0
+    ActionsIDList: 
+  - Name: Barrack
+    Race: 0
+    Health: 300
+    Id: 2
+    MatterCost: 800
+    EnergyCost: 20
+    MatterMaxIncrease: 0
+    EnergyMaxIncrease: 0
+    Speed: 0
+    Damage: 0
+    FireRate: 0
+    ActionsIDList: 
+  - Name: Factory
+    Race: 0
+    Health: 450
+    Id: 3
+    MatterCost: 800
+    EnergyCost: 40
+    MatterMaxIncrease: 0
+    EnergyMaxIncrease: 0
+    Speed: 0
+    Damage: 0
+    FireRate: 0
+    ActionsIDList: 
 --- !u!1 &1826210850
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,8 +243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startScene: MainMenu
-  playersList: []
+  playersInfoList: []
   levelManager: {fileID: 0}
+  eventHub: {fileID: 0}
   currentLevel:
     levelName: 
     levelPreview: {fileID: 0}
@@ -217,4 +255,3 @@ MonoBehaviour:
     levelTerrainMiniMap: {fileID: 0}
     spawnPositions: []
     sceneName: 
-  testLvlsList: []

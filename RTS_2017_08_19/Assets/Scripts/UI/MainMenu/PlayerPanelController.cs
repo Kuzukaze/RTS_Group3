@@ -62,26 +62,17 @@ public class PlayerPanelController : MonoBehaviour
         return list.FindIndex((s) => s == str);
     }
 
-        //TODO: too many hacks - rewrite normally
-    public PlayerController GetPlayerController()
+    //TODO: too many hacks => rewrite | add to UI player name input
+    public PlayerInfo GetPlayerInfo()
     {
-        PlayerController pc = new PlayerController();
+        ResourceData.Teams team             = (ResourceData.Teams)posInList(teamDropdown.captionText.text, ResourceData.teamsList);
+        ResourceData.Races race             = (ResourceData.Races)posInList(raceDropdown.captionText.text, ResourceData.racesList);
+        Color color                         = colorDropdown.captionImage.sprite.texture.GetPixel(0, 0);
+        int startPosition                   = posInList(spawnPositionDropdown.captionText.text, ResourceData.spawnPositionsList);
+        ResourceData.PlayerType playerType  = (ResourceData.PlayerType)posInList(playerDropdown.captionText.text, ResourceData.playerTypesList);
 
-        if(playerDropdown.captionText.text.Contains("Player"))
-        {
-            //create Player
-        }
-        else
-        {
-            //create AI
-        }
-
-
-        TeamInfo teamInfo = new TeamInfo(   (TeamInfo.Teams)posInList(teamDropdown.captionText.text, ResourceData.teamsList),
-                                            (TeamInfo.Races)posInList(raceDropdown.captionText.text, ResourceData.racesList), 
-                                            colorDropdown.captionImage.sprite.texture.GetPixel(0,0));
+        PlayerInfo player = new PlayerInfo(team, race, color, startPosition, playerType, playerDropdown.captionText.text);
         
-
-        return GameManager.Instance.CreatePlayer(teamInfo, posInList(spawnPositionDropdown.captionText.text, ResourceData.spawnPositionsList), playerDropdown.captionText.text);
+        return player;
     }
 }

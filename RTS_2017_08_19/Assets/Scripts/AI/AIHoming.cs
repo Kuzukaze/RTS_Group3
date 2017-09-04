@@ -7,7 +7,7 @@ public class AIHoming : MonoBehaviour
 {
     [SerializeField]private Vision vision;
 
-    [SerializeField] private TeamInfo myTeam;
+    [SerializeField] private ResourceData.Teams myTeam;
     private Unit myUnit;
     private NavMeshAgent myUnitNavMesh;
 

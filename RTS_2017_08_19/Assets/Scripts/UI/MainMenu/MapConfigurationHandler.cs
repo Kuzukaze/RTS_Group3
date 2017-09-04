@@ -17,7 +17,7 @@ public class MapConfigurationHandler : MonoBehaviour
 
     private MainMenuCanvasHandler mainMenuHandler;
     private List<PlayerPanelController> playerPanelControllerList;
-    private List<PlayerController> playersList;
+    private List<PlayerInfo> playersInfoList;
     private ResourceData.LevelInfo currentLevel;
 
     // Use this for initialization
@@ -78,13 +78,13 @@ public class MapConfigurationHandler : MonoBehaviour
 
     private void OnButtonStartGame()
     {
-        playersList = new List<PlayerController>();
+        playersInfoList = new List<PlayerInfo>();
 
         foreach(PlayerPanelController panelPlayer in playerPanelControllerList)
         {
-            playersList.Add(panelPlayer.GetPlayerController());
+            playersInfoList.Add(panelPlayer.GetPlayerInfo());
         }
 
-        GameManager.Instance.LoadSkirmishLevel(currentLevel, playersList);
+        GameManager.Instance.LoadSkirmishLevel(currentLevel, playersInfoList);
     }
 }

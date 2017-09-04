@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour
 
     private bool isInit = false;
 
-    public TeamInfo Team
+    public ResourceData.Teams Team
      {
          get
          {
@@ -52,7 +52,16 @@ public class Unit : MonoBehaviour
             playerNavMesh = GetComponent<NavMeshAgent>();
             health = startHealth;
             playerController = player;
-            this.gameObject.GetComponentInChildren<MiniMapSign>().SetColor(playerController.Team.Color);
+
+            MiniMapSign miniMapSign = this.gameObject.GetComponentInChildren<MiniMapSign>();
+            if(miniMapSign)
+            {
+                miniMapSign.SetColor(playerController.Info.Color);
+            }
+            else
+            {
+                Debug.LogError("Unit should have MiniMap Sign prefab added!");
+            }
 
             isInit = true;
         }
