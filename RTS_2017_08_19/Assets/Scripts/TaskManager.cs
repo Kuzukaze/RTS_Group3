@@ -33,9 +33,9 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void AddTask(BaseAction taskAction)
+    public void AddTask(BaseAction taskAction, bool clearTasks = true)
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
             tasksInPipe.Clear();
         }
@@ -49,9 +49,9 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void AddTask(BaseAction taskAction, Vector3 position)
+    public void AddTask(BaseAction taskAction, Vector3 position, bool clearTasks = true)
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
             tasksInPipe.Clear();
         }
@@ -65,9 +65,9 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void AddTask(BaseAction taskAction, Unit tagert)
+    public void AddTask(BaseAction taskAction, Unit tagert, bool clearTasks = true)
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
             tasksInPipe.Clear();
         }

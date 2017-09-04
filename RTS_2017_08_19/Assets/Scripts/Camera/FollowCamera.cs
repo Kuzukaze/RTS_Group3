@@ -14,9 +14,12 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] private float rotationDamping = 3.0f;
     [SerializeField] private float panSpeed = 2.0f;
 
-    void Start()
+    public float Height
     {
-
+        get
+        {
+            return height;
+        }
     }
     
     void LateUpdate()

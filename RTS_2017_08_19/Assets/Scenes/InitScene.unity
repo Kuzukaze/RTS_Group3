@@ -158,7 +158,7 @@ MonoBehaviour:
     levelTerrainMiniMap: {fileID: 218327090833845446, guid: 94f2b910d4aa89149aad5faff720d819,
       type: 2}
     spawnPositions:
-    - {x: 136, y: 10, z: 46}
+    - {x: 136, y: 7, z: 46}
     - {x: 33, y: 8, z: 160}
     sceneName: terrainScene
   mainBuildingRace1Prefab: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,

@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 public class PlayerController : MonoBehaviour
 {
+    private bool isInit = false;
+
     private EventHub eventHub;
     private LevelManager levelManager;
-    private bool isPlayer = false;
-    [SerializeField] private uint id;
 
+    [SerializeField] private bool isPlayer = false;
+    [SerializeField] private uint id;
     [SerializeField] private PlayerInfo playerInfo;
     [SerializeField] private int score = 0;
-    [SerializeField] private Dictionary<ResourceData.ResourceType, Resource> resources;
+
+    private Dictionary<ResourceData.ResourceType, Resource> resources;
+    private Dictionary<ResourceData.ResourceType, List<ResourceStorage>> resourceStorages;
+
+
+
 
     public PlayerInfo Info
     {
@@ -44,9 +52,7 @@ public class PlayerController : MonoBehaviour
             return score;
         }
     }
-
-    private bool isInit = false;
-
+    
     public ResourceData.Teams Team
     {
         get
@@ -85,13 +91,59 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+    public Resource GetResourceByType(ResourceData.ResourceType type)
+    {
+        return resources[type];
+    }
+    public Vector3 GetClosestResourceStoragePosition(Vector3 position, ResourceData.ResourceType type)
+    {
+        return GetClosestResourceStorage(position, type).transform.position;
+    }
+    public ResourceStorage GetClosestResourceStorage(Vector3 position, ResourceData.ResourceType type)
+    {
+        ResourceStorage closest = resourceStorages[type][0];
+        float minPathLen = float.MaxValue;
+
+        foreach (ResourceStorage current in resourceStorages[type])
+        {
+            NavMeshPath navMeshPath = new NavMeshPath(); ;
+            if(NavMesh.CalculatePath(position, current.transform.position, 1, navMeshPath))
+            {
+                float pathLen = 0;
+                for(int i = 0; i < navMeshPath.corners.Length - 1; i++)
+                {
+                    pathLen += Vector3.Distance(navMeshPath.corners[i], navMeshPath.corners[i+1]);
+                }
+                if(minPathLen > pathLen)
+                {
+                    minPathLen = pathLen;
+                    closest = current;
+                }
+            }
+        }
+
+        return closest;
+    }
+    public void AddResourceStorage(ResourceStorage storage, ResourceData.ResourceType type)
+    {
+        resourceStorages[type].Add(storage);
+    }
+    public void RemoveResourceStorage(ResourceStorage storage, ResourceData.ResourceType type)
+    {
+        resourceStorages[type].Remove(storage);
+    }
+
+
     public void Init(PlayerInfo playerInfo, Dictionary<ResourceData.ResourceType, Resource> resourcesList, uint id, bool isPlayer)
     {
         resources = new Dictionary<ResourceData.ResourceType, Resource>();
+        resourceStorages = new Dictionary<ResourceData.ResourceType, List<ResourceStorage>>();
         foreach(KeyValuePair<ResourceData.ResourceType, Resource> resourcePair in resourcesList)
         {
             Resource resource = new Resource(resourcePair.Value);
             resources.Add(resourcePair.Key, resource);
+            resourceStorages.Add(resourcePair.Key, new List<ResourceStorage>());
             if(isPlayer)
             {
                 resource.SetIsInvoker(true);
