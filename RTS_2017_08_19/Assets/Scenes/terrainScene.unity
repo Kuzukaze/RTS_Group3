@@ -5802,7 +5802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3e8f0944d0f724e9a2af6beff1299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Race: 1
+  player1Race: 0
   player1Color: {r: 0, g: 0, b: 1, a: 1}
   player1SpawnPoint: 0
   player1AddMatter: 9000
