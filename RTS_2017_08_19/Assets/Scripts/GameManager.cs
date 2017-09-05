@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private string startScene;
-    [SerializeField] private List<PlayerController> playersList;
+    [SerializeField] private List<PlayerInfo> playersInfoList;
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private EventHub eventHub;
     [SerializeField] ResourceData.LevelInfo currentLevel;
 
     private List<Selectable> selectableObjectsList;
-    
-    //TODO must be here? Or in Selection Manager...
+
     public List<Selectable> SelectableObjects
     {
         get
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveSelectableObject(Selectable selected)
     {
-        if(selected != null && selectableObjectsList != null)
+        if (selected != null && selectableObjectsList != null)
         {
             if (selectableObjectsList != null)
             {
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     }
     public void RemoveSelectableObjectByID(int id)
     {
-        if(selectableObjectsList != null && selectableObjectsList[id] != null)
+        if (selectableObjectsList != null && selectableObjectsList[id] != null)
         {
             selectableObjectsList.RemoveAt(id);
         }
@@ -46,6 +46,22 @@ public class GameManager : MonoBehaviour
     {
         selectableObjectsList.Clear();
     }
+
+    public LevelManager LevelManager
+    {
+        get
+        {
+            return levelManager;
+        }
+    }
+    public EventHub EventHub
+    {
+        get
+        {
+            return eventHub;
+        }
+    }
+
 
     private bool isInit = false;
     private static GameManager instance;
@@ -79,7 +95,7 @@ public class GameManager : MonoBehaviour
     }
     void Init()
     {
-
+        playersInfoList = new List<PlayerInfo>();
         isInit = true;
     }
     public bool IsInit()
@@ -89,14 +105,7 @@ public class GameManager : MonoBehaviour
    
     void Update()
     {
-        //TEST
-        if(Input.GetKeyUp(KeyCode.Q))
-        {
-            foreach(PlayerController player in playersList)
-            {
-                Debug.Log("Player name: " + player.Name);
-            }
-        }
+
     }
         
     public void SetStartScene(string startScene)      //(!) DebugFunction ONLY
@@ -113,14 +122,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
     
-
-    public PlayerController CreatePlayer(TeamInfo teamInfo, int startPosition, string name)
-    {
-        PlayerController pc = new PlayerController();
-        pc.Init(teamInfo, startPosition, name);
-
-        return pc;
-    }
 
     public void CreateAIPlayer()
     {
@@ -155,32 +156,23 @@ public class GameManager : MonoBehaviour
             lvlList.Add(lvl);
         }
     }
-
-    [SerializeField] private List<ResourceData.LevelInfo> testLvlsList;
-
-    public void LoadSkirmishLevel(ResourceData.LevelInfo lvl, List<PlayerController> playerControllerList)
+    
+    public void LoadSkirmishLevel(ResourceData.LevelInfo lvl, List<PlayerInfo> playerControllerList)
     {
-        testLvlsList = new List<ResourceData.LevelInfo>();
-        testLvlsList.Add(lvl);
-        testLvlsList.Add(lvl);
-        testLvlsList.Add(lvl);
-        testLvlsList.Add(lvl);
-
         currentLevel = lvl;
 
-        playersList = new List<PlayerController>();
+        playersInfoList = playerControllerList;// new List<PlayerInfo>();
 
-        foreach ( PlayerController pc in playerControllerList)
-        {
-            TeamInfo ti = new TeamInfo(pc.Team.Team, pc.Team.Race, pc.Team.Color);
+        //foreach ( PlayerInfo pc in playerControllerList)
+        //{
+        //    TeamInfo ti = new TeamInfo(pc.Team.Team, pc.Team.Race, pc.Team.Color);
 
 
-            PlayerController pController = new PlayerController();
-            pController.Init(ti, pc.StartPosition, pc.Name);
+        //    PlayerInfo pController = new PlayerInfo(pc.Team.Team, pc.Team.Race, pc.Team.Color, pc.StartPosition, pc.Name);
 
-            playersList.Add(pController);
+        //    playersInfoList.Add(pController);
 
-        }
+        //}
 
         //playersList = new List<PlayerController>(playerControllerList);
         SceneManager.LoadScene(lvl.sceneName);
@@ -188,17 +180,30 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        GameObject managers = GameObject.Find("Managers");
-        if (managers)
+        if(scene.buildIndex < 2)
         {
-            levelManager = managers.AddComponent<LevelManager>();
+            return;
+        }
+
+        GameObject managers = GameObject.Find("Managers");
+        if (!managers)
+        { 
+            managers = new GameObject("Managers");
+            //levelManager = new LevelManager();
+        }
+
+        if(!managers.GetComponent<EventHub>())
+        {
+            eventHub = managers.AddComponent<EventHub>();
         }
         else
         {
-            levelManager = new LevelManager();
+            eventHub = managers.GetComponent<EventHub>();
         }
 
-        levelManager.Init(currentLevel.spawnPositions, playersList);
+        levelManager = managers.AddComponent<LevelManager>();
+        levelManager.Init(currentLevel.spawnPositions, playersInfoList);
     }
+    
 
 }

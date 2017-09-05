@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93c773b5ac9189488a6ea720facfd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
+  icon: {fileID: 21300000, guid: b91e630235c71be4e89387c72e988602, type: 3}
   actionType: 1
   id: 13
   locked: 1
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93c773b5ac9189488a6ea720facfd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
+  icon: {fileID: 21300000, guid: 1c28fae39ed4f5549b3ca795d5360dc9, type: 3}
   actionType: 1
   id: 12
   locked: 0
@@ -652,7 +652,8 @@ MonoBehaviour:
   movement: {fileID: 0}
   selectableUnit: {fileID: 114036863603963404}
   buildUnit: {fileID: 0}
-  startHealth: 700
+  health: 500
+  maxHealth: 500
   healthBar: {fileID: 114387353709751298}
   deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
     type: 2}

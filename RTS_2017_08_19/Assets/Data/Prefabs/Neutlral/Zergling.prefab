@@ -115,9 +115,8 @@ GameObject:
   - component: {fileID: 114015563820976936}
   - component: {fileID: 54631318587615174}
   - component: {fileID: 195586343330519406}
-  - component: {fileID: 114881738189931048}
-  - component: {fileID: 114619130931879206}
   - component: {fileID: 120542797239273554}
+  - component: {fileID: 114410202795343414}
   m_Layer: 0
   m_Name: Zergling
   m_TagString: Untagged
@@ -133,8 +132,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4769257580435272}
-  - component: {fileID: 114989326010471366}
   - component: {fileID: 135409005570941124}
+  - component: {fileID: 114574324705047332}
+  - component: {fileID: 114769776450483994}
   m_Layer: 0
   m_Name: Vision
   m_TagString: Untagged
@@ -443,11 +443,12 @@ MonoBehaviour:
   movement: {fileID: 114015563820976936}
   selectableUnit: {fileID: 0}
   buildUnit: {fileID: 0}
-  startHealth: 100
+  health: 100
+  maxHealth: 100
   healthBar: {fileID: 114926543232235250}
   lineWidth: 2
   color: {r: 0, g: 0, b: 0.8, a: 0.75}
---- !u!114 &114619130931879206
+--- !u!114 &114410202795343414
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -455,12 +456,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1890255751256726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d071cb3d525184a94da8f899187b5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ec21fe4c21a2374381011f2ed0f5c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  myStateText: {fileID: 102263233685951618}
-  visibleUnits: []
+  icon: {fileID: 0}
+  actionType: 2
+  id: 3
+  locked: 0
+  actionToUnlock: 3
+  actionInProgress: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 1
+  firePoint: {fileID: 4462096199084516}
+  range: 10
+  reloadTime: 0.5
+  damageDone: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+--- !u!114 &114574324705047332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947271402114064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21694b3a39925b429aacdb3f6e7d50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 114410202795343414}
 --- !u!114 &114635844087463074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,22 +510,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   signTexture: {fileID: 2800000, guid: 833be2396814f1c4dbc5bb7872737ae5, type: 3}
   size: 5
---- !u!114 &114881738189931048
+--- !u!114 &114769776450483994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1890255751256726}
+  m_GameObject: {fileID: 1947271402114064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 253dad765c44ea4419a76ecf0188cf88, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bb2bdb824d512a459bc5d76d41e6ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vision: {fileID: 114989326010471366}
-  myTeam:
-    team: 0
-    race: 0
-    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114902186097859666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,18 +569,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114989326010471366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947271402114064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf166c8be62e7b49899b7a57169ff36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visibleUnitsList: []
 --- !u!120 &120542797239273554
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -660,7 +668,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195586343330519406
 NavMeshAgent:

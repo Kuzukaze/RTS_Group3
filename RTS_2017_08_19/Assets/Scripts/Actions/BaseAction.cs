@@ -66,21 +66,30 @@ public class BaseAction : MonoBehaviour {
     }
 
     public void CompleteAction()
+
     { //call this method when the action is complete
         if (!protectFromPrematureCompletion)
         {
             actionInProgress = false;
-            OnActionComplete();
-  
-            if (ActionCompleteEvent != null)
-            {
-                Debug.Log("Action compete event");
-                ActionCompleteEvent();
-            }
 
-            if (targetUnit != null)
+            OnActionComplete();
+
+            if (ActionCompleteEvent != null)
+
             {
-                targetUnit = null;
+                actionInProgress = false;
+                OnActionComplete();
+
+                if (ActionCompleteEvent != null)
+                {
+                    Debug.Log("Action compete event");
+                    ActionCompleteEvent();
+                }
+
+                if (targetUnit != null)
+                {
+                    targetUnit = null;
+                }
             }
         }
     }

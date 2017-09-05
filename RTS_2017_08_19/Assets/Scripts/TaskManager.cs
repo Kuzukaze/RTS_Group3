@@ -9,10 +9,13 @@ public class TaskManager : MonoBehaviour
     private BaseAction newBaseAction;
     private Unit targetUnit;
     private Vector3 position;
+    private BaseAction[] myActions;
 
     private void Start()
     {
         tasksInPipe = new Queue<PipeTask>();
+        myActions = gameObject.GetComponents<BaseAction>();
+
     }
 
     private void Update()
@@ -33,65 +36,36 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void AddTask(BaseAction taskAction) //добавление инстант таска с очисткой трубы
+
+    public void AddTask(BaseAction taskAction, bool clearTasks = true)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
-            AddTaskNoClear(taskAction);
-        }
-        else
-        {
-            if (taskAction.UsesTaskPipe())
-            {
-                ClearPipe();
-                PipeTask newTask = new PipeTask(taskAction);
-                InitTask(newTask);
-            }
-            else
-            {
-                taskAction.ExecuteAction();
-            }
+            tasksInPipe.Clear();
         }
 
-    }
-
-    public void AddTaskNoClear(BaseAction taskAction)
-    {
         PipeTask newTask = new PipeTask(taskAction);
         InitTask(newTask);
     }
 
-    public void AddTask(BaseAction taskAction, Vector3 position) //добавление вектор таска с очисткой трубы
+    public void AddTask(BaseAction taskAction, Vector3 position, bool clearTasks = true)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
-            AddTaskNoClear(taskAction, position);
+            tasksInPipe.Clear();
         }
-        else
-        {
-            ClearPipe();
-            PipeTask newTask = new PipeTask(taskAction, position);
-            InitTask(newTask);
-        }
+
+        PipeTask newTask = new PipeTask(taskAction, position);
+        InitTask(newTask);
     }
 
-    public void AddTaskNoClear(BaseAction taskAction, Vector3 position)
+    public void AddTask(BaseAction taskAction, Unit target, bool clearTasks = true)
     {
-            PipeTask newTask = new PipeTask(taskAction, position);
-            InitTask(newTask);
-    }
-
-    public void AddTask(BaseAction taskAction, Unit target) //добавление юнит таска с очисткой трубы
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            AddTaskNoClear(taskAction, target);
-        }
-        else
+        if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
             if (taskAction.UsesTaskPipe())
             {
-                ClearPipe();
+                tasksInPipe.Clear();
                 PipeTask newTask = new PipeTask(taskAction, target);
                 InitTask(newTask);
             }
@@ -100,21 +74,10 @@ public class TaskManager : MonoBehaviour
                 taskAction.ExecuteAction(target);
             }
         }
-    }
-
-    public void AddTaskNoClear(BaseAction taskAction, Unit target)
-    {
+        else
+        {
             PipeTask newTask = new PipeTask(taskAction, target);
             InitTask(newTask);
-    }
-
-    void InitTask(PipeTask task)
-    {
-        task.SetTaskManager(this);
-        tasksInPipe.Enqueue(task);
-        if (tasksInPipe.Count == 1)
-        {
-            ExecuteTask("AddTask");
         }
     }
 
@@ -132,18 +95,12 @@ public class TaskManager : MonoBehaviour
 
     public void ClearPipe()
     {
-        if (localTask != null)
+        tasksInPipe.Clear();
+        foreach (BaseAction action in myActions)
         {
-            localTask.CompletionDetected();
-            tasksInPipe.Clear();
-            Debug.Log("LT not Null");
-        }
-        else
-        {
-            tasksInPipe.Clear();
+            action.CompleteAction();
         }
     }
-
 
     public void ExecuteTask(string whoThis)
     {
@@ -160,7 +117,14 @@ public class TaskManager : MonoBehaviour
 
     }
 
-
-
+    void InitTask(PipeTask task)
+    {
+        task.SetTaskManager(this);
+        tasksInPipe.Enqueue(task);
+        if (tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
+    }
 }
     

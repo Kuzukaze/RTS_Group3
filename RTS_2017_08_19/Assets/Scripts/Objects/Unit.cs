@@ -9,18 +9,18 @@ public class Unit : MonoBehaviour
     [SerializeField] private MoverGround movement;
     [SerializeField] private Selectable selectableUnit;
     [SerializeField] private SmartBuilder buildUnit;
-    [SerializeField] private float startHealth;
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
     [SerializeField] private ParticleSystem deathParticleSystem;
 
     private NavMeshAgent playerNavMesh;
-    private float health;
     //private bool dieInLateUpdate = false;
     private PlayerController playerController;
 
     private bool isInit = false;
 
-    public TeamInfo Team
+    public ResourceData.Teams Team
      {
          get
          {
@@ -51,9 +51,18 @@ public class Unit : MonoBehaviour
         if (!isInit)
         {
             playerNavMesh = GetComponent<NavMeshAgent>();
-            health = startHealth;
+            healthBar.fillAmount = health / maxHealth;
             playerController = player;
-            this.gameObject.GetComponentInChildren<MiniMapSign>().SetColor(playerController.Team.Color);
+
+            MiniMapSign miniMapSign = this.gameObject.GetComponentInChildren<MiniMapSign>();
+            if(miniMapSign)
+            {
+                miniMapSign.SetColor(playerController.Info.Color);
+            }
+            else
+            {
+                Debug.LogError("Unit should have MiniMap Sign prefab added!");
+            }
 
             isInit = true;
         }
@@ -75,10 +84,21 @@ public class Unit : MonoBehaviour
         DrawNavLines();
     }
 
+    public void Heal(float healingAmount)
+    {
+        health += healingAmount;
+        healthBar.fillAmount = health / maxHealth;
+
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     public void TakeDamage(float damageTake)
     {
         health -= damageTake;
-        healthBar.fillAmount = health / startHealth;
+        healthBar.fillAmount = health / maxHealth;
 
         if (health <= 0)
         {
@@ -115,6 +135,15 @@ public class Unit : MonoBehaviour
         playerNavMesh.speed -= speedDown;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 
     void DrawNavLines()
     {

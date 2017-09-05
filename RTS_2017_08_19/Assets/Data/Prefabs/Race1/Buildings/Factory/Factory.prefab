@@ -466,7 +466,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011868398520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.16421, y: 1.7550812, z: 24.435455}
+  m_LocalPosition: {x: 114.21, y: 14.45, z: 36.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011404139676}
@@ -1374,8 +1374,7 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
-  useTaskPipe: 1
-  engineerPrefab: {fileID: 1214876201661376, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
+  engineerPrefab: {fileID: 1814180355985514, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
     type: 2}
 --- !u!114 &114053707614301520
 MonoBehaviour:
@@ -1552,7 +1551,6 @@ MonoBehaviour:
   actionInProgress: 0
   defaultMoveAction: 0
   defaultAttackAction: 0
-  useTaskPipe: 1
   engineerPrefab: {fileID: 1214876201661376, guid: 717a2bf0e0312824cbe65848aba96fac,
     type: 2}
 --- !u!114 &114971801087630534
@@ -1569,10 +1567,9 @@ MonoBehaviour:
   movement: {fileID: 0}
   selectableUnit: {fileID: 114065179878151250}
   buildUnit: {fileID: 0}
-  startHealth: 500
+  health: 400
+  maxHealth: 400
   healthBar: {fileID: 114632953505194020}
-  deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
-    type: 2}
   lineWidth: 0.8
   color: {r: 0, g: 1, b: 1, a: 0.75}
 --- !u!195 &195076369349323014
