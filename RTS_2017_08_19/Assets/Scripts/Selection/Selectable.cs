@@ -7,6 +7,7 @@ public class Selectable : MonoBehaviour
     [SerializeField] private bool isSelected = false;
     [SerializeField] private GameObject selectionPrefab;       //TODO GO, which visualize this object is selected
     private GameObject selectionGlow = null;
+    private uint playerID;
 
     [SerializeField] private Sprite selectedIconSprite;
     [SerializeField] private string selectedDescription;
@@ -45,12 +46,19 @@ public class Selectable : MonoBehaviour
             return selectionType;
         }
     }
-
+    public uint PlayerID
+    {
+        get
+        {
+            return playerID;
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
-        GameManager.Instance.AddSelectableObject(this); 
+        GameManager.Instance.AddSelectableObject(this);
+        playerID = gameObject.GetComponent<Unit>().Player.ID;
     }
 
     // Update is called once per frame

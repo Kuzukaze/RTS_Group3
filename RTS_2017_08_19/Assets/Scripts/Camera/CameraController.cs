@@ -13,6 +13,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector2 panLimitMax;
     [SerializeField] private FollowCamera followCamera;
 
+    float panSpeedCurrent;
+
+    private void Start()
+    {
+        panSpeedCurrent = panSpeed;
+    }
+
     void LateUpdate ()
     {
 
@@ -20,28 +27,30 @@ public class CameraController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.UpArrow) || Input.mousePosition.y >= Screen.height - panScreeenBorder)
         {
-            pos.z += panSpeed * Time.deltaTime;
+            pos.z += panSpeedCurrent * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.mousePosition.y <= panScreeenBorder)
         {
-            pos.z -= panSpeed * Time.deltaTime;
+            pos.z -= panSpeedCurrent * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.mousePosition.x >= Screen.width  - panScreeenBorder)
         {
-            pos.x += panSpeed * Time.deltaTime;
+            pos.x += panSpeedCurrent * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.mousePosition.x <= panScreeenBorder)
         {
-            pos.x -= panSpeed * Time.deltaTime;
+            pos.x -= panSpeedCurrent * Time.deltaTime;
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         float heightDiff = scroll * scrollSpeed * 100f * Time.deltaTime;
         followCamera.SetHeight(heightDiff, minY, maxY);
+
+        panSpeedCurrent = Mathf.Sin((followCamera.Height / maxY))  * panSpeed;
 
         //pos.y -= scroll * scrollSpeed * 100f* Time.deltaTime;
 

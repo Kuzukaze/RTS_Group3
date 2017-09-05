@@ -28,7 +28,7 @@ public class VisionColliderPipe : MonoBehaviour
         Unit collided = other.gameObject.GetComponent<Unit>();
         if (collided != null && !collided.Equals(myUnit) && !collided.Team.Equals(myUnit.Team))
         {
-            myTaskManager.AddTaskNoClear(action, collided);
+            myTaskManager.AddTask(action, collided, false);
         }
     }
 }

@@ -10,6 +10,8 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private List<Selectable> selectedObjectsList;  
     [SerializeField] private UIManager uiManager;
     [SerializeField] private LayerMask layerMask;
+    private PlayerController currentPlayer;
+    List<uint> selectedPlayerIDList;
 
     private SelectionType currentSelectionType;
     private bool isSelecting = false;
@@ -22,6 +24,8 @@ public class SelectionManager : MonoBehaviour
         selectableObjectsList = GameManager.Instance.SelectableObjects;
         selectedObjectsList = new List<Selectable>();
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
+        currentPlayer = GameManager.Instance.LevelManager.CurrentPlayer;
+        selectedPlayerIDList = new List<uint>();
     }
 
     public void OnMouseButtonDown(Vector3 mousePosition)
@@ -58,8 +62,10 @@ public class SelectionManager : MonoBehaviour
     {
         bool isSelectionEmpty = true;
         SetLowestSelectionType(ref currentSelectionType);
+        bool differentPlayers = false;
+        selectedPlayerIDList.Clear();
 
-        //fill selectoedObjectList & find higher priority selection type
+        //fill selectedObjectList & find higher priority selection type
         foreach (var selectableObject in selectableObjectsList)
         {
             if (IsWithinSelectionBounds(selectableObject.gameObject))
@@ -78,6 +84,10 @@ public class SelectionManager : MonoBehaviour
                 {
                     currentSelectionType = selectableObject.Type;
                 }
+                if (!selectedPlayerIDList.Exists(x => (x == selectableObject.PlayerID)))
+                {
+                    selectedPlayerIDList.Add(selectableObject.PlayerID);
+                }
             }
             else
             {
@@ -94,6 +104,31 @@ public class SelectionManager : MonoBehaviour
                         {
                             currentSelectionType = selectableObject.Type;
                         }
+                        if (!selectedPlayerIDList.Exists(x => (x == selectableObject.PlayerID)))
+                        {
+                            selectedPlayerIDList.Add(selectableObject.PlayerID);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(selectedPlayerIDList.Count > 1)  //if in selection more than 1 player need choose what we do
+        {
+            if(selectedPlayerIDList.Exists(x => (x == currentPlayer.ID)))       // if mixed enemy & player units - choose only player units
+            {
+                foreach(var toDeselect in selectedObjectsList.FindAll(x => (x.PlayerID != currentPlayer.ID)))
+                {
+                    toDeselect.Deselect();
+                }
+                selectedObjectsList.RemoveAll(x => (x.PlayerID != currentPlayer.ID));
+                    
+                SetLowestSelectionType(ref currentSelectionType);       //rescan to find player priority type
+                foreach (var selectedObject in selectedObjectsList)
+                {
+                    if (currentSelectionType < selectedObject.Type)
+                    {
+                        currentSelectionType = selectedObject.Type;
                     }
                 }
             }
@@ -131,9 +166,12 @@ public class SelectionManager : MonoBehaviour
     {
         uiManager.SetInfoPic(selectableObject.Icon);
         uiManager.SetInfoText(selectableObject.Description);
-        BaseAction[] actions = selectableObject.GetComponents<BaseAction>();
-        Debug.Log("UISelect is about to call AddActions");
-        uiManager.AddActions(actions);
+        if (selectableObject.GetComponent<Unit>().Player.IsPlayer)
+        {
+            BaseAction[] actions = selectableObject.GetComponents<BaseAction>();
+            Debug.Log("UISelect is about to call AddActions");
+            uiManager.AddActions(actions);
+        }
     }
 
     void Update()

@@ -569,6 +569,7 @@ GameObject:
   - component: {fileID: 114501381253186620}
   - component: {fileID: 114867590832600960}
   - component: {fileID: 114060939385005968}
+  - component: {fileID: 114417239695066312}
   - component: {fileID: 120098494178199806}
   m_Layer: 0
   m_Name: Engineer
@@ -1224,7 +1225,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1814180355985514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 128, y: 3, z: 37.1}
+  m_LocalPosition: {x: 121.9, y: 3, z: 31.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4417498090521390}
@@ -1380,8 +1381,7 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1854057543516794, guid: 104d95476e1f1e34181a234f00df8490,
     type: 2}
-  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
-    type: 2}
+  buildingConstruction: {fileID: 0}
   ghostbuildingOK: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
     type: 2}
   ghostbuildingFail: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
@@ -1400,8 +1400,8 @@ MonoBehaviour:
   movement: {fileID: 114432639258949804}
   selectableUnit: {fileID: 114935363762878614}
   buildUnit: {fileID: 114661513688261498}
-  health: 100
-  maxHealth: 100
+  health: 0
+  maxHealth: 0
   healthBar: {fileID: 114444101457273910}
   lineWidth: 1
   color: {r: 0, g: 1, b: 1, a: 0.7058824}
@@ -1437,6 +1437,41 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114417239695066312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1814180355985514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427ad6b1fe1548e40a810deee2fbabd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 0e0964964bbe273478f7f701a67f5092, type: 3}
+  actionType: 2
+  id: 100
+  locked: 0
+  actionToUnlock: 0
+  actionInProgress: 0
+  defaultMoveAction: 0
+  defaultAttackAction: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
+  resourceType: 0
+  resourceAmount: 50
+  collectionTime: 5
+  currentTime: 0
+  triggerDistance: 10
+  stopDistance: 2
+  mover: {fileID: 114432639258949804}
+  player: {fileID: 0}
+  taskManager: {fileID: 0}
+  targetGenerator: {fileID: 0}
+  isTransporting: 0
+  isStoppedCollecting: 0
+  "is\u0421ollecting": 0
 --- !u!114 &114432639258949804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1542,8 +1577,7 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
-  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
-    type: 2}
+  buildingConstruction: {fileID: 0}
   ghostbuildingOK: {fileID: 1000011868398520, guid: 55c502c820de74a4dad56ca88708d1de,
     type: 2}
   ghostbuildingFail: {fileID: 1000011868398520, guid: bab4ede97959f994eb7a7a81fdbfed32,
@@ -1618,8 +1652,7 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
-  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
-    type: 2}
+  buildingConstruction: {fileID: 0}
   ghostbuildingOK: {fileID: 1258808368866120, guid: 5f0d6ef7709718845a8849447c59266c,
     type: 2}
   ghostbuildingFail: {fileID: 1258808368866120, guid: 51646f3a9494dbb429ad100b1d943a14,

@@ -29,6 +29,7 @@ public class ResourceData : MonoBehaviour
     [SerializeField] public Unit mainBuildingRace1Prefab;
     [SerializeField] public Unit mainBuildingRace2Prefab;
 
+    public List<ObjectInfo> unitsInfoList;
 
 
     [System.Serializable]
@@ -46,6 +47,10 @@ public class ResourceData : MonoBehaviour
         public string sceneName;
     }
 
+
+    //------------
+    //ui data
+    //TODO: must be stored as external file to let make features as translation
     public static List<string> playerTypesList = new List<string>()
     {
         "Player",
@@ -107,4 +112,77 @@ public class ResourceData : MonoBehaviour
         Color.grey,
         Color.magenta
     };
+
+    //------------
+    //useful data
+
+    public enum ResourceType
+    {
+        Matter = 0,
+        Energy = 1
+    }
+
+
+    public enum cargoID
+    {
+        Matter = 0,
+        Energy = 1
+    }
+
+    //------------
+    //objects configs
+
+    [System.Serializable]
+    public class ObjectInfo
+    {
+        public string Name;
+        public Races Race;
+        public uint Health;
+        public uint Id;
+        public uint MatterCost;
+        public uint EnergyCost;
+        public uint MatterMaxIncrease;
+        public uint EnergyMaxIncrease;
+        public uint Speed;
+        public uint Damage;
+        public uint FireRate;
+        public List<uint> ActionsIDList;
+    }
+
+
+    //------------
+    //player configuration info
+    public enum Teams
+    {
+        Team1 = 0,
+        Team2 = 1,
+        Team3 = 2,
+        Team4 = 3,
+        Team5 = 4,
+        Team6 = 5,
+        Team7 = 6,
+        Team8 = 7,
+        Team9 = 8,
+        Team10 = 9,
+        Team11 = 10,
+        Team12 = 11,
+        Team13 = 12,
+        Team14 = 13,
+        Team15 = 14,
+        Team16 = 15,
+        Neutral = 16
+    }
+    public enum Races
+    {
+        Race1 = 0,
+        Race2 = 1,
+        Neutral = 2
+    }
+    public enum PlayerType
+    {
+        Player = 0,
+        AIEasy = 1,
+        AIMeduim = 2,
+        AIHard = 3
+    }
 }
