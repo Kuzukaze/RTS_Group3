@@ -12,35 +12,59 @@ public class Attack : BaseAction
     [SerializeField] private LayerMask layerMask;
 
     protected float shortCounter = 0;
-    
+
+    private NavMeshAgent unitNavMesh;
+
+
     public override void Start()
     {
         base.Start();
+        unitNavMesh = GetComponent<NavMeshAgent>();
         layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
-        Debug.Log("Attack started");
+
+        FindObjectOfType<EventHub>().UnitDeathEvent += new UnitDeathHandler(UnitDeathDetected);
     }
 
 
-    public override void OnActionInProgress(Unit target)
+    public override void OnActionInProgress(Unit targetUnit)
     {
-        //Debug.Log("in prog");
         shortCounter -= Time.deltaTime;
-        if (shortCounter <= 0)
+
+        if (targetUnit == null)
         {
-            shortCounter = reloadTime;
-            if (range > (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+            CompleteAction();
+        }
+        else
+        {
+            if (shortCounter <= 0)
             {
-                RaycastHit hit;
-                Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
-                Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
-                targetUnit.TakeDamage(damageDone);
-                Debug.Log("Attack");
+                shortCounter = reloadTime;
+                if (range >= (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+                {
+                    unitNavMesh.velocity = Vector3.zero;
+                    unitNavMesh.isStopped = true;
+                    unitNavMesh.ResetPath();
+                    RaycastHit hit;
+                    Physics.Raycast(firePoint.transform.position, targetUnit.transform.position, out hit, layerMask);
+                    Debug.DrawLine(firePoint.transform.position, targetUnit.transform.position, Color.green, 2);
+                    targetUnit.TakeDamage(damageDone);
+                }
+                else if (range < (firePoint.transform.position - targetUnit.transform.position).sqrMagnitude)
+                {
+                    unitNavMesh.destination = targetUnit.transform.position;
+                }
             }
-            else
-            {
-                CompleteAction();
-                //Debug.Log("in comp");
-            }
+        }
+
+
+    }
+
+    public void UnitDeathDetected(Unit killedUnit)
+    {
+        if (killedUnit = targetUnit)
+        {
+            CompleteAction();
+            Debug.Log("Unit Die");
         }
     }
 }

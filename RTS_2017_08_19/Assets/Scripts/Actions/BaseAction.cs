@@ -42,7 +42,7 @@ public class BaseAction : MonoBehaviour {
     protected Vector3 targetPosition;
     protected Unit targetUnit;
 
-    private bool actionInProgress = false;
+    public bool actionInProgress = false;
 
     [SerializeField] private bool defaultMoveAction = false;
     [SerializeField] private bool defaultAttackAction = false;
@@ -62,7 +62,7 @@ public class BaseAction : MonoBehaviour {
         return id;
     }
 
-    protected void CompleteAction()
+    public void CompleteAction()
     { //calll this method when the action is complete
         //Debug.Log("actionInProgress = false");
         actionInProgress = false;
@@ -154,7 +154,7 @@ public class BaseAction : MonoBehaviour {
     {
 
     }
- 
+
 
     public virtual void Start()
     {

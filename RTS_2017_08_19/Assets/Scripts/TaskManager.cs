@@ -9,10 +9,13 @@ public class TaskManager : MonoBehaviour
     private BaseAction newBaseAction;
     private Unit targetUnit;
     private Vector3 position;
+    private BaseAction[] myActions;
 
     private void Start()
     {
         tasksInPipe = new Queue<PipeTask>();
+        myActions = gameObject.GetComponents<BaseAction>();
+
     }
 
     private void Update()
@@ -33,7 +36,7 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void AddTask(BaseAction taskAction, bool clearTasks = true)
+    public void AddTask(BaseAction taskAction, bool clearTasks = true) 
     {
         if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
@@ -59,7 +62,7 @@ public class TaskManager : MonoBehaviour
         PipeTask newTask = new PipeTask(taskAction, position);
         newTask.SetTaskManager(this);
         tasksInPipe.Enqueue(newTask);
-        if(tasksInPipe.Count == 1)
+        if (tasksInPipe.Count == 1)
         {
             ExecuteTask("AddTask");
         }
@@ -81,6 +84,8 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    
+
     public void RemoveHeadTask()
     {
         if (tasksInPipe.Count > 0)
@@ -93,6 +98,14 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    public void ClearPipe()
+    {
+        tasksInPipe.Clear();
+        foreach (BaseAction action in myActions)
+        {
+            action.CompleteAction();
+        }
+    }
 
     public void ExecuteTask(string whoThis)
     {
@@ -108,8 +121,5 @@ public class TaskManager : MonoBehaviour
         }
 
     }
-
-
-
 }
     

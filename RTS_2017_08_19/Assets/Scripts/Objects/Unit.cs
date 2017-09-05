@@ -9,11 +9,11 @@ public class Unit : MonoBehaviour
     [SerializeField] private MoverGround movement;
     [SerializeField] private Selectable selectableUnit;
     [SerializeField] private SmartBuilder buildUnit;
-    [SerializeField] private float startHealth;
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
 
     private NavMeshAgent playerNavMesh;
-    private float health;
     //private bool dieInLateUpdate = false;
     private PlayerController playerController;
 
@@ -50,7 +50,7 @@ public class Unit : MonoBehaviour
         if (!isInit)
         {
             playerNavMesh = GetComponent<NavMeshAgent>();
-            health = startHealth;
+            healthBar.fillAmount = health / maxHealth;
             playerController = player;
 
             MiniMapSign miniMapSign = this.gameObject.GetComponentInChildren<MiniMapSign>();
@@ -83,14 +83,25 @@ public class Unit : MonoBehaviour
         DrawNavLines();
     }
 
+    public void Heal(float healingAmount)
+    {
+        health += healingAmount;
+        healthBar.fillAmount = health / maxHealth;
+
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     public void TakeDamage(float damageTake)
     {
         health -= damageTake;
-        healthBar.fillAmount = health / startHealth;
+        healthBar.fillAmount = health / maxHealth;
 
         if (health <= 0)
         {
-            gameObject.transform.position = new Vector3(-47, 2, -47); //TODO: костыль для OnTriggerExit эффектов
+            //gameObject.transform.position = new Vector3(-47, 2, -47); //TODO: костыль для OnTriggerExit эффектов
             Invoke("Die", 0.03f);
         }
     }
@@ -114,6 +125,15 @@ public class Unit : MonoBehaviour
         playerNavMesh.speed -= speedDown;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 
     void DrawNavLines()
     {
