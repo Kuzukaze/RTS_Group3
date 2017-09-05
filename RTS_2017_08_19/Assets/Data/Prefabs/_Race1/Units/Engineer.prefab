@@ -1225,7 +1225,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1814180355985514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 121.9, y: 3, z: 31.2}
+  m_LocalPosition: {x: 121.9, y: 3, z: 24.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4417498090521390}
@@ -1381,11 +1381,10 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1854057543516794, guid: 104d95476e1f1e34181a234f00df8490,
     type: 2}
-  buildingConstruction: {fileID: 0}
-  ghostbuildingOK: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
+  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
     type: 2}
-  ghostbuildingFail: {fileID: 1537824272759616, guid: f9b090908cc4c6141a7a302cedbc0713,
-    type: 2}
+  ghostbuildingOK: {fileID: 0}
+  ghostbuildingFail: {fileID: 0}
 --- !u!114 &114095026893723080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1400,8 +1399,8 @@ MonoBehaviour:
   movement: {fileID: 114432639258949804}
   selectableUnit: {fileID: 114935363762878614}
   buildUnit: {fileID: 114661513688261498}
-  health: 0
-  maxHealth: 0
+  health: 150
+  maxHealth: 150
   healthBar: {fileID: 114444101457273910}
   lineWidth: 1
   color: {r: 0, g: 1, b: 1, a: 0.7058824}
@@ -1577,7 +1576,8 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1000011868398520, guid: fb28c56cbe98b9944b86dc4658a34987,
     type: 2}
-  buildingConstruction: {fileID: 0}
+  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
+    type: 2}
   ghostbuildingOK: {fileID: 1000011868398520, guid: 55c502c820de74a4dad56ca88708d1de,
     type: 2}
   ghostbuildingFail: {fileID: 1000011868398520, guid: bab4ede97959f994eb7a7a81fdbfed32,
@@ -1652,7 +1652,8 @@ MonoBehaviour:
   defaultAttackAction: 0
   buildingPrefab: {fileID: 1258808368866120, guid: 414a6f3ae64666646b6bc28b0960ddf8,
     type: 2}
-  buildingConstruction: {fileID: 0}
+  buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
+    type: 2}
   ghostbuildingOK: {fileID: 1258808368866120, guid: 5f0d6ef7709718845a8849447c59266c,
     type: 2}
   ghostbuildingFail: {fileID: 1258808368866120, guid: 51646f3a9494dbb429ad100b1d943a14,
