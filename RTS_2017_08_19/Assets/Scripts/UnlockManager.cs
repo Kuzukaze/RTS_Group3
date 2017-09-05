@@ -14,6 +14,7 @@
     22: Smart Builder (Turret)
     23: Smart Builder (Plane Hangar)
     33: Flash
+    100: ResourceCollection
     404 : Cancel
     1337: Firework
 */

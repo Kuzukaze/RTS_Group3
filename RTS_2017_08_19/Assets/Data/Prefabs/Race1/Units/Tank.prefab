@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 114423416486070820}
   - component: {fileID: 114099186403409804}
   m_Layer: 0
-  m_Name: APC
+  m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,7 +1559,8 @@ MonoBehaviour:
   movement: {fileID: 114631488598863168}
   selectableUnit: {fileID: 114056065311251860}
   buildUnit: {fileID: 0}
-  startHealth: 100
+  health: 500
+  maxHealth: 500
   healthBar: {fileID: 114041551836528212}
   deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
     type: 2}

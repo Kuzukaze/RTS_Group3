@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ResourceCollection : BaseAction
 {
-    [SerializeField] private LayerMask layerMask;
     [SerializeField] private ResourceData.ResourceType resourceType;
     [SerializeField] private uint resourceAmount;
     [SerializeField] private float collectionTime;
@@ -24,13 +23,11 @@ public class ResourceCollection : BaseAction
     public override void Start()
     {
         base.Start();
-        layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
-        Debug.Log("Resource collection started");
+        //Debug.Log("Resource collection started");
 
         player = GameManager.Instance.LevelManager.CurrentPlayer;
         taskManager = this.gameObject.GetComponent<TaskManager>();
-
-        //mover = 
+        
         //mover = this.gameObject.GetComponent<MoveAction>();   
     }
 
@@ -92,7 +89,7 @@ public class ResourceCollection : BaseAction
         
         if (Vector3.Distance(this.transform.position, target.transform.position) > triggerDistance)
         {
-            Debug.Log("Too far. Moving to target.");
+            //Debug.Log("Too far. Moving to target.");
 
             Vector3 posToMove = target.transform.position - Quaternion.LookRotation(target.transform.position - this.transform.position)*Vector3.one * stopDistance;
 
@@ -107,7 +104,7 @@ public class ResourceCollection : BaseAction
         }
         else
         {
-            Debug.Log("ResourceCollection started");
+            //Debug.Log("ResourceCollection started");
             currentTime = collectionTime;
             isСollecting = true;
         }
@@ -118,11 +115,11 @@ public class ResourceCollection : BaseAction
     {
         if(isСollecting)
         {
-            Debug.Log("ResourceCollection in progress");
+            //Debug.Log("ResourceCollection in progress");
             currentTime -= Time.deltaTime;
             if (currentTime <= 0)
             {
-                Debug.Log("ResourceCollection CompleteAction() call");
+                //Debug.Log("ResourceCollection CompleteAction() call");
                 isStoppedCollecting = true;
                 isСollecting = false;
                 if(target != null)
@@ -142,7 +139,7 @@ public class ResourceCollection : BaseAction
     {
         if(isStoppedCollecting)
         {
-            Debug.Log("ResourceCollection completed");
+            //Debug.Log("ResourceCollection completed");
             Cargo cargo = this.gameObject.AddComponent<Cargo>();
             cargo.Init(ResourceData.cargoID.Matter, (int)resourceAmount);
 
