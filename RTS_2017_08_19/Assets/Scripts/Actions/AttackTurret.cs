@@ -11,6 +11,12 @@ public class AttackTurret : Attack {
     [SerializeField] Transform[] firePoints;
     [SerializeField] ParticleSystem[] muzzleFlashes;
     private int currentFirePoint = 0;
+    private ResourceData.Teams team;
+
+    public override void OnActionStarted(Unit target)
+    {
+        team = GetComponent<Unit>().Team;
+    }
 
     public override void OnActionInProgress(Unit target)
     {
@@ -27,6 +33,7 @@ public class AttackTurret : Attack {
             {
                 shortCounter = reloadTime;
                 GameObject instantiated = Instantiate(projectile, firePoints[currentFirePoint].position, firePoints[currentFirePoint].rotation);
+                instantiated.GetComponent<HitObject>().SetTeam(team);
                 foreach (Collider current in this.GetComponentsInChildren<Collider>())
                 {
                     Physics.IgnoreCollision(instantiated.GetComponent<Collider>(), current);
@@ -46,8 +53,11 @@ public class AttackTurret : Attack {
 
     public override void OnActionComplete()
     {
-        platform.transform.rotation = platform.parent.transform.rotation;
-        barrel.transform.rotation = platform.parent.transform.rotation;
+        if (platform != null && barrel != null)
+        {
+            platform.transform.rotation = platform.parent.transform.rotation;
+            barrel.transform.rotation = platform.parent.transform.rotation;
+        }
     }
 
     public bool LookAtTarget (GameObject lookTarget) 

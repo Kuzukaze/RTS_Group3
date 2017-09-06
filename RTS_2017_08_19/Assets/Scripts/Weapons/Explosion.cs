@@ -16,6 +16,8 @@ public class Explosion : MonoBehaviour
     [SerializeField]
     protected ParticleSystem ps;
 
+    private ResourceData.Teams team;
+
 
     //protected Teams team = Teams.GoodGuys;
 
@@ -32,7 +34,7 @@ public class Explosion : MonoBehaviour
 
             RaiseShield shield = hit.gameObject.GetComponent<RaiseShield>();
             Unit unit = hit.gameObject.GetComponent<Unit>();
-            if (unit != null)
+            if (unit != null && unit.Team != team)
             {
                 if (shield == null)
                 {
@@ -68,6 +70,12 @@ public class Explosion : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(rot);
     }
+
+    public void SetTeam (ResourceData.Teams val)
+    {
+        team = val;
+    }
+
     /*
     public void SetTeam(Teams val)
     {   string.Format("Explosion team is being set to = {0}", val);

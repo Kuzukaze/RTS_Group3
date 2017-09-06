@@ -23,6 +23,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Actions
+{
+    MoverGround = 0,
+    MoverAir = 1,
+    Attack = 3,
+    AttackTurret = 4,
+    RaiseShield = 5,
+    SpawnEngineer = 10,
+    SpawnMarine = 11,
+    SpawnAPC = 12,
+    SpawnTank = 13,
+    SpawnFighterJet = 14,
+    BuildFactory = 20,
+    BuildHangar = 21,
+    BuildTurret = 22,
+    BuildPlaneHangar = 23,
+    Flash = 33,
+    ResourceCollection = 100,
+    Cancel = 404,
+    Firework = 1337
+}
+
 public delegate void ActionUnlockHandler(int eventID);
 
 public class UnlockManager : MonoBehaviour {
