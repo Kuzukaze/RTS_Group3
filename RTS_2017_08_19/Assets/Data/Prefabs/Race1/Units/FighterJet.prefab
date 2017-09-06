@@ -1194,6 +1194,9 @@ MonoBehaviour:
   targetAltitude: 15
   acceleration: 80
   maxSpeed: 30
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!114 &114225116003921274
 MonoBehaviour:
   m_ObjectHideFlags: 1
