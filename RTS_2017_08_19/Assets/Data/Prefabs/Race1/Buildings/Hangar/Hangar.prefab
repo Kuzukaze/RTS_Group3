@@ -576,7 +576,7 @@ MonoBehaviour:
   defaultMoveAction: 0
   defaultAttackAction: 0
   useTaskPipe: 1
-  engineerPrefab: {fileID: 1097190085785232, guid: 4c41b8e93e98858458a5bda2d129b120,
+  engineerPrefab: {fileID: 1477282361754418, guid: 4c41b8e93e98858458a5bda2d129b120,
     type: 2}
 --- !u!114 &114569593619797352
 MonoBehaviour:

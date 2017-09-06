@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4022952933278942}
   - component: {fileID: 199374959109028592}
   - component: {fileID: 198569520079430072}
+  - component: {fileID: 114354249270070762}
   m_Layer: 0
   m_Name: Afterburner
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 54889990415338262}
   - component: {fileID: 114382497179166944}
   - component: {fileID: 114591755799153680}
+  - component: {fileID: 114216434500370194}
   m_Layer: 0
   m_Name: PushBall
   m_TagString: Projectile
@@ -94,6 +96,7 @@ GameObject:
   - component: {fileID: 4936372498093504}
   - component: {fileID: 198907539911083462}
   - component: {fileID: 199995924663456704}
+  - component: {fileID: 114027079008514606}
   m_Layer: 0
   m_Name: ExplosionSmall
   m_TagString: Untagged
@@ -224,6 +227,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &114027079008514606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1812782146060170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7671b2e421b2439fc936674407ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 1
+  lifetime: 5
+--- !u!114 &114216434500370194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300659700745682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7671b2e421b2439fc936674407ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 1
+  lifetime: 5
+--- !u!114 &114354249270070762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264142353409008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7671b2e421b2439fc936674407ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 1
+  lifetime: 5
 --- !u!114 &114382497179166944
 MonoBehaviour:
   m_ObjectHideFlags: 1

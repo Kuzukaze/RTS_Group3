@@ -1862,7 +1862,8 @@ MonoBehaviour:
   movement: {fileID: 114308767729389288}
   selectableUnit: {fileID: 114568791151744250}
   buildUnit: {fileID: 0}
-  startHealth: 100
+  health: 400
+  maxHealth: 400
   healthBar: {fileID: 114529305713753478}
   deathParticleSystem: {fileID: 198784900639201860, guid: 380ffe17be3644a4aa6a7dbbf1fef1b7,
     type: 2}

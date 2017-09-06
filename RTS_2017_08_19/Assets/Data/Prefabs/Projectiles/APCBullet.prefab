@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 54405348188957130}
   - component: {fileID: 114578640391440046}
   - component: {fileID: 114552211782049796}
+  - component: {fileID: 114006737141780718}
   m_Layer: 0
   m_Name: APCBullet
   m_TagString: Projectile
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 4640849250342048}
   - component: {fileID: 198927493168648084}
   - component: {fileID: 199105442666789140}
+  - component: {fileID: 114647666539048032}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -175,6 +177,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 1
   lifetime: 5
+--- !u!114 &114006737141780718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289018707597300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7671b2e421b2439fc936674407ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 1
+  lifetime: 5
 --- !u!114 &114552211782049796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +217,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 40
+--- !u!114 &114647666539048032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689994361771972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e7671b2e421b2439fc936674407ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 1
+  lifetime: 5
 --- !u!135 &135684499972842996
 SphereCollider:
   m_ObjectHideFlags: 1
