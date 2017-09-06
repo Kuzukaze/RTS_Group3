@@ -33,9 +33,9 @@ public class BaseAction : MonoBehaviour {
 
     [SerializeField] protected Sprite icon;
     [SerializeField] protected ActionType actionType;
-    [SerializeField] protected int id;
+    [SerializeField] protected BaseActions id;
     [SerializeField] protected bool locked = false;
-    [SerializeField] protected int actionToUnlock;
+    [SerializeField] protected BaseActions actionToUnlock;
 
     private UnlockManager unlockManager;
 
@@ -60,7 +60,7 @@ public class BaseAction : MonoBehaviour {
         return icon;
     }
 
-    public int GetID()
+    public BaseActions GetID()
     {
         return id;
     }
@@ -209,13 +209,13 @@ public class BaseAction : MonoBehaviour {
     }
      
 
-    public void UnlockDetected (int unlockedID)
+    public void UnlockDetected (BaseActions unlockedID)
     {
         if (unlockedID == id)
             locked = false;
     }
 
-    public void UnlockAction (int actionID)
+    public void UnlockAction (BaseActions actionID)
     {
         Debug.Log(string.Format("BaseAction: trying to unlock action {0}", actionID));
         unlockManager.UnlockAction(actionID);

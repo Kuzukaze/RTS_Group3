@@ -18,7 +18,7 @@ public class ActionPanelManager : MonoBehaviour {
 	
     public void AddAction (BaseAction action)
     { 
-        if (action.GetID() == 404)
+        if (action.GetID() == BaseActions.Cancel)
         { //reserved for the "cancel" action with id 404. Must be placed into the last slot.
             ActionPanel targetPanel = actionPanels[actionPanels.Length-1];
             if (targetPanel.IsOccupied())
@@ -41,7 +41,7 @@ public class ActionPanelManager : MonoBehaviour {
             ActionPanel currentPanel = actionPanels[i];
             if (currentPanel.IsOccupied()) 
             {//check if the current action has the same id
-                if ((currentPanel.GetActionID() == action.GetID()) && (currentPanel.GetActionID() != -1)) //-1 is an error code
+                if ((currentPanel.GetActionID() == action.GetID()) && (currentPanel.GetActionID() != BaseActions.Error)) //-1 is an error code
                 {
                     currentPanel.AddActionToList(action); 
                     return;

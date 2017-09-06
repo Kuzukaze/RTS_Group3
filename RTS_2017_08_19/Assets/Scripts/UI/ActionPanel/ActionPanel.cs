@@ -39,7 +39,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
 	}
 
-    public void UnlockDetected (int unlockedID)
+    public void UnlockDetected (BaseActions unlockedID)
     {
         checkColorInLateUpdate = true;
     }
@@ -77,12 +77,12 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         return currentActions;
     }
 
-    public int GetActionID()
+    public BaseActions GetActionID()
     {
         if (currentActions != null && currentActions.Count != 0)
             return currentActions[0].GetID();
         else
-            return -1;
+            return (BaseActions)(-1);
     }
 
     public void ClearAction()

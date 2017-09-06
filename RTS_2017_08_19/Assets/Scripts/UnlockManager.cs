@@ -23,8 +23,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Actions
+public enum BaseActions
 {
+    Error = -1,
     MoverGround = 0,
     MoverAir = 1,
     Attack = 3,
@@ -39,17 +40,19 @@ public enum Actions
     BuildHangar = 21,
     BuildTurret = 22,
     BuildPlaneHangar = 23,
+    BuildMatterStorage = 24,
+    BuildEnergyStorage = 25,
     Flash = 33,
     ResourceCollection = 100,
     Cancel = 404,
     Firework = 1337
 }
 
-public delegate void ActionUnlockHandler(int eventID);
+public delegate void ActionUnlockHandler(BaseActions eventID);
 
 public class UnlockManager : MonoBehaviour {
     [SerializeField]
-    private List<int> unlockedActions;
+    private List<BaseActions> unlockedActions;
     public event ActionUnlockHandler ActionUnlocked;
 
     void Awake () {
@@ -66,7 +69,7 @@ public class UnlockManager : MonoBehaviour {
 	}
         
 
-    public void UnlockAction(int actionID)
+    public void UnlockAction(BaseActions actionID)
     {
         if (!unlockedActions.Contains(actionID))
         {
@@ -79,7 +82,7 @@ public class UnlockManager : MonoBehaviour {
         }
     }
 
-    public bool CheckIfLocked(int actionID)
+    public bool CheckIfLocked(BaseActions actionID)
     {
         if (unlockedActions != null)
         {
