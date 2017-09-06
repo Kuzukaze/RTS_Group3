@@ -8,8 +8,15 @@ public class MoverAir : BaseAction
     [SerializeField] private float targetAltitude;
     [SerializeField] private float acceleration;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private LayerMask layerMask;
     private Rigidbody rb;
     private Vector3 destination;
+
+    public override void Start()
+    {
+        base.Start();
+        layerMask = ~(1 << LayerMask.NameToLayer("MiniMap"));
+    }
 
     public override void OnActionStarted(Vector3 pos)
     {
@@ -40,8 +47,8 @@ public class MoverAir : BaseAction
         {
             rb.AddForce(Vector3.down * acceleration/3.0f);
         } 
-        //Debug.Log(Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/targetAltitude*2),1,maxSpeed));
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/(targetAltitude*2)),1,maxSpeed)); 
+        float currentMaxSpeed =  Mathf.Clamp(maxSpeed - maxSpeed*(1 - Vector3.Distance(transform.position, destination)/(targetAltitude*2)), 1, maxSpeed);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity,currentMaxSpeed); 
         transform.forward = Vector3.Lerp(transform.forward, rb.velocity, Time.deltaTime/2);
     }
 
@@ -51,10 +58,12 @@ public class MoverAir : BaseAction
         transform.rotation = Quaternion.Euler( new Vector3(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
     }
 
+
     float CurrentAltitude()
     {
         RaycastHit hit;
-        if (Physics.Raycast(altimeter.position, Vector3.down, out hit))
+        Ray ray = new Ray(altimeter.position, Vector3.down);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             return Vector3.Distance(hit.point, altimeter.position);
         }
