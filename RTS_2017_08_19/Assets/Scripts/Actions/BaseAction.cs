@@ -33,9 +33,9 @@ public class BaseAction : MonoBehaviour {
 
     [SerializeField] protected Sprite icon;
     [SerializeField] protected ActionType actionType;
-    [SerializeField] protected int id;
+    [SerializeField] protected BaseActions id;
     [SerializeField] protected bool locked = false;
-    [SerializeField] protected int actionToUnlock;
+    [SerializeField] protected BaseActions actionToUnlock;
 
     private UnlockManager unlockManager;
 
@@ -46,6 +46,9 @@ public class BaseAction : MonoBehaviour {
 
     [SerializeField] private bool defaultMoveAction = false;
     [SerializeField] private bool defaultAttackAction = false;
+    [SerializeField] private bool useTaskPipe = true;
+
+    protected bool protectFromPrematureCompletion = false;
 
     public ActionType GetActionType ()
     {
@@ -57,31 +60,37 @@ public class BaseAction : MonoBehaviour {
         return icon;
     }
 
-    public int GetID()
+    public BaseActions GetID()
     {
         return id;
     }
 
     public void CompleteAction()
-    { //calll this method when the action is complete
-        //Debug.Log("actionInProgress = false");
-        actionInProgress = false;
 
-        OnActionComplete();
-
-        if (ActionCompleteEvent != null)
+    { //call this method when the action is complete
+        if (!protectFromPrematureCompletion)
         {
-            Debug.Log("Action compete event");
-            ActionCompleteEvent();
-        }
+            actionInProgress = false;
 
-        //if (targetPosition != null)
-        //{
-        //    targetPosition = Vector3.zero;
-        //}
-        if (targetUnit != null)
-        {
-            targetUnit = null;
+            OnActionComplete();
+
+            if (ActionCompleteEvent != null)
+
+            {
+                actionInProgress = false;
+                OnActionComplete();
+
+                if (ActionCompleteEvent != null)
+                {
+                    Debug.Log("Action compete event");
+                    ActionCompleteEvent();
+                }
+
+                if (targetUnit != null)
+                {
+                    targetUnit = null;
+                }
+            }
         }
     }
 
@@ -103,7 +112,7 @@ public class BaseAction : MonoBehaviour {
 
     public void ExecuteAction (Unit target)  
     {
-        //Debug.Log(string.Format("ExecuteAction (Unit target) was started from {0}", whoThis));
+        Debug.Log(string.Format("Action target is {0}", target));
         actionInProgress = true;
         targetUnit = target;
         OnActionStarted(target);
@@ -141,6 +150,11 @@ public class BaseAction : MonoBehaviour {
     }
 
     public virtual void OnActionInProgress(Vector3 pos)
+    {
+
+    }
+
+    public virtual void OnActionInProgressFixed(Vector3 pos)
     {
 
     }
@@ -185,15 +199,23 @@ public class BaseAction : MonoBehaviour {
             }
         }
     } 
+
+    void FixedUpdate ()
+    {
+        if (actionInProgress && actionType == ActionType.terrainClick)
+        {
+            OnActionInProgressFixed(targetPosition);
+        }
+    }
      
 
-    public void UnlockDetected (int unlockedID)
+    public void UnlockDetected (BaseActions unlockedID)
     {
         if (unlockedID == id)
             locked = false;
     }
 
-    public void UnlockAction (int actionID)
+    public void UnlockAction (BaseActions actionID)
     {
         Debug.Log(string.Format("BaseAction: trying to unlock action {0}", actionID));
         unlockManager.UnlockAction(actionID);
@@ -207,6 +229,11 @@ public class BaseAction : MonoBehaviour {
     public bool IsDefaultAttackAction()
     {
         return defaultAttackAction;
+    }
+
+    public bool UsesTaskPipe()
+    {
+        return useTaskPipe;
     }
 
     //---------EVENT SUBSCRIPTION EXAMPLE:--------------------

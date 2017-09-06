@@ -13,10 +13,26 @@ public class ActionPanelManager : MonoBehaviour {
         actionPanels = GetComponentsInChildren<ActionPanel>();
         uiManager = GetComponentInParent<UIManager>();
         uiManager.SetCurrentActions(null);
+        FindObjectOfType<EventHub>().ActionPanelUpdateRequest += new ActionPanelUpdateRequestHandler(UpdateActionPanels);
 	}
 	
     public void AddAction (BaseAction action)
     { 
+        if (action.GetID() == BaseActions.Cancel)
+        { //reserved for the "cancel" action with id 404. Must be placed into the last slot.
+            ActionPanel targetPanel = actionPanels[actionPanels.Length-1];
+            if (targetPanel.IsOccupied())
+            {
+                targetPanel.AddActionToList(action);
+            }
+            else
+            {
+                targetPanel.SetAction(action);
+            }
+            return;
+        }
+
+        //for all other actions:
         int i = 0;
         while (i < actionPanels.Length)
         { //searching for a good slot to add the action
@@ -25,7 +41,7 @@ public class ActionPanelManager : MonoBehaviour {
             ActionPanel currentPanel = actionPanels[i];
             if (currentPanel.IsOccupied()) 
             {//check if the current action has the same id
-                if ((currentPanel.GetActionID() == action.GetID()) && (currentPanel.GetActionID() != -1)) //-1 is an error code
+                if ((currentPanel.GetActionID() == action.GetID()) && (currentPanel.GetActionID() != BaseActions.Error)) //-1 is an error code
                 {
                     currentPanel.AddActionToList(action); 
                     return;
@@ -36,9 +52,9 @@ public class ActionPanelManager : MonoBehaviour {
                 currentPanel.SetAction (action); 
                 return;
             }
-            currentPanel.ScheduleColorCheck();
             i++;
         }
+        UpdateActionPanels();
     }
 
     public void SetNewSelection(ActionPanel requester)
@@ -117,6 +133,22 @@ public class ActionPanelManager : MonoBehaviour {
                     currentPanel.RemoveActionFromList(currentActionToRemove);
                 }
             }
+        }
+    }
+
+    public void UpdateActionPanels()
+    {
+        foreach (ActionPanel currentPanel in actionPanels)
+        {
+            currentPanel.ScheduleColorCheck();
+        }
+    }
+
+    public void StopAllActions()
+    {
+        foreach (ActionPanel currentPanel in actionPanels)
+        {
+            currentPanel.CompleteActions();
         }
     }
 

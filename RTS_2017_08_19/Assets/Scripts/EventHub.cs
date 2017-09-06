@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void UnitDeathHandler(Unit killedUnit);
+public delegate void ActionPanelUpdateRequestHandler();
 
 public delegate void ResourceChangeHandler(int value);
 public delegate void ResourceWarnHandler(bool isMaxed);
@@ -11,6 +12,8 @@ public class EventHub : MonoBehaviour
 {
 
     public event UnitDeathHandler UnitDeathEvent;
+
+    public event ActionPanelUpdateRequestHandler ActionPanelUpdateRequest;
     public event ResourceChangeHandler MatterCurrentChangeEvent;
     public event ResourceChangeHandler MatterMaxChangeEvent;
     public event ResourceChangeHandler EnergyCurrentChangeEvent;
@@ -19,6 +22,7 @@ public class EventHub : MonoBehaviour
     public event ResourceWarnHandler EnergyMaxed;
     public event ResourceWarnHandler MatterLow;
     public event ResourceWarnHandler EnergyLow;
+
 
     public void SignalUnitDeath(Unit killedUnit)
     {
@@ -93,6 +97,12 @@ public class EventHub : MonoBehaviour
         {
             EnergyLow(isLow);
         }
+    }
+
+    public void RequestActionPanelUpdate ()
+    {
+        if (ActionPanelUpdateRequest != null)
+            ActionPanelUpdateRequest();
     }
 
 }

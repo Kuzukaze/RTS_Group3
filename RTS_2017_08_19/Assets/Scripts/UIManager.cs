@@ -173,11 +173,11 @@ public class UIManager : MonoBehaviour {
                        // action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
                     }
                 }
-                else if (interactionInfo.collider.gameObject.GetComponent<Unit>() != null && currentAttackActions !=null)
+                else if (interactionInfo.collider.gameObject.GetComponentInParent<Unit>() != null && currentAttackActions !=null)
                 {
                     foreach (BaseAction action in currentAttackActions)
                     {
-                        action.gameObject.GetComponent<TaskManager>().AddTask(action, interactionInfo.collider.gameObject.GetComponent<Unit>());
+                        action.gameObject.GetComponent<TaskManager>().AddTask(action, interactionInfo.collider.gameObject.GetComponentInParent<Unit>());
                       //  action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
                     }
                 }
@@ -203,7 +203,7 @@ public class UIManager : MonoBehaviour {
 
     void ProcessPointRaycastHit(RaycastHit hit)
     {
-        if (hit.collider.gameObject.GetComponent<Unit>() != null)
+        if (hit.collider.gameObject.GetComponentInParent<Unit>() != null)
         {
 
             ExecuteCurrentAction(hit.collider.gameObject.GetComponent<Unit>());

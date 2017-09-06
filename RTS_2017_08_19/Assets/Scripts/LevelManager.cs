@@ -98,14 +98,19 @@ public class LevelManager : MonoBehaviour
 
         this.startPositions = startPositions;
 
-        GameObject playerGO = new GameObject();
-        playerGO.name = "Players";
+        if(!playersGO)
+        {
+            playersGO = new GameObject("Players");
+        }
+        
 
         Dictionary<ResourceData.ResourceType, Resource> resourcesList = InitResources();
 
         uint playerID = 0;
         foreach (PlayerInfo player in playersInfo)
         {
+            GameObject playerGO = new GameObject(player.Name);
+            playerGO.transform.parent = playersGO.transform;
             PlayerController playerController = playerGO.AddComponent<PlayerController>();
 
             bool isPlayer = false;

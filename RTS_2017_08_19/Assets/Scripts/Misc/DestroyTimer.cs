@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class DestroyTimer : MonoBehaviour 
 {
-
-	[SerializeField]
-	private float lifetime = 5;
+    [SerializeField] private bool activated = true;
+	[SerializeField] private float lifetime = 5;
 
 	// Use this for initialization
 	void Start () 
     {
-		Destroy (gameObject, lifetime);
+        if (activated)
+		    Destroy (gameObject, lifetime);
 	}
+
+    public void Activate()
+    {
+        Destroy (gameObject, lifetime);
+    }
 }

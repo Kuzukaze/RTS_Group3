@@ -39,7 +39,7 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
 	}
 
-    public void UnlockDetected (int unlockedID)
+    public void UnlockDetected (BaseActions unlockedID)
     {
         checkColorInLateUpdate = true;
     }
@@ -77,12 +77,12 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         return currentActions;
     }
 
-    public int GetActionID()
+    public BaseActions GetActionID()
     {
         if (currentActions != null && currentActions.Count != 0)
             return currentActions[0].GetID();
         else
-            return -1;
+            return (BaseActions)(-1);
     }
 
     public void ClearAction()
@@ -123,28 +123,13 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
                 else
                 {
                     if (occupied) //if the slot is not empty
-                    SelectOrExecute();
+                    Select();
                 }
             }
         }
     }
 
-    public void SelectOrExecute ()
-    {
-       /* if (currentActions[0].GetActionType() == ActionType.instant)
-        { //if an instant action, execute immediatly
-            foreach (BaseAction action in currentActions)
-            {
-                //action.ExecuteAction();
-            }
-            actionManager.UnselectAll();
-        }
-        else
-        { //if not an instant action, prepare to select a target */
-            Select();
-        //}
-    }
-        
+      
     public void CheckIfLocked ()
     {
         if (currentActions != null)
@@ -189,6 +174,15 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
             {
                 currentActions.RemoveAt(i);
             }
+        }
+    }
+
+    public void CompleteActions()
+    {
+        foreach (BaseAction current in currentActions)
+        {
+            Debug.Log(string.Format("Completing action {0}",current));
+            current.CompleteAction();
         }
     }
 }

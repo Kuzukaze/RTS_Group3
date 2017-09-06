@@ -25,11 +25,11 @@ public class ResourceStorage : MonoBehaviour
 
     private void OnDestroy()
     {
-        player.GetResourceByType(resourceType).MaxDecrease((int)storageCapacity);
-        player.RemoveResourceStorage(this, resourceType);
         if (capResource)
         {
             player.GetResourceByType(resourceType).Use((int)storageCapacity);  //TODO: test situation when all energy is used, but we destroy storage -> energy value goes < 0 (!)
         }
+        player.GetResourceByType(resourceType).MaxDecrease((int)storageCapacity);
+        player.RemoveResourceStorage(this, resourceType);
     }
 }

@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
+    [SerializeField] private ParticleSystem deathParticleSystem;
 
     private NavMeshAgent playerNavMesh;
     //private bool dieInLateUpdate = false;
@@ -109,6 +110,15 @@ public class Unit : MonoBehaviour
     void Die()
     {
         FindObjectOfType<EventHub>().SignalUnitDeath(this);
+        if (deathParticleSystem != null)
+        {
+            Debug.Log(string.Format("Play particle system {0}",deathParticleSystem));
+            ParticleSystem particle = Instantiate(deathParticleSystem, transform.position, Quaternion.LookRotation(Vector3.up, Vector3.back));
+            //particle.transform.Rotate (new Vector3 (-90,0,0));
+            particle.Play();
+            //deathParticleSystem.transform.SetParent(null);
+            //deathParticleSystem.GetComponent<DestroyTimer>().Activate();
+        }
         Destroy(gameObject);
         //dieInLateUpdate = true;
     }

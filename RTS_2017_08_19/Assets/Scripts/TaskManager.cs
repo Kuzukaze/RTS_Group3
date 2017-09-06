@@ -36,7 +36,8 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public void AddTask(BaseAction taskAction, bool clearTasks = true) 
+
+    public void AddTask(BaseAction taskAction, bool clearTasks = true)
     {
         if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
@@ -44,12 +45,7 @@ public class TaskManager : MonoBehaviour
         }
 
         PipeTask newTask = new PipeTask(taskAction);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if (tasksInPipe.Count == 1)
-        {
-            ExecuteTask("AddTask");
-        }
+        InitTask(newTask);
     }
 
     public void AddTask(BaseAction taskAction, Vector3 position, bool clearTasks = true)
@@ -60,31 +56,30 @@ public class TaskManager : MonoBehaviour
         }
 
         PipeTask newTask = new PipeTask(taskAction, position);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if (tasksInPipe.Count == 1)
-        {
-            ExecuteTask("AddTask");
-        }
+        InitTask(newTask);
     }
 
-    public void AddTask(BaseAction taskAction, Unit tagert, bool clearTasks = true)
+    public void AddTask(BaseAction taskAction, Unit target, bool clearTasks = true)
     {
         if (!Input.GetKey(KeyCode.LeftShift) && clearTasks)
         {
-            tasksInPipe.Clear();
+            if (taskAction.UsesTaskPipe())
+            {
+                tasksInPipe.Clear();
+                PipeTask newTask = new PipeTask(taskAction, target);
+                InitTask(newTask);
+            }
+            else
+            {
+                taskAction.ExecuteAction(target);
+            }
         }
-
-        PipeTask newTask = new PipeTask(taskAction, tagert);
-        newTask.SetTaskManager(this);
-        tasksInPipe.Enqueue(newTask);
-        if (tasksInPipe.Count == 1)
+        else
         {
-            ExecuteTask("AddTask");
+            PipeTask newTask = new PipeTask(taskAction, target);
+            InitTask(newTask);
         }
     }
-
-    
 
     public void RemoveHeadTask()
     {
@@ -117,9 +112,19 @@ public class TaskManager : MonoBehaviour
             localTask.IndicateHead();
             localTask.taskAction.ExecuteAction();
             localTask.taskAction.ExecuteAction(localTask.position);
-            localTask.taskAction.ExecuteAction(localTask.tagertUnit);
+            localTask.taskAction.ExecuteAction(localTask.targetUnit);
         }
 
+    }
+
+    void InitTask(PipeTask task)
+    {
+        task.SetTaskManager(this);
+        tasksInPipe.Enqueue(task);
+        if (tasksInPipe.Count == 1)
+        {
+            ExecuteTask("AddTask");
+        }
     }
 }
     
