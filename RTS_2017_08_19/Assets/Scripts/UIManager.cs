@@ -162,15 +162,13 @@ public class UIManager : MonoBehaviour {
             Ray interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit interactionInfo;
             if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
-            {
+            { /*
                 if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
                 {
                     int actionAmount = currentMoveActions.Count;
                     foreach (BaseAction action in currentMoveActions)
                     {
                         action.gameObject.GetComponent<TaskManager>().AddTask(action, (GetPointInCircle(interactionInfo.point, actionAmount)));
-                        //action.ExecuteAction(interactionInfo.point);
-                       // action.ExecuteAction(GetPointInCircle(interactionInfo.point, actionAmount));
                     }
                 }
                 else if (interactionInfo.collider.gameObject.GetComponentInParent<Unit>() != null && currentAttackActions !=null)
@@ -178,9 +176,29 @@ public class UIManager : MonoBehaviour {
                     foreach (BaseAction action in currentAttackActions)
                     {
                         action.gameObject.GetComponent<TaskManager>().AddTask(action, interactionInfo.collider.gameObject.GetComponentInParent<Unit>());
-                      //  action.ExecuteAction(interactionInfo.collider.gameObject.GetComponent<Unit>());
                     }
-                }
+                } */
+                ProcessNoActionRaycastHit(interactionInfo);
+            }
+        }
+    }
+
+    void ProcessNoActionRaycastHit(RaycastHit interactionInfo)
+    {
+        Debug.Log(string.Format("Raycast hit {0}", interactionInfo.collider.gameObject));
+        if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
+        {
+            int actionAmount = currentMoveActions.Count;
+            foreach (BaseAction action in currentMoveActions)
+            {
+                action.gameObject.GetComponent<TaskManager>().AddTask(action, (GetPointInCircle(interactionInfo.point, actionAmount)));
+            }
+        }
+        else if (interactionInfo.collider.gameObject.GetComponentInParent<Unit>() != null && currentAttackActions !=null)
+        {
+            foreach (BaseAction action in currentAttackActions)
+            {
+                action.gameObject.GetComponent<TaskManager>().AddTask(action, interactionInfo.collider.gameObject.GetComponentInParent<Unit>());
             }
         }
     }
@@ -196,6 +214,7 @@ public class UIManager : MonoBehaviour {
                 if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
                 {
                     ProcessPointRaycastHit(interactionInfo);
+                    Debug.Log(string.Format("raycast hit {0}", interactionInfo.collider.gameObject));
                 }
             }
         }
