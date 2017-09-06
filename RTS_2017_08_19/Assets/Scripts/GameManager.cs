@@ -139,14 +139,17 @@ public class GameManager : MonoBehaviour
     private void TemporaryLevelLoading(out List<ResourceData.LevelInfo> lvlList)
     {
         ResourceData.LevelInfo lvl1 = ResourceData.Instance.levels[0] /*new ResourceData.LevelInfo()
+        
         {
             levelDescription = "Test map 1x1",
             levelName = "level1"
         }*/;
         lvlList = new List<ResourceData.LevelInfo>();
         lvlList.Add(lvl1);
+        ResourceData.LevelInfo lvl2 = ResourceData.Instance.levels[1];
+        lvlList.Add(lvl2);
 
-        for (int i = 2; i < 50; i++)
+        for (int i = 3; i < 50; i++)
         {
             ResourceData.LevelInfo lvl = new ResourceData.LevelInfo()
             {

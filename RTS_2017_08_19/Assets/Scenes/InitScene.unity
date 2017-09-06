@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - levelName: Level1
+  - levelName: TestLevel
     levelPreview: {fileID: 21300000, guid: 515721bbd43d76b4a9de0378ad46afe9, type: 3}
     levelDescription: first test level
     playersMax: 2
@@ -161,6 +161,18 @@ MonoBehaviour:
     - {x: 136, y: 7, z: 46}
     - {x: 33, y: 8, z: 160}
     sceneName: terrainScene
+  - levelName: Level1
+    levelPreview: {fileID: 21300000, guid: 67e77e01a86b84f43930daa44155f4c1, type: 3}
+    levelDescription: An island in the middle of the sea
+    playersMax: 2
+    levelTerrain: {fileID: 218239746156243682, guid: 663f77ca85a0b22409804a2e2a41040c,
+      type: 2}
+    levelTerrainMiniMap: {fileID: 218259386023120622, guid: 6f378f250595fbe448ff7ffb6f3b5b2e,
+      type: 2}
+    spawnPositions:
+    - {x: 223, y: 17, z: 60}
+    - {x: 86, y: 17, z: 242}
+    sceneName: NewTerrainIsland
   mainBuildingRace1Prefab: {fileID: 114549462999331706, guid: e43c16d8f129dc043866d8f44f7f630d,
     type: 2}
   mainBuildingRace2Prefab: {fileID: 0}

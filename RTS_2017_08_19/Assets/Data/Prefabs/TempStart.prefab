@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1571555387446492}
+  m_IsPrefabParent: 1
+--- !u!1 &1571555387446492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4306109699719300}
+  - component: {fileID: 114581851239646178}
+  m_Layer: 0
+  m_Name: TempStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4306109699719300
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571555387446492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 137.67789, y: 36.9773, z: -13.136444}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114581851239646178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1571555387446492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3e8f0944d0f724e9a2af6beff1299f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Race: 0
+  player1Color: {r: 0, g: 0, b: 1, a: 1}
+  player1SpawnPoint: 0
+  player1AddMatter: 9000
+  player1AddMatterMax: 5000
+  player1AddEnergy: 500
+  player1AddEnergyMax: 500
+  player2Race: 0
+  player2Color: {r: 1, g: 0, b: 0, a: 1}
+  player2SpawnPoint: 1
+  player2AddMatter: 5000
+  player2AddMatterMax: 10000
+  player2AddEnergy: 1000
+  player2AddEnergyMax: 1000
+  neutralColor: {r: 1, g: 1, b: 1, a: 1}
+  ObjectsToInitTeam1:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ObjectsToInitTeam2: []
+  ObjectsToInitNeutral:
+  - {fileID: 0}

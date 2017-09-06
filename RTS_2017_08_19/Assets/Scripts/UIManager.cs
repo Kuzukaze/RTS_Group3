@@ -196,6 +196,7 @@ public class UIManager : MonoBehaviour {
                 if (Physics.Raycast(interactionRay, out interactionInfo, Mathf.Infinity, layerMask))
                 {
                     ProcessPointRaycastHit(interactionInfo);
+                    Debug.Log(string.Format("raycast hit {0}", interactionInfo.collider.gameObject));
                 }
             }
         }
