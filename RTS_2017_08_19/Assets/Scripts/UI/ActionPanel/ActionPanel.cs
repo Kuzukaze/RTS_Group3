@@ -62,8 +62,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
             currentActions.Clear();
         currentActions = new List<BaseAction>();
         currentActions.Add(action);
-        if (currentActions[0].IsLocked())
-            backgroundImage.color = lockedColor;
+        //if (currentActions[0].IsLocked())
+       //     backgroundImage.color = lockedColor;
         checkColorInLateUpdate = true;
     }
 
@@ -100,7 +100,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         selected = true;
         //Debug.Log(currentActions[0].IsShowingGhost());
         //currentActions[0].SetShowingGhost(false);
-        backgroundImage.color = selectedColor;
+        //backgroundImage.color = selectedColor;
+        checkColorInLateUpdate = true;
         actionManager.SetNewSelection(this);
     }
 
@@ -139,8 +140,10 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
                // Debug.Log(string.Format("My action is {0}, it's locked: {1}", currentActions[0].GetID(), currentActions[0].IsLocked()));
                 if (currentActions[0].IsLocked())
                     backgroundImage.color = lockedColor;
-                else
+                else if (!selected)
                     backgroundImage.color = unselectedColor;
+                else
+                    backgroundImage.color = selectedColor;
             }
         }
         else
@@ -155,8 +158,8 @@ public class ActionPanel : MonoBehaviour, IPointerDownHandler {
         if (checkColorInLateUpdate)
         {
             CheckIfLocked();
-            if (selected)
-                backgroundImage.color = selectedColor;
+            //if (selected)
+           //     backgroundImage.color = selectedColor;
             checkColorInLateUpdate = false;
         }
     }

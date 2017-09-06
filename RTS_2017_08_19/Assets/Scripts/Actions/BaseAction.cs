@@ -50,6 +50,8 @@ public class BaseAction : MonoBehaviour {
 
     protected bool protectFromPrematureCompletion = false;
 
+    protected EventHub eventHub;
+
     public ActionType GetActionType ()
     {
         return actionType;
@@ -72,7 +74,7 @@ public class BaseAction : MonoBehaviour {
         {
             actionInProgress = false;
 
-            OnActionComplete();
+            //OnActionComplete();
 
             if (ActionCompleteEvent != null)
 
@@ -175,6 +177,7 @@ public class BaseAction : MonoBehaviour {
         unlockManager = FindObjectOfType<UnlockManager>();
         locked = unlockManager.CheckIfLocked(id);
         unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
+        eventHub = FindObjectOfType<EventHub>();
     }
 
     void Update ()

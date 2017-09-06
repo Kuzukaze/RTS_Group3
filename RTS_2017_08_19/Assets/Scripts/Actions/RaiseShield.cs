@@ -8,13 +8,6 @@ public class RaiseShield : BaseAction {
     [SerializeField] private float reloadTime;
     private float stopTime;
     private bool active = false;
-    private EventHub eventHub;
-
-    public override void Start()
-    {
-        base.Start();
-        eventHub = FindObjectOfType<EventHub>();
-    }
 
     public override void OnActionStarted()
     {

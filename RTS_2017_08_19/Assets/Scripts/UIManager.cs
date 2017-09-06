@@ -185,7 +185,6 @@ public class UIManager : MonoBehaviour {
 
     void ProcessNoActionRaycastHit(RaycastHit interactionInfo)
     {
-        Debug.Log(string.Format("Raycast hit {0}", interactionInfo.collider.gameObject));
         if (interactionInfo.collider.gameObject.GetComponent<ClickableGround>() != null && currentMoveActions !=null)
         {
             int actionAmount = currentMoveActions.Count;
