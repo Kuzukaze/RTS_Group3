@@ -73,11 +73,7 @@ public class BaseAction : MonoBehaviour {
         if (!protectFromPrematureCompletion)
         {
             actionInProgress = false;
-
-            //OnActionComplete();
-
             if (ActionCompleteEvent != null)
-
             {
                 actionInProgress = false;
                 OnActionComplete();
@@ -123,7 +119,6 @@ public class BaseAction : MonoBehaviour {
     public virtual void DrawPreActionMarker(Vector3 pos)
     {
         actionInProgress = true;
-        //Debug.Log("DrawPreActionMarker (Vector3 pos)");
     }
 
     public bool IsLocked ()
@@ -184,7 +179,6 @@ public class BaseAction : MonoBehaviour {
     {
         if (actionInProgress)
         {
-            //Debug.Log("In progress true");
             switch (actionType)
             {
                 case ActionType.instant:
