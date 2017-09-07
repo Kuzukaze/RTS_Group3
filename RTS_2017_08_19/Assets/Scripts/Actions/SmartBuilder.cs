@@ -11,6 +11,8 @@ public class SmartBuilder : BaseAction
     [SerializeField] GameObject ghostbuildingOK;
     [SerializeField] GameObject ghostbuildingFail;
 
+    private Quaternion ghostRotation;
+
     private GameObject currentGhost;
     private Selectable selectable;
     private float radius = 2f;
@@ -32,10 +34,7 @@ public class SmartBuilder : BaseAction
 
     public override void OnActionStarted(Vector3 pos)
     {
-
         Destroy(currentGhost);
-        //this.SetShowingGhost(false);
-
     }
 
     public override void OnActionInProgress(Vector3 pos)
@@ -45,7 +44,7 @@ public class SmartBuilder : BaseAction
             unitNavMesh.velocity = Vector3.zero;
             unitNavMesh.isStopped = true;
             unitNavMesh.ResetPath();
-            instantiatedConstruction = Instantiate(buildingConstruction, pos, buildingPrefab.transform.rotation);
+            instantiatedConstruction = Instantiate(buildingConstruction, pos, buildingConstruction.transform.rotation);
             PlayerController player = this.gameObject.GetComponent<Unit>().Player;
             instantiatedConstruction.GetComponent<Unit>().Init(player);
             unitInstantiatedConstruction = instantiatedConstruction.GetComponent<Unit>();
@@ -68,18 +67,16 @@ public class SmartBuilder : BaseAction
                 timer = 0;
             }
         }
-
-
-
     }
 
     public override void OnActionComplete()
     {
         Destroy(instantiatedConstruction);
-        GameObject instantiated = Instantiate(buildingPrefab, buildingPlace, buildingPrefab.transform.rotation);
+        GameObject instantiated = Instantiate(buildingPrefab, buildingPlace, ghostRotation);
         PlayerController player = this.gameObject.GetComponent<Unit>().Player;
         instantiated.GetComponent<Unit>().Init(player);
         UnlockAction(actionToUnlock);
+        ghostRotation = new Quaternion(0, 0, 0, 0);
     }
 
     public override void DrawPreActionMarker(Vector3 position)
@@ -91,6 +88,11 @@ public class SmartBuilder : BaseAction
         }
         currentGhost.transform.position = position;
         currentGhost.GetComponent<GhostKill>().MarkAsNeeded();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            currentGhost.transform.Rotate(0, 90, 0);
+            ghostRotation = currentGhost.transform.rotation;
+        }
     }
 
     void SpawnGhost(Vector3 position)
