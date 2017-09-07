@@ -72,8 +72,6 @@ public class BaseAction : MonoBehaviour {
         {
             actionInProgress = false;
 
-            OnActionComplete();
-
             if (ActionCompleteEvent != null)
 
             {
