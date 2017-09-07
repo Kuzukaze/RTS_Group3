@@ -1087,7 +1087,7 @@ MonoBehaviour:
   isSelected: 0
   selectionPrefab: {fileID: 1271126924687084, guid: d733f82eb1c5c3a43a687fefadc33ef1,
     type: 2}
-  selectedIconSprite: {fileID: 21300000, guid: 8cb85d30b57f0e34cb9a060aff0feb71, type: 3}
+  selectedIconSprite: {fileID: 21300000, guid: 0a5f6d8a40b56354ab1358f4b62ee43c, type: 3}
   selectedDescription: A hanger for aerial vehicles.
   selectionType: 1
 --- !u!114 &114186972134164722
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93c773b5ac9189488a6ea720facfd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
+  icon: {fileID: 21300000, guid: ebc4a0547a6b59a4d98ca38ca4bf9ae1, type: 3}
   actionType: 1
   id: 14
   locked: 0

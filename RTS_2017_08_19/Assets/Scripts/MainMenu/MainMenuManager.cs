@@ -23,10 +23,12 @@ public class MainMenuManager : MonoBehaviour {
 
     void Start()
     {
+        turret.gameObject.AddComponent<UIDisabler>();
+        turret.GetComponent<AttackTurret>().ExecuteAction(targets[Random.Range(0,targets.Length)].GetComponent<Unit>());
+        Debug.Log("adding component");
         RandomEvent();
         lastEvent = Time.time;
         nextEvent = lastEvent + Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
-        turret.GetComponent<AttackTurret>().ExecuteAction(targets[Random.Range(0,targets.Length)].GetComponent<Unit>());
     }
 
     void Update ()
@@ -46,12 +48,15 @@ public class MainMenuManager : MonoBehaviour {
         {
             case 0:
                 currentUnit = SpawnUnit();
+                currentUnit.AddComponent<UIDisabler>();
                 break;
             case 1:
                 currentUnit = SpawnUnit();
+                currentUnit.AddComponent<UIDisabler>();
                 break;
             case 2:
                 currentUnit = SpawnPlane();
+                currentUnit.AddComponent<UIDisabler>();
                 break;
         }
 
@@ -61,8 +66,7 @@ public class MainMenuManager : MonoBehaviour {
     {
         hasToInitUnit = true;
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        GameObject unit = groundUnits[Random.Range(0, groundUnits.Length)];
-        return Instantiate(unit, spawnPoint.position, spawnPoint.rotation);
+        return Instantiate(groundUnits[Random.Range(0, groundUnits.Length)], spawnPoint.position, spawnPoint.rotation);
     }
 
     public GameObject SpawnPlane ()

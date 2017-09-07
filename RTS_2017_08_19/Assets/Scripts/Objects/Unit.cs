@@ -47,6 +47,7 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
+        Player.Matter.Use(100);
         //Init();
     }
 
