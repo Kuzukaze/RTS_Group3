@@ -187,8 +187,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4089987506006542}
-  - component: {fileID: 33153527797970958}
-  - component: {fileID: 23174895383073654}
   - component: {fileID: 195671824654862602}
   - component: {fileID: 114219244469245056}
   - component: {fileID: 114568791151744250}
@@ -1091,38 +1089,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23174895383073654
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1477282361754418}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 126fb864924e1e449bd90e482faa81b6, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!23 &23190297862851214
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1656,13 +1622,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593398843445690}
   m_Mesh: {fileID: 4300012, guid: fbaea34ec44f2294e83639abdcbb6bfe, type: 3}
---- !u!33 &33153527797970958
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1477282361754418}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33193436649125810
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1957,7 +1916,7 @@ MonoBehaviour:
   isSelected: 0
   selectionPrefab: {fileID: 1063775259222016, guid: 3cd5b2b70295988469d2320caf83176f,
     type: 2}
-  selectedIconSprite: {fileID: 21300000, guid: 951fdad1ac13e964eb482e5cbe7d6f87, type: 3}
+  selectedIconSprite: {fileID: 21300000, guid: b91e630235c71be4e89387c72e988602, type: 3}
   selectedDescription: A heavy military vehicle.
   selectionType: 3
 --- !u!114 &114721298236525266
