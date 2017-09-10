@@ -730,7 +730,7 @@ MonoBehaviour:
     type: 2}
   selectedIconSprite: {fileID: 21300000, guid: 860ff94294d3af24e9504efed125a662, type: 3}
   selectedDescription: A static turret
-  selectionType: 3
+  selectionType: 1
 --- !u!114 &114933580663841926
 MonoBehaviour:
   m_ObjectHideFlags: 1

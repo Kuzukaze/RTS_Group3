@@ -533,7 +533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026991574863726, guid: a8b0aeddab83655488bbc57e7d9f7a84, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114122531087960818, guid: a8b0aeddab83655488bbc57e7d9f7a84,
         type: 2}
@@ -880,6 +880,51 @@ Prefab:
       propertyPath: ObjectsToInitNeutral.Array.data[15]
       value: 
       objectReference: {fileID: 1498206873}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player1AddMatter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player1AddMatterMax
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player1AddEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player2SpawnPoint
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player1SpawnPoint
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player2AddMatter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player2AddMatterMax
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player2AddEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
+        type: 2}
+      propertyPath: player2AddEnergyMax
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a7840e232975044fa64a58239a831e5, type: 2}
   m_IsPrefabParent: 0
@@ -3068,5 +3113,5 @@ Transform:
   - {fileID: 681791192}
   - {fileID: 1379957220}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

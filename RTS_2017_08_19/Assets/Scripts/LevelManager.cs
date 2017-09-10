@@ -137,7 +137,7 @@ public class LevelManager : MonoBehaviour
                     {
                         player.Matter.MaxIncrease((int)objInfo.MatterMaxIncrease);
                         player.Energy.MaxIncrease((int)objInfo.EnergyMaxIncrease);
-                        player.Matter.Add(1000);
+                        player.Matter.Add(20000);
                         player.Energy.Add(player.Energy.Max);
                     }
                     mainBuilding.Init(player);
