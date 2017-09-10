@@ -560,6 +560,11 @@ Prefab:
       propertyPath: unlockedActions.Array.data[14]
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114503203360302446, guid: a8b0aeddab83655488bbc57e7d9f7a84,
+        type: 2}
+      propertyPath: unlockedActions.Array.data[15]
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8b0aeddab83655488bbc57e7d9f7a84, type: 2}
   m_IsPrefabParent: 0
@@ -834,7 +839,7 @@ Prefab:
         type: 2}
       propertyPath: ObjectsToInitNeutral.Array.data[6]
       value: 
-      objectReference: {fileID: 2074068279}
+      objectReference: {fileID: 0}
     - target: {fileID: 114581851239646178, guid: 1a7840e232975044fa64a58239a831e5,
         type: 2}
       propertyPath: ObjectsToInitNeutral.Array.data[7]
@@ -3016,12 +3021,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4777937319992888, guid: da44fb8376d0950428233662fa73d311,
     type: 2}
   m_PrefabInternal: {fileID: 1303865762}
---- !u!114 &2074068279 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114561000001171558, guid: da44fb8376d0950428233662fa73d311,
-    type: 2}
-  m_PrefabInternal: {fileID: 1303865762}
-  m_Script: {fileID: 11500000, guid: a3a8757f915c77b479223c94fbf472cb, type: 3}
 --- !u!1001 &2074194461
 Prefab:
   m_ObjectHideFlags: 0
