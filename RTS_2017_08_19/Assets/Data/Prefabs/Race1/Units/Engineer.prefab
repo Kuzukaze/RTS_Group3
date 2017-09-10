@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: acde3422e1794c14eb7fb124d90fb56b, type: 3}
+  icon: {fileID: 21300000, guid: 860ff94294d3af24e9504efed125a662, type: 3}
   actionType: 3
   id: 22
   locked: 1
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92905ae65eb406949b26829c7eca60ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 0e0964964bbe273478f7f701a67f5092, type: 3}
+  icon: {fileID: 21300000, guid: fb78ae1230a5c6040b15f159cce2fc6d, type: 3}
   actionType: 1
   id: 25
   locked: 0
@@ -1782,7 +1782,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

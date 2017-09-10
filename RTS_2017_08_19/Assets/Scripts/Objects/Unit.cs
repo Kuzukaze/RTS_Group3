@@ -39,10 +39,15 @@ public class Unit : MonoBehaviour
     [SerializeField] float lineWidth = 0.8f;
     [SerializeField] Color color = new Color(0f, 1f, 1f, 0.75f);
 
+    public void SetLineColor (Color col)
+    {
+        color = col;
+    }
     // private bool IsMouseDown { get; set; }
 
     private void Start()
     {
+        Player.Matter.Use(100);
         //Init();
     }
 

@@ -6,10 +6,10 @@ public class NotRotate : MonoBehaviour {
     Quaternion rotation;
     void Awake()
     {
-        rotation = transform.rotation;
+        //rotation = transform.rotation;
     }
     void LateUpdate()
     {
-        transform.rotation = rotation;
+        transform.rotation = Camera.main.transform.rotation;
     }
 }

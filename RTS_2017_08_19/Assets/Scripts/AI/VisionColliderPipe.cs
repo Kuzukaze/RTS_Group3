@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VisionColliderPipe : MonoBehaviour
 {
-    [SerializeField] BaseAction action;
+    [SerializeField] Attack action;
 
     private Unit myUnit;
     private TaskManager myTaskManager;

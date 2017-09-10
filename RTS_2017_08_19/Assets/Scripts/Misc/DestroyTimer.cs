@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyTimer : MonoBehaviour 
 {
     [SerializeField] private bool activated = true;
-	[SerializeField] private float lifetime = 5;
+	[SerializeField] private float lifetime = 13;
 
 	// Use this for initialization
 	void Start () 

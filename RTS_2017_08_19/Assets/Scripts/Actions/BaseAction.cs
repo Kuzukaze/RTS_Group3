@@ -50,6 +50,8 @@ public class BaseAction : MonoBehaviour {
 
     protected bool protectFromPrematureCompletion = false;
 
+    protected EventHub eventHub;
+
     public ActionType GetActionType ()
     {
         return actionType;
@@ -71,9 +73,7 @@ public class BaseAction : MonoBehaviour {
         if (!protectFromPrematureCompletion)
         {
             actionInProgress = false;
-
             if (ActionCompleteEvent != null)
-
             {
                 actionInProgress = false;
                 OnActionComplete();
@@ -119,7 +119,6 @@ public class BaseAction : MonoBehaviour {
     public virtual void DrawPreActionMarker(Vector3 pos)
     {
         actionInProgress = true;
-        //Debug.Log("DrawPreActionMarker (Vector3 pos)");
     }
 
     public bool IsLocked ()
@@ -173,13 +172,13 @@ public class BaseAction : MonoBehaviour {
         unlockManager = FindObjectOfType<UnlockManager>();
         locked = unlockManager.CheckIfLocked(id);
         unlockManager.ActionUnlocked += new ActionUnlockHandler(UnlockDetected);
+        eventHub = FindObjectOfType<EventHub>();
     }
 
     void Update ()
     {
         if (actionInProgress)
         {
-            //Debug.Log("In progress true");
             switch (actionType)
             {
                 case ActionType.instant:

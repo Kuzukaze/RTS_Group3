@@ -1382,7 +1382,7 @@ MonoBehaviour:
     type: 2}
   selectedIconSprite: {fileID: 21300000, guid: 1c28fae39ed4f5549b3ca795d5360dc9, type: 3}
   selectedDescription: A small armored vehicle.
-  selectionType: 2
+  selectionType: 3
 --- !u!114 &114068074193100944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1579,7 +1579,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

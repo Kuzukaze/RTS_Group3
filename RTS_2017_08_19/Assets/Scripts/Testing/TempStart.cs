@@ -36,7 +36,7 @@ public class TempStart : MonoBehaviour
         LevelManager lvlMgr = GameManager.Instance.LevelManager;
 
         List<PlayerInfo> playersInfoList = new List<PlayerInfo>();
-        playersInfoList.Add(new PlayerInfo(ResourceData.Teams.Team1, player1Race, player1Color, player1SpawnPoint, ResourceData.PlayerType.Player, "Player 1"));
+        playersInfoList.Add(new PlayerInfo(ResourceData.Teams.Team1, player1Race, player1Color, player1SpawnPoint, ResourceData.PlayerType.AIEasy, "Player 1"));
         playersInfoList.Add(new PlayerInfo(ResourceData.Teams.Team2, player2Race, player2Color, player2SpawnPoint, ResourceData.PlayerType.AIEasy, "Player 2"));
         playersInfoList.Add(new PlayerInfo(ResourceData.Teams.Neutral, ResourceData.Races.Neutral, neutralColor, PlayerInfo.NO_SPAWN_POINT, ResourceData.PlayerType.AIEasy, "Neutral"));
 

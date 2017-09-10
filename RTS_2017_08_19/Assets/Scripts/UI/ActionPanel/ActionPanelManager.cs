@@ -100,9 +100,17 @@ public class ActionPanelManager : MonoBehaviour {
         {
             if (actionPanels[i].GetCurrentActions() != null)
             {
+                List<BaseAction> actionList = new List<BaseAction>();
                 //Debug.Log(string.Format("Action panel {0} is default move action: {1}", i, actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction()));
                 if (actionPanels[i].GetCurrentActions()[0].IsDefaultMoveAction())
-                    return actionPanels[i].GetCurrentActions();
+                {
+                    //return actionPanels[i].GetCurrentActions();
+                    foreach (BaseAction current in actionPanels[i].GetCurrentActions())
+                    {
+                        actionList.Add(current);
+                    }
+                }
+                return actionList;
             }
         }
         return null;

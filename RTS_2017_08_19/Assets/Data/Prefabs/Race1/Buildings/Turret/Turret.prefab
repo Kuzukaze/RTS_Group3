@@ -728,9 +728,9 @@ MonoBehaviour:
   isSelected: 0
   selectionPrefab: {fileID: 1063775259222016, guid: 3cd5b2b70295988469d2320caf83176f,
     type: 2}
-  selectedIconSprite: {fileID: 21300000, guid: acde3422e1794c14eb7fb124d90fb56b, type: 3}
+  selectedIconSprite: {fileID: 21300000, guid: 860ff94294d3af24e9504efed125a662, type: 3}
   selectedDescription: A static turret
-  selectionType: 3
+  selectionType: 1
 --- !u!114 &114933580663841926
 MonoBehaviour:
   m_ObjectHideFlags: 1
