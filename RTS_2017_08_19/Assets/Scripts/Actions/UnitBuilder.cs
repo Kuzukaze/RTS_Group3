@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EngeneerBuilder : BaseAction
+public class UnitBuilder : BaseAction
 {
-    [SerializeField]GameObject engineerPrefab;
-    private GameObject engineer = null;
+    [SerializeField]GameObject unitPrefab;
+    private GameObject unit = null;
 
     private Selectable selectable;
 
@@ -46,18 +46,18 @@ public class EngeneerBuilder : BaseAction
         {
             currentTime = 0.0f;
             progressBar.fillAmount = 0;
-            engineer = (GameObject)GameObject.Instantiate(engineerPrefab, transform.position + new Vector3(0,0,-3), Quaternion.LookRotation(Vector3.back));
+            unit = (GameObject)GameObject.Instantiate(unitPrefab, transform.position + new Vector3(0,0,-3), Quaternion.LookRotation(Vector3.back));
             PlayerController player = this.gameObject.GetComponent<Unit>().Player;
-            engineer.GetComponent<Unit>().Init(player);
+            unit.GetComponent<Unit>().Init(player);
             UnlockAction(actionToUnlock);
-            MoverGround mover = engineer.GetComponent<MoverGround>();
+            MoverGround mover = unit.GetComponent<MoverGround>();
             if (mover != null)
             {
                 mover.ExecuteAction(pos);
             }
             else
             {
-                MoverAir airMover = engineer.GetComponent<MoverAir>();
+                MoverAir airMover = unit.GetComponent<MoverAir>();
                 if (airMover != null)
                 {
                     airMover.ExecuteAction(pos);

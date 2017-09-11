@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 23216897138910060}
   - component: {fileID: 114268531436766950}
   m_Layer: 0
-  m_Name: Factory Construction
+  m_Name: Construction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 500
   healthBar: {fileID: 114048887702300046}
+  deathParticleSystem: {fileID: 0}
   lineWidth: 0.8
   color: {r: 0, g: 1, b: 1, a: 0.75}
 --- !u!114 &114269102112454714

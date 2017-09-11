@@ -1387,9 +1387,9 @@ MonoBehaviour:
     type: 2}
   buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
     type: 2}
-  ghostbuildingOK: {fileID: 1936674071012792, guid: f9b090908cc4c6141a7a302cedbc0713,
+  ghostbuildingOK: {fileID: 1854057543516794, guid: c5f01b1bd71506447a41c016c57f4037,
     type: 2}
-  ghostbuildingFail: {fileID: 1936674071012792, guid: f9b090908cc4c6141a7a302cedbc0713,
+  ghostbuildingFail: {fileID: 1854057543516794, guid: 60a8d5d28a875d141a189fb7f2bcaaa3,
     type: 2}
 --- !u!114 &114095026893723080
 MonoBehaviour:
@@ -1642,9 +1642,9 @@ MonoBehaviour:
     type: 2}
   buildingConstruction: {fileID: 1596308571342780, guid: e4a3d9cae34862b4e8350df6cfbfe33e,
     type: 2}
-  ghostbuildingOK: {fileID: 1936674071012792, guid: f9b090908cc4c6141a7a302cedbc0713,
+  ghostbuildingOK: {fileID: 1154566122383262, guid: 5d6f8c5c08088bb4ba34eb1e2984d7f5,
     type: 2}
-  ghostbuildingFail: {fileID: 1936674071012792, guid: f9b090908cc4c6141a7a302cedbc0713,
+  ghostbuildingFail: {fileID: 1154566122383262, guid: 27803a08c9847684c9ad838822999a9d,
     type: 2}
 --- !u!114 &114661513688261498
 MonoBehaviour:
