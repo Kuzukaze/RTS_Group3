@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectableUnit: {fileID: 114036863603963404}
-  engeneerUnit: {fileID: 114515185624454334}
+  buildedUnit: {fileID: 0}
 --- !u!114 &114349579472265778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -667,8 +667,7 @@ MonoBehaviour:
   defaultMoveAction: 0
   defaultAttackAction: 0
   useTaskPipe: 1
-  engineerPrefab: {fileID: 1477282361754418, guid: 4c41b8e93e98858458a5bda2d129b120,
-    type: 2}
+  unitPrefab: {fileID: 1477282361754418, guid: 4c41b8e93e98858458a5bda2d129b120, type: 2}
   buildingTime: 2
   progressBar: {fileID: 114801485128084872}
 --- !u!114 &114569593619797352
@@ -756,8 +755,7 @@ MonoBehaviour:
   defaultMoveAction: 0
   defaultAttackAction: 0
   useTaskPipe: 1
-  engineerPrefab: {fileID: 1097190085785232, guid: e358edda337f23a4b994e85519310963,
-    type: 2}
+  unitPrefab: {fileID: 1097190085785232, guid: e358edda337f23a4b994e85519310963, type: 2}
   buildingTime: 2
   progressBar: {fileID: 114801485128084872}
 --- !u!114 &114878417584261426

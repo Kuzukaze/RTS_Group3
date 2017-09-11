@@ -845,8 +845,7 @@ MonoBehaviour:
   defaultMoveAction: 0
   defaultAttackAction: 0
   useTaskPipe: 1
-  engineerPrefab: {fileID: 1814180355985514, guid: 8be2ee536afcbfe48ad69ceb194d8cd9,
-    type: 2}
+  unitPrefab: {fileID: 1814180355985514, guid: 8be2ee536afcbfe48ad69ceb194d8cd9, type: 2}
   buildingTime: 2
   progressBar: {fileID: 114011987048747260}
 --- !u!114 &114821167480899616

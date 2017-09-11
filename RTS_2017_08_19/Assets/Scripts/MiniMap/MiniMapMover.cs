@@ -18,8 +18,6 @@ public class MiniMapMover : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField] private Transform miniMapTarget;
     [SerializeField] private Terrain terrain;
 
-    private bool isMouseDown = false;
-
     // Use this for initialization
     void Start()
     {
