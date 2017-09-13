@@ -2016,7 +2016,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 114381850266341576}
   deathParticleSystem: {fileID: 0}
-  lineWidth: 2
+  lineWidth: 0.5
   color: {r: 0, g: 0, b: 1, a: 0.75}
 --- !u!114 &114172610020705362
 MonoBehaviour:
