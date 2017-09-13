@@ -371,7 +371,7 @@ MonoBehaviour:
   isSelected: 0
   selectionPrefab: {fileID: 1271126924687084, guid: d733f82eb1c5c3a43a687fefadc33ef1,
     type: 2}
-  selectedIconSprite: {fileID: 21300000, guid: 0e0964964bbe273478f7f701a67f5092, type: 3}
+  selectedIconSprite: {fileID: 21300000, guid: 449ef23800e07d346a26333461c0d664, type: 3}
   selectedDescription: Matter generator building
   selectionType: 1
 --- !u!114 &114804623959271298
